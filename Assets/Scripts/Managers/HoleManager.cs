@@ -29,7 +29,7 @@ public class HoleManager : MonoBehaviour
         HoleTextureInitialize();
 
 
-        CreateHole(new Vector2(9.6f, 5.4f), 0.5f, 1);
+        CreateHole(new Vector2(9f, 10.8f), 0.5f, 1);
         CreateHole(new Vector2(10f, 5.4f), 0.6f, 2);
         CreateHole(new Vector2(9f, 4f), 0.8f, 1);
         Debug.Log(areas[1]);
