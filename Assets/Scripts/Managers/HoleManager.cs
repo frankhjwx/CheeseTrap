@@ -9,7 +9,7 @@ public class HoleManager : MonoBehaviour
     public List<Hole> holes;
     public int[] areas;
     // playerNum should be fetched from GameManager later
-    private int playerNum = 2;
+    private int playerNum = 2000;
     // holeTexture has the size 960x540
     // holeTexture is used to calculate holes and masks
     private Texture2D holeTexture;  
@@ -28,7 +28,7 @@ public class HoleManager : MonoBehaviour
 
 
         UpdateHoleTexture(new Vector2(960, 540), 50, 1);
-        UpdateHoleTexture(new Vector2(980, 540), 60, 2);
+        UpdateHoleTexture(new Vector2(1280, 540), 60, 2);
         Debug.Log(areas[1]);
         Debug.Log(areas[2]);
         // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
@@ -40,7 +40,7 @@ public class HoleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DisplayHoleTexture();
     }
 
     private void HoleTextureInitialize(){
@@ -67,6 +67,7 @@ public class HoleManager : MonoBehaviour
         hole.radius = radius;
         holes.Add(hole);
         UpdateHoleTexture(position, radius, playerID);
+        
         // return value is the hole ID
         return holes.Count;
     }
@@ -111,7 +112,8 @@ public class HoleManager : MonoBehaviour
         holeTexture.Apply();
     }
 
-    public void DisplayTexture(){
-        
+    public void DisplayHoleTexture(){
+        GameObject map = GameObject.Find("Map");
+        map.GetComponent<SpriteRenderer>().material.SetTexture("_Mask", holeTexture);
     }
 }
