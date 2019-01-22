@@ -43,7 +43,7 @@ public class HoleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DisplayHoleTexture();
+        
     }
 
     private void HoleTextureInitialize(){
@@ -79,9 +79,9 @@ public class HoleManager : MonoBehaviour
         return holes.Count;
     }
 
-    public void UpdateHole(int id, Vector2 position, float radius, int playerID){
-        holes[id].position = position;
-        holes[id].radius = radius;
+    public void UpdateHole(int holeID, Vector2 position, float radius, int playerID){
+        holes[holeID].position = position;
+        holes[holeID].radius = radius;
         UpdateHoleTexture(position, radius, playerID);
         return;
     }
@@ -117,6 +117,7 @@ public class HoleManager : MonoBehaviour
             }
         }
         holeTexture.Apply();
+        DisplayHoleTexture();
     }
 
     public void DisplayHoleTexture(){
