@@ -28,7 +28,7 @@ public class HoleManager : MonoBehaviour
 
 
         UpdateHoleTexture(new Vector2(960, 540), 50, 1);
-        UpdateHoleTexture(new Vector2(1280, 540), 60, 2);
+        UpdateHoleTexture(new Vector2(1000, 540), 60, 2);
         Debug.Log(areas[1]);
         Debug.Log(areas[2]);
         // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
@@ -115,5 +115,7 @@ public class HoleManager : MonoBehaviour
     public void DisplayHoleTexture(){
         GameObject map = GameObject.Find("Map");
         map.GetComponent<SpriteRenderer>().material.SetTexture("_Mask", holeTexture);
+        GameObject shadow = GameObject.Find("HoleShadow");
+        shadow.GetComponent<SpriteRenderer>().material.SetTexture("_Mask", holeTexture);
     }
 }
