@@ -7,7 +7,7 @@ public class HoleManager : MonoBehaviour
     const int texWidth = 960;
     const int texHeight = 540;
     public List<Hole> holes;
-    public List<float> areas;
+    public int[] areas;
     // playerNum should be fetched from GameManager later
     private int playerNum = 2;
     // holeTexture has the size 960x540
@@ -23,12 +23,14 @@ public class HoleManager : MonoBehaviour
     void Start()
     {
         holes = new List<Hole>();
-        areas = new List<float>();
+        areas = new int[playerNum + 1];
         HoleTextureInitialize();
 
 
-        // UpdateHoleTexture(new Vector2(960, 540), 50, 255);
-        // UpdateHoleTexture(new Vector2(980, 540), 60, 125);
+        UpdateHoleTexture(new Vector2(960, 540), 50, 1);
+        UpdateHoleTexture(new Vector2(980, 540), 60, 2);
+        Debug.Log(areas[1]);
+        Debug.Log(areas[2]);
         // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
         // Debug.Log(holeTexture.GetPixel(25, 25));
         // Sprite pic = Sprite.Create(holeTexture, new Rect(0, 0, texWidth, texHeight), new Vector2(0.5f, 0.5f));
@@ -64,6 +66,7 @@ public class HoleManager : MonoBehaviour
         hole.position = position;
         hole.radius = radius;
         holes.Add(hole);
+        UpdateHoleTexture(position, radius, playerID);
         // return value is the hole ID
         return holes.Count;
     }
@@ -71,6 +74,7 @@ public class HoleManager : MonoBehaviour
     public void UpdateHole(int id, Vector2 position, float radius, int playerID){
         holes[id].position = position;
         holes[id].radius = radius;
+        UpdateHoleTexture(position, radius, playerID);
         return;
     }
 
@@ -98,6 +102,7 @@ public class HoleManager : MonoBehaviour
             for (int y = Bottom; y <= Top; y++){
                 if ((x - position.x)*(x - position.x) + (y - position.y)*(y - position.y) <= radius*radius && holeTexture.GetPixel(x, y).r == 0){
                     holeTexture.SetPixel(x, y, new Color32((byte)playerID, 0, 0, 255));
+                    areas[playerID]++;
                 }
 
                 colorIndex++;
