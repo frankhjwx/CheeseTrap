@@ -8,8 +8,10 @@ public class HoleManager : MonoBehaviour
     const int texHeight = 540;
     public List<Hole> holes;
     public int[] areas;
+
+    public GameObject holeColliderPrefab;
     // playerNum should be fetched from GameManager later
-    private int playerNum = 2000;
+    private int playerNum = 2;
     // holeTexture has the size 960x540
     // holeTexture is used to calculate holes and masks
     private Texture2D holeTexture;  
@@ -27,8 +29,9 @@ public class HoleManager : MonoBehaviour
         HoleTextureInitialize();
 
 
-        UpdateHoleTexture(new Vector2(960, 540), 50, 1);
-        UpdateHoleTexture(new Vector2(1000, 540), 60, 2);
+        CreateHole(new Vector2(9.6f, 5.4f), 0.5f, 1);
+        CreateHole(new Vector2(10f, 5.4f), 0.6f, 2);
+        CreateHole(new Vector2(9f, 4f), 0.8f, 1);
         Debug.Log(areas[1]);
         Debug.Log(areas[2]);
         // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
@@ -65,6 +68,10 @@ public class HoleManager : MonoBehaviour
         Hole hole = new Hole();
         hole.position = position;
         hole.radius = radius;
+        hole.gameObject = Instantiate(holeColliderPrefab);
+        hole.gameObject.name = "Hole-" + holes.Count.ToString();
+        hole.gameObject.GetComponent<CircleCollider2D>().radius = radius;
+        hole.gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         holes.Add(hole);
         UpdateHoleTexture(position, radius, playerID);
         
@@ -80,9 +87,9 @@ public class HoleManager : MonoBehaviour
     }
 
     private void UpdateHoleTexture(Vector2 position, float radius, int playerID){
-        position.x /= 2;
-        position.y /= 2;
-        radius /= 2;
+        position.x *= 50;
+        position.y *= 50;
+        radius *= 50;
         int Left, Right, Top, Bottom;
         Left = (int)(position.x - radius);
         Right = (int)(position.x + radius);

@@ -8,4 +8,5 @@ public class Hole
     public Vector2 position {get; set;}
     // judge if the hole is a XHole
     public bool XHole {get; set;}
+    public GameObject gameObject {get; set;}
 }
