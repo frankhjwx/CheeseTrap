@@ -48,8 +48,7 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 mask = tex2D(_Mask, i.uv);
-                half4 mask2 = tex2D(_Mask, i.uv + float2(0, 0.01));
-                // just invert the colors
+                half4 mask2 = tex2D(_Mask, i.uv + float2(-0.003, 0.01));
                 if (mask.r != 0 && mask2.r == 0)
                     col.a = 1;
                 else

@@ -29,8 +29,9 @@ public class HoleManager : MonoBehaviour
         HoleTextureInitialize();
 
 
-        CreateHole(new Vector2(9f, 10.8f), 0.5f, 1);
+        CreateHole(new Vector2(9f, 10.4f), 0.5f, 1);
         CreateHole(new Vector2(10f, 5.4f), 0.6f, 2);
+        CreateHole(new Vector2(9.6f, 4.6f), 0.6f, 2);
         CreateHole(new Vector2(9f, 4f), 0.8f, 1);
         Debug.Log(areas[1]);
         Debug.Log(areas[2]);
@@ -82,6 +83,8 @@ public class HoleManager : MonoBehaviour
     public void UpdateHole(int holeID, Vector2 position, float radius, int playerID){
         holes[holeID].position = position;
         holes[holeID].radius = radius;
+        holes[holeID].gameObject.GetComponent<CircleCollider2D>().radius = radius;
+        holes[holeID].gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         UpdateHoleTexture(position, radius, playerID);
         return;
     }
@@ -98,12 +101,14 @@ public class HoleManager : MonoBehaviour
 
         if (Left < 0)
             Left = 0;
-        if (Right > texWidth)
-            Right = texWidth;
+        if (Right >= texWidth)
+            Right = texWidth - 2;
         if (Bottom < 0)
             Bottom = 0;
-        if (Top > texHeight)
-            Top = texHeight;
+        if (Top >= texHeight)
+            Top = texHeight - 2;
+        Debug.Log(Top);
+        Debug.Log(Bottom);
 
         int colorIndex = 0;
         for (int x = Left; x <= Right; x++){
@@ -111,6 +116,7 @@ public class HoleManager : MonoBehaviour
                 if ((x - position.x)*(x - position.x) + (y - position.y)*(y - position.y) <= radius*radius && holeTexture.GetPixel(x, y).r == 0){
                     holeTexture.SetPixel(x, y, new Color32((byte)playerID, 0, 0, 255));
                     areas[playerID]++;
+                    
                 }
 
                 colorIndex++;

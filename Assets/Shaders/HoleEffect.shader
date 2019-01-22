@@ -48,7 +48,6 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 mask = tex2D(_Mask, i.uv);
-                // just invert the colors
                 if (mask.r != 0)
                     col.a = 0;
                 return col;
