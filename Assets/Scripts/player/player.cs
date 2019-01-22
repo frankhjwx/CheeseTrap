@@ -12,7 +12,7 @@ public class player : MonoBehaviour
     public float playerSpeed = 7.0f;
     private float diggingtime;
     HoleManager Holemanager1;
-    bool digging;
+    bool digging=false;
     bool running;
     public int playerID = 1;
     public float radiusofhole;
@@ -63,41 +63,18 @@ public class player : MonoBehaviour
     }
     void KeyMove()
     {
-        float xm = 0;
-        float ym = 0;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Mouse0)&&(digging == false))
         {
-            xm += playerSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            xm -= playerSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            ym += playerSpeed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            ym -= playerSpeed * Time.deltaTime;
-        }
-
-        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);
-        if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
-        {
-            playerTransform.transform.up = new Vector3(-xm, -ym, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (running == false) && (digging == false))
-        {
+            Debug.Log("dig");
             radiusofhole = 0.05f;
             diggingtime = 0f;
             digging = true;
             holeposition = new Vector2(playerTransform.transform.position.x, playerTransform.transform.position.y)-new Vector2(playerTransform.up.x, playerTransform.up.y)* 0.3f;
             holeID = Holemanager1.CreateHole(holeposition, radiusofhole, playerID);
         }
-        if (Input.GetKey(KeyCode.Mouse0) && (digging == true))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
+            digging = true;
             diggingtime += Time.deltaTime;
             radiusofhole += diggingtime * 0.03f;
             holeposition = new Vector2(holeposition.x, holeposition.y) - new Vector2(playerTransform.up.x, playerTransform.up.y) * diggingtime * 0.03f;
@@ -107,13 +84,37 @@ public class player : MonoBehaviour
         {
             digging = false;
         }
+        float xm = 0;
+        float ym = 0;
+        if (Input.GetKey(KeyCode.D) && (digging == false))
+        {
+            xm += playerSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A) && (digging == false))
+        {
+            xm -= playerSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.W) && (digging == false))
+        {
+            ym += playerSpeed * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.S) && (digging == false))
+        {
+            ym -= playerSpeed * Time.deltaTime;
+        }
+
+        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);
+        if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
+        {
+            playerTransform.transform.up = new Vector3(-xm, -ym, 0);
+        }
     }
 
     void StateManage()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))&&(digging==false))
         {
-            digging = false;
             running = true;
 
         }
