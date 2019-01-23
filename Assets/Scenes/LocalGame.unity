@@ -556,9 +556,9 @@ MonoBehaviour:
   eatAmountComparison: {fileID: 1083279006}
   weightA: {fileID: 486446475}
   weightB: {fileID: 55070795}
-  thresholdMin: 15000
-  thresholdMid: 30000
-  thresholdMax: 50000
+  thresholdMin: 30000
+  thresholdMid: 60000
+  thresholdMax: 100000
   eatMax: 300000
 --- !u!4 &434608143
 Transform:
@@ -907,12 +907,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed1: 5
-  playerSpeed2: 4.5
-  playerSpeed3: 4
-  playerSpeed4: 3
+  playerSpeed2: 4
+  playerSpeed3: 3
+  playerSpeed4: 2
   playerID: 2
-  radiusOfHole: 0
+  maxRadiusOfHole: 1.25
   uiPresentation: {fileID: 434608142}
+  hungerState: 1
 --- !u!212 &572129284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2789,12 +2790,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed1: 5
-  playerSpeed2: 4.5
-  playerSpeed3: 4
-  playerSpeed4: 3
+  playerSpeed2: 4
+  playerSpeed3: 3
+  playerSpeed4: 2
   playerID: 1
-  radiusOfHole: 0
+  maxRadiusOfHole: 1.25
   uiPresentation: {fileID: 434608142}
+  hungerState: 1
 --- !u!212 &1806846556
 SpriteRenderer:
   m_ObjectHideFlags: 0

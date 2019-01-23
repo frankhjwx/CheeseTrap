@@ -31,13 +31,14 @@ public class player : MonoBehaviour
     bool hori;
     int terrain;
     public int playerID = 1;//用户ID
-    public float radiusOfHole;//坑半径
+    private float radiusOfHole;//坑半径
+    public float maxRadiusOfHole = 1.25f;
     Vector2 holePosition;//坑位置
     Vector2 initiatePosition;
     int holeID;//坑的标号
 
     public InGameCountUI uiPresentation;
-    private int hungerState = 1;
+    public int hungerState = 1;
 
     GameObject InputManagerG;
     InputManager InputManager;
@@ -87,14 +88,14 @@ public class player : MonoBehaviour
             hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
         }
 
-        if (InputManager.instance.GetDigKey(playerID))//一直按下，持续增大
+        if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
         {
-          
             diggingTime += Time.deltaTime;
             Debug.Log("diggingtime" + diggingTime);
             if (diggingTime >= 0.2f)
             {
                 radius += 0.3f;
+                if (radius >= maxRadiusOfHole) radius = maxRadiusOfHole;
                 Debug.Log("refresh");
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
                 holeManager.UpdateHole(holeID, holePosition, radius, playerID);//坑刷新显示
@@ -105,8 +106,9 @@ public class player : MonoBehaviour
             hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
         }
 
-        if (InputManager.instance.GetDigKeyUp(playerID))//松开鼠标，停止挖掘
+        if (InputManager.instance.GetDigKeyUp(playerID) || Mathf.Abs(radius - maxRadiusOfHole) < 0.01f)//松开鼠标，停止挖掘
         {
+            radius = 0.0f;
             digging = false;
             canrun = true;
         }
