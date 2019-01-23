@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class player : MonoBehaviour
+public class player : NetworkBehaviour
 {
     private Rigidbody2D playerRigid;
     private GameObject holeManagerG;
@@ -38,7 +39,7 @@ public class player : MonoBehaviour
 
     void Update()
     {
-
+        if (!isLocalPlayer) return;
         StateManage();
         playAnimator();
         PlayerMove();
