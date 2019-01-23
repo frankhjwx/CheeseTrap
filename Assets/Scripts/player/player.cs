@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class player : NetworkBehaviour
+public class player : MonoBehaviour
 {
     private Rigidbody2D playerRigid;
     private GameObject holeManagerG;
@@ -39,7 +39,6 @@ public class player : NetworkBehaviour
 
     void Update()
     {
-        if (!isLocalPlayer) return;
         StateManage();
         playAnimator();
         PlayerMove();
