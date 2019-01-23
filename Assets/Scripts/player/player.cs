@@ -74,33 +74,15 @@ public class player : MonoBehaviour
     {
         float horizonD = Input.GetAxis("Horizontal");
         float vertiD = Input.GetAxis("Vertical");
-        float xm = 0;
-        float ym = 0;//xy轴的移动量分别存储
-        if ((horizonD > 0) && (!digging))
+        if (horizonD != 0 || vertiD != 0)
         {
-            xm += playerSpeed * Time.deltaTime;//存储移动量
+            Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
+            
+            playerTransform.Translate(directionMove * playerSpeed * Time.deltaTime, Space.World); //结算并挪动
+            playerTransform.transform.up = -directionMove; //只有移动了，玩家才会转向
+            running = true; //有移动量，则在跑动
         }
-        if ((horizonD < 0) && (!digging))
-        {
-            xm -= playerSpeed * Time.deltaTime;
-        }
-        if ((vertiD > 0) && (!digging))
-        {
-            ym += playerSpeed * Time.deltaTime;
-        }
-
-        if ((vertiD < 0) && (!digging))
-        {
-            ym -= playerSpeed * Time.deltaTime;
-        }
-
-        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);//结算并挪动
-        if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
-        {
-            playerTransform.transform.right = new Vector3(xm, ym, 0);//只有移动了，玩家才会转向
-            running = true;//有移动量，则在跑动
-        }
-        if (Mathf.Abs(xm) == 0f && Mathf.Abs(ym) == 0f)
+        else
         {
             running = false;//没有移动量，则不跑动
         }
