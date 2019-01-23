@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,10 +75,10 @@ public class player : MonoBehaviour
     {
         float horizonD = Input.GetAxis("Horizontal");
         float vertiD = Input.GetAxis("Vertical");
-        if (horizonD != 0 || vertiD != 0)
+        if ((Math.Abs(horizonD) > 0.01f || Mathf.Abs(vertiD) > 0.01f) && !digging)
         {
             Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
-
+            
             playerTransform.Translate(directionMove * playerSpeed * Time.deltaTime, Space.World); //结算并挪动
             playerTransform.transform.up = -directionMove; //只有移动了，玩家才会转向
             running = true; //有移动量，则在跑动
@@ -113,9 +114,9 @@ public class player : MonoBehaviour
     /// <summary>
     /// 3D坐标转2D
     /// </summary>
-    /// <param name="d3Position"></param>
-    /// <returns></returns>
-    Vector2 dimentionChange(Vector3 d3Position)
+    /// <param name="3D坐标"></param>
+    /// <returns>2D坐标</returns>
+    public Vector2 dimentionChange(Vector3 d3Position)
     {
         Vector2 d2Position=new Vector2(d3Position.x,d3Position.y);
         return d2Position;
