@@ -15,6 +15,7 @@ public class HoleManager : MonoBehaviour
     // holeTexture has the size 960x540
     // holeTexture is used to calculate holes and masks
     private Texture2D holeTexture;  
+    private Texture2D terrainTexture;
 
     // only for debug
     // private GameObject testTextureDisplay;
@@ -26,10 +27,9 @@ public class HoleManager : MonoBehaviour
     {
         holes = new List<Hole>();
         areas = new int[playerNum + 1];
-        HoleTextureInitialize();
+        InitializeTerrainTexture();
+        InitializeHoleTexture();
 
-        Debug.Log(areas[1]);
-        Debug.Log(areas[2]);
         //bool test = ConnectivityJudger.isConnected(new Vector2(0, 0), new Vector2(19, 8), holeTexture);
         // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
         // Debug.Log(holeTexture.GetPixel(25, 25));
@@ -42,12 +42,29 @@ public class HoleManager : MonoBehaviour
     {
         
     }
+    
+    // judge current status of the player on the terrain
+    // -1 -> die
+    // 0 -> normal
+    // 1 -> ice / cream e.t.c
+    public int getTerrainStatus(Vector2 position){
+        position.x *= 50;
+        position.y *= 50;
+        if (holeTexture.GetPixel((int)position.x, (int)position.y).r != 0 ||
+            holeTexture.GetPixel((int)position.x, (int)position.y).a == 0)
+            return -1;
+        return (int)Mathf.Round(holeTexture.GetPixel((int)position.x, (int)position.y).g * 255);
+    }
 
-    private void HoleTextureInitialize(){
+    public Texture2D GetHoleTexture(){
+        return holeTexture;
+    }
+
+    private void InitializeHoleTexture(){
         holeTexture = new Texture2D(texWidth, texHeight);
-        Color[] colors = new Color[texWidth*texHeight];
+        Color[] colors = terrainTexture.GetPixels();
         for (int i=0; i<texWidth*texHeight; i++){
-            colors[i] = Color.black;
+            colors[i].r = 0;
         }
         holeTexture.SetPixels(0, 0, texWidth, texHeight, colors);
         holeTexture.Apply();
@@ -60,6 +77,21 @@ public class HoleManager : MonoBehaviour
         // Sprite pic = Sprite.Create(holeTexture, new Rect(0, 0, texWidth, texHeight), new Vector2(0.5f,0.5f));
         // sr.sprite = pic;
         
+    }
+
+    void InitializeTerrainTexture(){
+        terrainTexture= new Texture2D(texWidth, texHeight);
+        Color[] colors = new Color[texWidth*texHeight];
+        for (int i=0; i<texWidth*texHeight; i++){
+            colors[i] = Color.black;
+        }
+        terrainTexture.SetPixels(0, 0, texWidth, texHeight, colors);
+        terrainTexture.Apply();
+    }
+
+    void LoadLevelTerrainTexture(int level){
+        // tbd Resources.Load() blahblah
+        // read the preset map
     }
 
     public int CreateHole(Vector2 position, float radius, int playerID){
