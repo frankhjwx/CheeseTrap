@@ -7,11 +7,30 @@ public class CounterSlider : MonoBehaviour
 {
     public Slider leftSlider;
     public Slider rightSlider;
-    public float leftValue = 0;
-    public float rightValue = 0;
 
-    private float currentPosition;
-    private float truePosition;
+    private float leftValue = 0;
+    public float LeftValue
+    {
+        get => leftValue;
+        set
+        {
+            leftValue = value;
+            RefreshTruePosition();
+        }
+    }
+    private float rightValue = 0;
+    public float RightValue
+    {
+        get => rightValue;
+        set
+        {
+            rightValue = value;
+            RefreshTruePosition();
+        }
+    }
+
+    private float currentPosition = 0.5f;
+    private float truePosition = 0.5f;
     
     // Start is called before the first frame update
     void Start()
@@ -28,5 +47,19 @@ public class CounterSlider : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void RefreshTruePosition()
+    {
+        if (LeftValue < 0.01 && RightValue < 0.01) truePosition = 0.5f;
+        else if (LeftValue < 0.01 && RightValue >= 0.01) truePosition = 0.0f;
+        else if (LeftValue >= 0.01 && RightValue < 0.01) truePosition = 1.0f;
+        else truePosition = LeftValue / (LeftValue + RightValue);
+    }
+    
+    private void RefreshSliderPosition()
+    {
+        leftSlider.value = currentPosition;
+        rightSlider.value = 1 - currentPosition;
     }
 }
