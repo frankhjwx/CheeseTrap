@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour {
         if (playerID == 2) {
             return player2Vector;
         }
-        throw new Exception("player ID can only be 1 or 2.");
+        return Vector2.zero;
     }
 
 }

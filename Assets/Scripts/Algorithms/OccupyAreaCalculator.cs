@@ -9,7 +9,7 @@ public static class OccupyAreaCalculator
         int area = 0;
         for (int i=0; i<960; i++)
             for (int j=0; j<540; j++)
-                if (Math.Abs(texture.GetPixel(i, j).r * 256 - playerID) < 0.1f) {
+                if (Math.Abs(texture.GetPixel(i, j).r * 255 - playerID) < 0.1f) {
                     area += 1;
                 }
         return area;
