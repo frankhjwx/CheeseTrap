@@ -13,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+            <state relative-caret-position="180">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
               <folding>
                 <marker date="1548232734654" expanded="false" signature="6:92" ph="..." />
                 <marker date="1548232734654" expanded="true" signature="129:4367" ph="{...}" />
@@ -86,7 +86,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGamePauseUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-270">
@@ -218,7 +218,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16234000" />
+    <option name="totallyTimeSpent" value="16832000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -368,10 +368,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGamePauseUI.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+          <folding>
+            <marker date="1548232734653" expanded="false" signature="6:135" ph="..." />
+            <marker date="1548232734653" expanded="true" signature="179:1377" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="407:606" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="464:526" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="539:600" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="664:685" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="710:831" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="857:978" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="1002:1293" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="1059:1166" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="1179:1287" ph="{...}" />
+            <marker date="1548232734653" expanded="true" signature="1317:1370" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+        <state relative-caret-position="180">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
           <folding>
             <marker date="1548232734654" expanded="false" signature="6:92" ph="..." />
             <marker date="1548232734654" expanded="true" signature="129:4367" ph="{...}" />
@@ -399,27 +420,6 @@
             <marker date="1548232734654" expanded="true" signature="3906:4076" ph="{...}" />
             <marker date="1548232734654" expanded="true" signature="4088:4204" ph="/// 3D坐标转2D ... " />
             <marker date="1548232734654" expanded="true" signature="4259:4365" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGamePauseUI.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-270">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding>
-            <marker date="1548232734653" expanded="false" signature="6:135" ph="..." />
-            <marker date="1548232734653" expanded="true" signature="179:1377" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="407:606" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="464:526" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="539:600" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="664:685" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="710:831" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="857:978" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="1002:1293" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="1059:1166" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="1179:1287" ph="{...}" />
-            <marker date="1548232734653" expanded="true" signature="1317:1370" ph="{...}" />
           </folding>
         </state>
       </provider>
