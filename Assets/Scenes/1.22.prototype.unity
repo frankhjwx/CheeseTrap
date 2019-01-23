@@ -528,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 7
   playerID: 1
-  radiusofhole: 0
+  radiusOfHole: 0
 --- !u!212 &1863930318
 SpriteRenderer:
   m_ObjectHideFlags: 0
