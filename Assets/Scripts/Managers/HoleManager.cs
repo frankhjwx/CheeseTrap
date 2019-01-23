@@ -51,7 +51,7 @@ public class HoleManager : MonoBehaviour
         position.x *= 50;
         position.y *= 50;
         if (holeTexture.GetPixel((int)position.x, (int)position.y).r != 0 ||
-            holeTexture.GetPixel((int)position.x, (int)position.y).a == 0)
+            holeTexture.GetPixel((int)position.x, (int)position.y).g == 1)
             return -1;
         return (int)Mathf.Round(holeTexture.GetPixel((int)position.x, (int)position.y).g * 255);
     }
@@ -63,9 +63,9 @@ public class HoleManager : MonoBehaviour
     private void InitializeHoleTexture(){
         holeTexture = new Texture2D(texWidth, texHeight);
         Color[] colors = terrainTexture.GetPixels();
-        for (int i=0; i<texWidth*texHeight; i++){
-            colors[i].r = 0;
-        }
+        // for (int i=0; i<texWidth*texHeight; i++){
+        //     colors[i].r = 0;
+        // }
         holeTexture.SetPixels(0, 0, texWidth, texHeight, colors);
         holeTexture.Apply();
         DisplayHoleTexture();
@@ -145,7 +145,8 @@ public class HoleManager : MonoBehaviour
         int colorIndex = 0;
         for (int x = Left; x <= Right; x++){
             for (int y = Bottom; y <= Top; y++){
-                if ((x - position.x)*(x - position.x) + (y - position.y)*(y - position.y) <= radius*radius && holeTexture.GetPixel(x, y).r == 0){
+                if ((x - position.x)*(x - position.x) + (y - position.y)*(y - position.y) <= radius*radius && holeTexture.GetPixel(x, y).r == 0
+                   && holeTexture.GetPixel(x, y).r != 1){
                     holeTexture.SetPixel(x, y, new Color32((byte)playerID, 0, 0, 255));
                     areas[playerID]++;
                 }

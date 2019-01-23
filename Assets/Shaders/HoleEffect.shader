@@ -48,7 +48,7 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 mask = tex2D(_Mask, i.uv);
-                if (mask.r != 0)
+                if (mask.r != 0 && mask.r != 1)
                     col.a = 0;
                 return col;
             }
