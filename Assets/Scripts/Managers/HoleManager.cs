@@ -53,7 +53,7 @@ public class HoleManager : MonoBehaviour
         if (holeTexture.GetPixel((int)position.x, (int)position.y).r != 0 ||
             holeTexture.GetPixel((int)position.x, (int)position.y).a == 0)
             return -1;
-        return Math.Round(holeTexture.GetPixel((int)position.x, (int)position.y).g * 255);
+        return (int)Mathf.Round(holeTexture.GetPixel((int)position.x, (int)position.y).g * 255);
     }
 
     public Texture2D GetHoleTexture(){
