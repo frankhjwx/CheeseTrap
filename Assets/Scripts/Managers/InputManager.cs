@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +7,9 @@ public class InputManager : MonoBehaviour {
 
     public static InputManager instance;
     private Vector2 player1Vector, player2Vector;
-    public bool player1DigKeyDown, player2DigKeyDown;
-    public bool player1DigKey, player2DigKey;
-    public bool player1DigKeyUp, player2DigKeyUp;
+    public bool player1DigKeyDown = false, player2DigKeyDown = false;
+    public bool player1DigKey = false, player2DigKey = false;
+    public bool player1DigKeyUp = false, player2DigKeyUp = false;
 
     private KeyCode[] directionKeys1 = {KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D};
     private KeyCode[] directionKeys2 = {KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow};
@@ -92,12 +93,12 @@ public class InputManager : MonoBehaviour {
     // playerID = 1 or 2
     public Vector2 GetAxis(int playerID){
         if (playerID == 1) {
-            return player1Vector;
+            return Vector3.Normalize(player1Vector);
         }
         if (playerID == 2) {
-            return player2Vector;
+            return Vector3.Normalize(player2Vector);
         }
-        throw new Exception("player ID can only be 1 or 2.");
+        return Vector2.zero;
     }
 
 }

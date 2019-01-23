@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1353365184}
   pauseBtn: {fileID: 273717571}
-  music: {fileID: 1497472620}
+  audioImage: {fileID: 1497472620}
   musicOn: {fileID: 21300000, guid: 771e0c75e11c19447802a54177f6163c, type: 3}
   musicOff: {fileID: 21300000, guid: 484aec7b22eba334490ae1ae7302034c, type: 3}
 --- !u!114 &1643265719
