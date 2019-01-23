@@ -25,7 +25,9 @@
             <e p="player.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="counterSlider.cs" t="Include" />
             <e p="CoverUIController.cs" t="Include" />
+            <e p="InGameCountUI.cs" t="Include" />
             <e p="InGamePauseUI.cs" t="Include" />
           </e>
         </e>
