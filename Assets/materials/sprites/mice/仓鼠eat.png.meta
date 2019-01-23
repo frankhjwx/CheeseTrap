@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 3f783413588a4eb4daff8a1940fc2719
+guid: f193ecbd899f9e34e8089821b2a7e284
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 33528f55fc68b91a54652b39482310b_0
-    21300002: 33528f55fc68b91a54652b39482310b_1
-    21300004: 33528f55fc68b91a54652b39482310b_2
-    21300006: 33528f55fc68b91a54652b39482310b_3
-    21300008: 33528f55fc68b91a54652b39482310b_4
-    21300010: 33528f55fc68b91a54652b39482310b_5
-    21300012: 33528f55fc68b91a54652b39482310b_6
-    21300014: 33528f55fc68b91a54652b39482310b_7
+    21300000: "\u4ED3\u9F20eat_0"
+    21300002: "\u4ED3\u9F20eat_1"
+    21300004: "\u4ED3\u9F20eat_2"
+    21300006: "\u4ED3\u9F20eat_3"
+    21300008: "\u4ED3\u9F20eat_4"
+    21300010: "\u4ED3\u9F20eat_5"
+    21300012: "\u4ED3\u9F20eat_6"
+    21300014: "\u4ED3\u9F20eat_7"
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -92,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_0
+      name: "\u4ED3\u9F20eat_0"
       rect:
         serializedVersion: 2
         x: 16
@@ -106,13 +106,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f22615630a768e419b909ed674695c4
+      spriteID: 2ea043d3e819a144fb8f85e627b926b0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_1
+      name: "\u4ED3\u9F20eat_1"
       rect:
         serializedVersion: 2
         x: 80
@@ -126,13 +126,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c25223a799cdbd04386e598dd0a30c7c
+      spriteID: 3ef22378a052ef14ab4b5f0b6981a9be
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_2
+      name: "\u4ED3\u9F20eat_2"
       rect:
         serializedVersion: 2
         x: 144
@@ -146,13 +146,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6278603d3ea12dd43916a9ed479e2c88
+      spriteID: e7737aad3b320d140bec05c204f307b2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_3
+      name: "\u4ED3\u9F20eat_3"
       rect:
         serializedVersion: 2
         x: 208
@@ -166,13 +166,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd2e917130b993a419e5284183b83a1b
+      spriteID: 0387f7dd135b6b44abfc3039bfedf7e7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_4
+      name: "\u4ED3\u9F20eat_4"
       rect:
         serializedVersion: 2
         x: 272
@@ -186,13 +186,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b86d00421049085429ce84bced739bef
+      spriteID: 22481bb296ee38a4fb08835f7d588532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_5
+      name: "\u4ED3\u9F20eat_5"
       rect:
         serializedVersion: 2
         x: 336
@@ -206,13 +206,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5b264a9c668ae842816918ddab4e4a6
+      spriteID: b116fbf9533d8cc46a301bb3f1a706b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_6
+      name: "\u4ED3\u9F20eat_6"
       rect:
         serializedVersion: 2
         x: 400
@@ -226,13 +226,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcd6029caa981304fbc56dcd2a67394f
+      spriteID: 4d002b04f984287458fb2a7adab75530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 33528f55fc68b91a54652b39482310b_7
+      name: "\u4ED3\u9F20eat_7"
       rect:
         serializedVersion: 2
         x: 464
@@ -246,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1fbaa8d885c54f46a24a078dabd9fa5
+      spriteID: c86c1313149f57146ad2e597d2fa1508
       vertices: []
       indices: 
       edges: []
@@ -254,7 +254,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 39f0fecbf44279e42b756831d4831877
+    spriteID: de60afc981aa8da49b2ac6772caf5e5e
     vertices: []
     indices: 
     edges: []
