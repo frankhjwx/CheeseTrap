@@ -46,7 +46,15 @@ public class CounterSlider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Mathf.Abs(currentPosition - truePosition) < 0.001f)
+        {
+            currentPosition = Mathf.Lerp(currentPosition, truePosition, 0.3f);
+        }
+        else
+        {
+            currentPosition = truePosition;
+        }
+        RefreshSliderPosition();
     }
 
     private void RefreshTruePosition()

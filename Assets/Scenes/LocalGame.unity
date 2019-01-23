@@ -1351,7 +1351,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 640833854}
   - {fileID: 1252737581}
   m_Father: {fileID: 1083279005}
   m_RootOrder: 0
@@ -1462,10 +1461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae98c6952c6597459179d4355c7488f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftSlider: {fileID: 0}
-  rightSlider: {fileID: 0}
-  leftValue: 0
-  rightValue: 0
+  leftSlider: {fileID: 982118630}
+  rightSlider: {fileID: 934069408}
 --- !u!114 &1083279007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,7 +1529,7 @@ RectTransform:
   m_Children:
   - {fileID: 594592716}
   m_Father: {fileID: 982118629}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
