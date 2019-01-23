@@ -11,17 +11,20 @@ public class player : MonoBehaviour
 
     public float playerSpeed = 7.0f;//跑动速度
     private float diggingTime;//挖坑计时器
+    private float radius;
     HoleManager holeManager;//挂载另一个脚本的物体
     bool digging=false;//挖掘状态
     bool running;//跑动状态
     bool canrun;//是否可跑动
     bool hori;
-
+    int terrain;
     public int playerID = 1;//用户ID
     public float radiusOfHole;//坑半径
     Vector2 holePosition;//坑位置
+    Vector2 initiatePosition;
     int holeID;//坑的标号
-
+    GameObject InputManagerG;
+    InputManager InputManager;
     void Start()
     {
         canrun = true;
@@ -30,19 +33,26 @@ public class player : MonoBehaviour
 
         holeManagerObject = GameObject.Find("HoleManager");
         holeManager = holeManagerObject.GetComponent<HoleManager>();
+        InputManagerG = GameObject.Find("InputManager");
+        InputManager = InputManagerG.GetComponent<InputManager>();
 
         hori = true;
     }
 
     void Update()
     {
+        terrain = holeManager.getTerrainStatus(transform.position);
+        if(terrain<0)
+        {
+            Debug.Log("youdie!");
+        }
         Dig();
         PlayerAnimation();
         if(canrun)
         {
             Move();
         }
-        Debug.Log(holeManager.getTerrainStatus(transform.position));
+
     }
 
     /// <summary>
@@ -55,19 +65,26 @@ public class player : MonoBehaviour
             digging = true;
             canrun = false;
             diggingTime = 0f;
-            radiusOfHole = 0.05f;//半径初始化
-            holePosition = dimentionChange(transform.position) + dimentionChange(transform.right) * 0.6f;//坑的坐标在玩家面前
+            radius = 0.05f;//半径初始化
+            initiatePosition= dimentionChange(transform.position) + dimentionChange(transform.right) * 0.6f;//坑的坐标在玩家面前
 
-            holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
+            holeID = holeManager.CreateHole(initiatePosition, radiusOfHole, playerID);//显示坑
         }
 
         if (InputManager.instance.GetDigKey(playerID))//一直按下，持续增大
         {
+          
             diggingTime += Time.deltaTime;
-            radiusOfHole += diggingTime * 0.03f;//半径增大
-            holePosition = holePosition + dimentionChange(transform.right) * diggingTime * 0.03f;//坑坐标向前挪动
+            Debug.Log("diggingtime" + diggingTime);
+            if (diggingTime >= 0.2f)
+            {
+                radius += 0.3f;
+                Debug.Log("refresh");
+                holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
+                holeManager.UpdateHole(holeID, holePosition, radius, playerID);//坑刷新显示
+                diggingTime = 0;
+            }
 
-            holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
         }
 
         if (InputManager.instance.GetDigKeyUp(playerID))//松开鼠标，停止挖掘
