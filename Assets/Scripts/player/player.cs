@@ -9,7 +9,19 @@ public class player : MonoBehaviour
     private Collider2D playerCollider;
     private Animator playerAnimator;
 
-    public float playerSpeed = 7.0f;//跑动速度
+    public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
+    
+    public float PlayerSpeed
+    {
+        get
+        {
+            if (hungerState == 1) return playerSpeed1;
+            else if (hungerState == 2) return playerSpeed2;
+            else if (hungerState == 3) return playerSpeed3;
+            else if (hungerState == 4) return playerSpeed4;
+            else return playerSpeed4;
+        }
+    }//跑动速度
     private float diggingTime;//挖坑计时器
     HoleManager holeManager;//挂载另一个脚本的物体
     bool digging=false;//挖掘状态
@@ -21,6 +33,9 @@ public class player : MonoBehaviour
     public float radiusOfHole;//坑半径
     Vector2 holePosition;//坑位置
     int holeID;//坑的标号
+
+    public InGameCountUI uiPresentation;
+    private int hungerState = 1;
 
     void Start()
     {
@@ -42,7 +57,6 @@ public class player : MonoBehaviour
         {
             Move();
         }
-        Debug.Log(holeManager.getTerrainStatus(transform.position));
     }
 
     /// <summary>
@@ -59,6 +73,7 @@ public class player : MonoBehaviour
             holePosition = dimentionChange(transform.position) + dimentionChange(transform.right) * 0.6f;//坑的坐标在玩家面前
 
             holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
+            hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
         }
 
         if (InputManager.instance.GetDigKey(playerID))//一直按下，持续增大
@@ -68,6 +83,7 @@ public class player : MonoBehaviour
             holePosition = holePosition + dimentionChange(transform.right) * diggingTime * 0.03f;//坑坐标向前挪动
 
             holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
+            hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
         }
 
         if (InputManager.instance.GetDigKeyUp(playerID))//松开鼠标，停止挖掘
@@ -85,7 +101,7 @@ public class player : MonoBehaviour
         var moveDirection = InputManager.instance.GetAxis(playerID);
         if (moveDirection != Vector2.zero && !digging)
         {
-            transform.Translate(moveDirection * playerSpeed * Time.deltaTime, Space.World);//结算并挪动
+            transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
             transform.right = moveDirection;
             running = true;
         }

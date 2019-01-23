@@ -9,13 +9,15 @@ public class InGameCountUI : MonoBehaviour
     public CounterSlider eatAmountComparison;
     public Slider weightA, weightB;
     //四个饱食度状态的变化时值。
-    public float thresholdMin, thresholdMid, thresholdMax;
+    public float thresholdMin, thresholdMid, thresholdMax, eatMax;
     
     // Start is called before the first frame update
     void Start()
     {
         weightA.value = 0;
         weightB.value = 0;
+        weightA.maxValue = eatMax;
+        weightB.maxValue = eatMax;
     }
 
     /// <summary>
@@ -38,6 +40,23 @@ public class InGameCountUI : MonoBehaviour
         {
             eatAmountComparison.RightValue += amountDelta;
             weightB.value += amountDelta;
+            return GetHungerState(weightB.value);
+        }
+        return 4;
+    }
+    
+    public int SetEatAmount(int playerID, float amount)
+    {
+        if (playerID == 1)
+        {
+            eatAmountComparison.LeftValue = amount;
+            weightA.value = amount;
+            return GetHungerState(weightA.value);
+        }
+        if (playerID == 2)
+        {
+            eatAmountComparison.RightValue = amount;
+            weightB.value = amount;
             return GetHungerState(weightB.value);
         }
         return 4;
