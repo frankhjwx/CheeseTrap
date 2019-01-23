@@ -556,9 +556,9 @@ MonoBehaviour:
   eatAmountComparison: {fileID: 1083279006}
   weightA: {fileID: 486446475}
   weightB: {fileID: 55070795}
-  thresholdMin: 30000
-  thresholdMid: 60000
-  thresholdMax: 100000
+  thresholdMin: 25000
+  thresholdMid: 45000
+  thresholdMax: 70000
   eatMax: 300000
 --- !u!4 &434608143
 Transform:
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8490566, g: 0.31639373, b: 0.31639373, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

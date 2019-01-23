@@ -94,7 +94,7 @@ public class player : MonoBehaviour
             Debug.Log("diggingtime" + diggingTime);
             if (diggingTime >= 0.2f)
             {
-                radius += 0.3f;
+                radius += 0.15f;
                 if (radius >= maxRadiusOfHole) radius = maxRadiusOfHole;
                 Debug.Log("refresh");
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
