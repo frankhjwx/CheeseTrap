@@ -10,6 +10,10 @@
           <e p="ProjectVersion.txt" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="Algorithms" t="Include">
+            <e p="ConnectivityJudger.cs" t="Include" />
+            <e p="OccupyAreaCalculator.cs" t="Include" />
+          </e>
           <e p="Managers" t="Include">
             <e p="HoleManager.cs" t="Include" />
           </e>

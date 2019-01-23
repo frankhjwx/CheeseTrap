@@ -1,149 +1,123 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class player : MonoBehaviour
 {
-    private Rigidbody2D playerRigid;
-    private GameObject holeManagerG;
+    private GameObject holeManagerObject;
     private Transform playerTransform;
     private Collider2D playerCollider;
     private Animator playerAnimator;
-    public float playerSpeed = 7.0f;
-    private float diggingtime;
-    HoleManager Holemanager1;
-    bool digging=false;
-    bool running;
-    public int playerID = 1;
-    public float radiusofhole;
-    Vector2 holeposition;
-    int holeID;
-    public enum ControlType//控制方式
-    {
-        key,
-        controller
-    }
 
-    ControlType type = ControlType.key;
+    public float playerSpeed = 7.0f;//跑动速度
+    private float diggingTime;//挖坑计时器
+    HoleManager holeManager;//挂载另一个脚本的物体
+    bool digging=false;//挖掘状态
+    bool running;//跑动状态
+    public int playerID = 1;//用户ID
+    public float radiusOfHole;//坑半径
+    Vector2 holePosition;//坑位置
+    int holeID;//坑的标号
 
     void Start()
     {
         playerTransform = gameObject.GetComponent<Transform>();
         playerCollider = gameObject.GetComponent<Collider2D>();
-        playerRigid = gameObject.GetComponent<Rigidbody2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
-        holeManagerG = GameObject.Find("HoleManager");
-        Holemanager1 = holeManagerG.GetComponent<HoleManager>();
+
+        holeManagerObject = GameObject.Find("HoleManager");
+        holeManager = holeManagerObject.GetComponent<HoleManager>();
     }
 
     void Update()
     {
-        StateManage();
-        playAnimator();
-        PlayerMove();
+        Dig();
+        PlayerAnimation();
+        Move();
     }
 
-    void PlayerMove()//根据控制方式移动
+    /// <summary>
+    /// 挖坑状态逻辑
+    /// </summary>
+    void Dig()
     {
-        switch (type)
-        {
-            case ControlType.key:
-                KeyMove();
-                break;
-            case ControlType.controller:
-                ControllerMove();
-                break;
-        }
-    }
-
-    void ControllerMove()
-    {
-
-    }
-    void KeyMove()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0)&&(digging == false))
-        {
-            Debug.Log("dig");
-            radiusofhole = 0.05f;
-            diggingtime = 0f;
-            digging = true;
-            holeposition = new Vector2(playerTransform.transform.position.x, playerTransform.transform.position.y)-new Vector2(playerTransform.up.x, playerTransform.up.y)* 0.3f;
-            holeID = Holemanager1.CreateHole(holeposition, radiusofhole, playerID);
-        }
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (!digging))//初次按下鼠标，初始化坑
         {
             digging = true;
-            diggingtime += Time.deltaTime;
-            radiusofhole += diggingtime * 0.03f;
-            holeposition = new Vector2(holeposition.x, holeposition.y) - new Vector2(playerTransform.up.x, playerTransform.up.y) * diggingtime * 0.03f;
-            Holemanager1.UpdateHole(holeID, holeposition, radiusofhole, playerID);
+
+            diggingTime = 0f;
+            radiusOfHole = 0.05f;//半径初始化
+            holePosition = dimentionChange(playerTransform.transform.position) - dimentionChange(playerTransform.up) * 0.3f;//坑的坐标在玩家面前
+
+            holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+
+        if (Input.GetKey(KeyCode.Mouse0))//一直按下，持续增大
+        {
+            diggingTime += Time.deltaTime;
+            radiusOfHole += diggingTime * 0.03f;//半径增大
+            holePosition = holePosition - dimentionChange(playerTransform.up) * diggingTime * 0.03f;//坑坐标向前挪动
+
+            holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
+        }
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))//松开鼠标，停止挖掘
         {
             digging = false;
         }
-        float xm = 0;
-        float ym = 0;
-        if (Input.GetKey(KeyCode.D) && (digging == false))
-        {
-            xm += playerSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A) && (digging == false))
-        {
-            xm -= playerSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W) && (digging == false))
-        {
-            ym += playerSpeed * Time.deltaTime;
-        }
+    }
 
-        if (Input.GetKey(KeyCode.S) && (digging == false))
+    /// <summary>
+    /// 人物移动执行、跑动状态切换
+    /// </summary>
+    void Move()
+    {
+        float horizonD = Input.GetAxis("Horizontal");
+        float vertiD = Input.GetAxis("Vertical");
+        if (horizonD != 0 || vertiD != 0)
         {
-            ym -= playerSpeed * Time.deltaTime;
-        }
+            Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
 
-        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);
-        if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
+            playerTransform.Translate(directionMove * playerSpeed * Time.deltaTime, Space.World); //结算并挪动
+            playerTransform.transform.up = -directionMove; //只有移动了，玩家才会转向
+            running = true; //有移动量，则在跑动
+        }
+        else
         {
-            playerTransform.transform.up = new Vector3(-xm, -ym, 0);
+            running = false;//没有移动量，则不跑动
         }
     }
 
-    void StateManage()
+    /// <summary>
+    /// 控制状态机参数
+    /// </summary>
+    void PlayerAnimation()
     {
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))&&(digging==false))
-        {
-            running = true;
-
-        }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
-        {
-            running = false;
-        }
-    }
-
-    void playAnimator()
-    {
-        if ((running == false) && (digging == false))
+        if ((!running) && (!digging))
         {
             playerAnimator.SetBool("run", false);
-            playerAnimator.SetBool("stay", true);
             playerAnimator.SetBool("dig", false);
         }
-        if (running == true)
+        if (running)
         {
             playerAnimator.SetBool("run", true);
-            playerAnimator.SetBool("stay", false);
             playerAnimator.SetBool("dig", false);
         }
-        if (digging == true)
+        if (digging)
         {
             playerAnimator.SetBool("dig", true);
-            playerAnimator.SetBool("stay", false);
             playerAnimator.SetBool("run", false);
         }
     }
 
+    /// <summary>
+    /// 3D坐标转2D
+    /// </summary>
+    /// <param name="d3Position"></param>
+    /// <returns></returns>
+    Vector2 dimentionChange(Vector3 d3Position)
+    {
+        Vector2 d2Position=new Vector2(d3Position.x,d3Position.y);
+        return d2Position;
+    }
 }
