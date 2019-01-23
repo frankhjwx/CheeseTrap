@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/animation/vertirun.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/animation/vertirun.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/animation/vertistay.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/animation/vertistay.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/33528f55fc68b91a54652b39482310b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/33528f55fc68b91a54652b39482310b.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/仓鼠idle2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/仓鼠idle2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/CheeseTrap/v15/Server/sqlite3/storage.ide" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CheeseTrap/v15/Server/sqlite3/storage.ide" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/CheeseTrap/v15/Server/sqlite3/storage.ide-wal" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/CheeseTrap/v15/Server/sqlite3/storage.ide-wal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/mice.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/mice.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/run.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/stay.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/stay.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/sprites/mice/miceanimation.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/vertidig.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/sprites/mice/miceanimation.anim.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/vertidig.anim.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/sprites/mice/仓鼠idle_0.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/仓鼠idle_0.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/materials/sprites/mice/发条.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/sprites/mice/发条.png.meta" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,29 +36,35 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-180">
-              <caret line="48" column="48" lean-forward="true" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+            <state relative-caret-position="-342">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
-                <marker date="1548225207173" expanded="true" signature="6:92" ph="..." />
-                <marker date="1548225207173" expanded="true" signature="129:3203" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="568:836" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="855:925" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="931:978" ph="/// 挖坑状态逻辑 ... " />
-                <marker date="1548225207173" expanded="true" signature="993:1911" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="1085:1408" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="1475:1787" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="1856:1905" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="1917:1971" ph="/// 人物移动执行、跑动状态切换 ... " />
-                <marker date="1548225207173" expanded="true" signature="1987:2387" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2117:2307" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2320:2381" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2393:2441" ph="/// 控制状态机参数 ... " />
-                <marker date="1548225207173" expanded="true" signature="2468:2918" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2512:2632" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2653:2772" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2793:2912" ph="{...}" />
-                <marker date="1548225207173" expanded="true" signature="2924:3040" ph="/// 3D坐标转2D ... " />
-                <marker date="1548225207173" expanded="true" signature="3095:3201" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="6:92" ph="..." />
+                <marker date="1548226522681" expanded="true" signature="129:4367" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="608:921" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="940:1053" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="1007:1047" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="1059:1106" ph="/// 挖坑状态逻辑 ... " />
+                <marker date="1548226522681" expanded="true" signature="1121:2099" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="1213:1566" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="1633:1948" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2017:2093" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2105:2159" ph="/// 人物移动执行、跑动状态切换 ... " />
+                <marker date="1548226522681" expanded="true" signature="2175:2735" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2305:2497" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2510:2571" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2605:2650" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2683:2729" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2741:2789" ph="/// 控制状态机参数 ... " />
+                <marker date="1548226522681" expanded="true" signature="2816:4082" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="2866:3035" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="3085:3259" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="3300:3469" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="3502:3672" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="3704:3873" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="3906:4076" ph="{...}" />
+                <marker date="1548226522681" expanded="true" signature="4088:4204" ph="/// 3D坐标转2D ... " />
+                <marker date="1548226522681" expanded="true" signature="4259:4365" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -81,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGamePauseUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+              <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding>
                 <marker date="1548219431574" expanded="true" signature="6:135" ph="..." />
                 <marker date="1548219431574" expanded="true" signature="179:1377" ph="{...}" />
@@ -104,7 +126,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/CoverUIController.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
               <folding>
                 <marker date="1548218993077" expanded="false" signature="6:113" ph="..." />
                 <marker date="1548218993077" expanded="true" signature="161:768" ph="{...}" />
@@ -259,7 +281,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14548000" />
+    <option name="totallyTimeSpent" value="15423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -272,7 +294,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Capture Tool" />
@@ -289,7 +310,7 @@
       <window_info anchor="bottom" id="Logcat" weight="0.3297587" />
       <window_info anchor="bottom" id="Unit Tests" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Version Control" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Unity" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -373,7 +394,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/CoverUIController.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
             <marker date="1548218993077" expanded="false" signature="6:113" ph="..." />
             <marker date="1548218993077" expanded="true" signature="161:768" ph="{...}" />
@@ -389,7 +410,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGamePauseUI.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="25" column="40" lean-forward="true" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
           <folding>
             <marker date="1548219431574" expanded="true" signature="6:135" ph="..." />
             <marker date="1548219431574" expanded="true" signature="179:1377" ph="{...}" />
@@ -439,29 +460,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="48" column="48" lean-forward="true" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+        <state relative-caret-position="-342">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
-            <marker date="1548225207173" expanded="true" signature="6:92" ph="..." />
-            <marker date="1548225207173" expanded="true" signature="129:3203" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="568:836" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="855:925" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="931:978" ph="/// 挖坑状态逻辑 ... " />
-            <marker date="1548225207173" expanded="true" signature="993:1911" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="1085:1408" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="1475:1787" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="1856:1905" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="1917:1971" ph="/// 人物移动执行、跑动状态切换 ... " />
-            <marker date="1548225207173" expanded="true" signature="1987:2387" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2117:2307" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2320:2381" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2393:2441" ph="/// 控制状态机参数 ... " />
-            <marker date="1548225207173" expanded="true" signature="2468:2918" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2512:2632" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2653:2772" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2793:2912" ph="{...}" />
-            <marker date="1548225207173" expanded="true" signature="2924:3040" ph="/// 3D坐标转2D ... " />
-            <marker date="1548225207173" expanded="true" signature="3095:3201" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="6:92" ph="..." />
+            <marker date="1548226522681" expanded="true" signature="129:4367" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="608:921" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="940:1053" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="1007:1047" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="1059:1106" ph="/// 挖坑状态逻辑 ... " />
+            <marker date="1548226522681" expanded="true" signature="1121:2099" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="1213:1566" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="1633:1948" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2017:2093" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2105:2159" ph="/// 人物移动执行、跑动状态切换 ... " />
+            <marker date="1548226522681" expanded="true" signature="2175:2735" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2305:2497" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2510:2571" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2605:2650" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2683:2729" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2741:2789" ph="/// 控制状态机参数 ... " />
+            <marker date="1548226522681" expanded="true" signature="2816:4082" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="2866:3035" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="3085:3259" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="3300:3469" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="3502:3672" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="3704:3873" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="3906:4076" ph="{...}" />
+            <marker date="1548226522681" expanded="true" signature="4088:4204" ph="/// 3D坐标转2D ... " />
+            <marker date="1548226522681" expanded="true" signature="4259:4365" ph="{...}" />
           </folding>
         </state>
       </provider>
