@@ -9,7 +9,7 @@ public class InGamePauseUI : MonoBehaviour
 
     public RectTransform pausePanel;
     public Button pauseBtn;
-    public Image music;
+    public Image audioImage;
 
     public Sprite musicOn;
     public Sprite musicOff;
@@ -19,11 +19,11 @@ public class InGamePauseUI : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
         {
-            music.sprite = musicOff;
+            audioImage.sprite = musicOff;
         }
         else
         {
-            music.sprite = musicOn;
+            audioImage.sprite = musicOn;
         }
     }
 
@@ -52,12 +52,12 @@ public class InGamePauseUI : MonoBehaviour
         if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
         {
             PlayerPrefs.SetInt("MusicOn", 0);
-            music.sprite = musicOn;
+            audioImage.sprite = musicOn;
         }
         else
         {
             PlayerPrefs.SetInt("MusicOn", 1);
-            music.sprite = musicOff;
+            audioImage.sprite = musicOff;
         }
     }
 
