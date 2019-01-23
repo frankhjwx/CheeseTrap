@@ -42,6 +42,7 @@ public class player : MonoBehaviour
         {
             Move();
         }
+        Debug.Log(holeManager.getTerrainStatus(transform.position));
     }
 
     /// <summary>

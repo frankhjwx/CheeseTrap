@@ -27,7 +27,7 @@ public class HoleManager : MonoBehaviour
     {
         holes = new List<Hole>();
         areas = new int[playerNum + 1];
-        InitializeTerrainTexture();
+        LoadLevelTerrainTexture(0);
         InitializeHoleTexture();
 
         //bool test = ConnectivityJudger.isConnected(new Vector2(0, 0), new Vector2(19, 8), holeTexture);
@@ -92,6 +92,7 @@ public class HoleManager : MonoBehaviour
     void LoadLevelTerrainTexture(int level){
         // tbd Resources.Load() blahblah
         // read the preset map
+        terrainTexture = Resources.Load("Terrains/level1_terrain") as Texture2D;
     }
 
     public int CreateHole(Vector2 position, float radius, int playerID){
