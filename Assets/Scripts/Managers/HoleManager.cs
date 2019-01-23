@@ -72,6 +72,10 @@ public class HoleManager : MonoBehaviour
         hole.gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         holes.Add(hole);
         UpdateHoleTexture(position, radius, playerID);
+
+        Debug.Log(ConnectivityJudger.isConnected(new Vector2(0, 0), new Vector2(19, 9), holeTexture));
+        //Debug.Log(OccupyAreaCalculator.getConnectedArea(new Vector2(0.1f, 0.1f), holeTexture));
+        
         // return value is the hole ID
         return holes.Count;
     }
