@@ -12,8 +12,12 @@ public class player : MonoBehaviour
     public float playerSpeed = 7.0f;//跑动速度
     private float diggingTime;//挖坑计时器
     HoleManager holeManager;//挂载另一个脚本的物体
+
     bool digging=false;//挖掘状态
     bool running;//跑动状态
+    bool canrun;//是否可跑动
+    bool hori;
+
     public int playerID = 1;//用户ID
     public float radiusOfHole;//坑半径
     Vector2 holePosition;//坑位置
@@ -21,19 +25,25 @@ public class player : MonoBehaviour
 
     void Start()
     {
+        canrun = true;
         playerTransform = gameObject.GetComponent<Transform>();
         playerCollider = gameObject.GetComponent<Collider2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
 
         holeManagerObject = GameObject.Find("HoleManager");
         holeManager = holeManagerObject.GetComponent<HoleManager>();
+
+        hori = true;
     }
 
     void Update()
     {
         Dig();
         PlayerAnimation();
-        Move();
+        if(canrun)
+        {
+            Move();
+        }
     }
 
     /// <summary>
@@ -44,10 +54,10 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && (!digging))//初次按下鼠标，初始化坑
         {
             digging = true;
-
+            canrun = false;
             diggingTime = 0f;
             radiusOfHole = 0.05f;//半径初始化
-            holePosition = dimentionChange(playerTransform.transform.position) - dimentionChange(playerTransform.up) * 0.3f;//坑的坐标在玩家面前
+            holePosition = dimentionChange(playerTransform.transform.position) + dimentionChange(playerTransform.right) * 0.6f;//坑的坐标在玩家面前
 
             holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
         }
@@ -56,7 +66,7 @@ public class player : MonoBehaviour
         {
             diggingTime += Time.deltaTime;
             radiusOfHole += diggingTime * 0.03f;//半径增大
-            holePosition = holePosition - dimentionChange(playerTransform.up) * diggingTime * 0.03f;//坑坐标向前挪动
+            holePosition = holePosition+dimentionChange(playerTransform.right) * diggingTime * 0.03f;//坑坐标向前挪动
 
             holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
         }
@@ -64,6 +74,7 @@ public class player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))//松开鼠标，停止挖掘
         {
             digging = false;
+            canrun = true;
         }
     }
 
@@ -79,12 +90,21 @@ public class player : MonoBehaviour
             Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
             
             playerTransform.Translate(directionMove * playerSpeed * Time.deltaTime, Space.World); //结算并挪动
-            playerTransform.transform.up = -directionMove; //只有移动了，玩家才会转向
+            playerTransform.transform.right = directionMove; //只有移动了，玩家才会转向
             running = true; //有移动量，则在跑动
         }
         else
         {
             running = false;//没有移动量，则不跑动
+        }
+
+        if(playerTransform.transform.right.y==0)
+        {
+            hori = true;
+        }
+        if(playerTransform.transform.right.y!=0)
+        {
+            hori = false;
         }
     }
 
@@ -93,18 +113,44 @@ public class player : MonoBehaviour
     /// </summary>
     void PlayerAnimation()
     {
-        if ((!running) && (!digging))
+        if ((!running) && (!digging)&&hori)
         {
+            playerAnimator.SetBool("hori",true);
             playerAnimator.SetBool("run", false);
             playerAnimator.SetBool("dig", false);
         }
-        if (running)
+
+        if ((!running) && (!digging) && (!hori))
         {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run" , false );
+            playerAnimator.SetBool("dig" , false);
+        }
+         
+        if ((running) && hori)
+        {
+            playerAnimator.SetBool("hori", true);
             playerAnimator.SetBool("run", true);
             playerAnimator.SetBool("dig", false);
         }
-        if (digging)
+
+        if ((running) && !hori)
         {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run", true);
+            playerAnimator.SetBool("dig", false);
+        }
+
+        if ((digging) && hori)
+        {
+            playerAnimator.SetBool("hori", true);
+            playerAnimator.SetBool("dig", true);
+            playerAnimator.SetBool("run", false);
+        }
+
+        if ((digging) && !hori)
+        {
+            playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("dig", true);
             playerAnimator.SetBool("run", false);
         }
