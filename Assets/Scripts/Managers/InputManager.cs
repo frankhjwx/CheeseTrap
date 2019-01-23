@@ -59,7 +59,10 @@ public class InputManager : MonoBehaviour {
             player2Vector.y = 1;
         } else if (Input.GetKey(directionKeys2[1]) && !Input.GetKey(directionKeys2[0])) {
             player2Vector.y = -1;
+        } else {
+            player2Vector.y = 0;
         }
+        
 
         if (Input.GetKeyUp(DigKey1))
             player1DigKeyUp = true;
