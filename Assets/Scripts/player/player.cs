@@ -17,7 +17,6 @@ public class player : MonoBehaviour
     public int playerID = 1;//用户ID
     public float radiusOfHole;//坑半径
     Vector2 holePosition;//坑位置
-    /// <param ></param>
     int holeID;//坑的标号
 
     void Start()
@@ -44,21 +43,24 @@ public class player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && (!digging))//初次按下鼠标，初始化坑
         {
-            Debug.Log("dig");
-            radiusOfHole = 0.05f;
-            diggingTime = 0f;
             digging = true;
-            holePosition = new Vector2(playerTransform.transform.position.x, playerTransform.transform.position.y) - new Vector2(playerTransform.up.x, playerTransform.up.y) * 0.3f;
-            holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);
+
+            diggingTime = 0f;
+            radiusOfHole = 0.05f;//半径初始化
+            holePosition = dimentionChange(playerTransform.transform.position) - dimentionChange(playerTransform.up) * 0.3f;//坑的坐标在玩家面前
+
+            holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
         }
+
         if (Input.GetKey(KeyCode.Mouse0))//一直按下，持续增大
         {
-            digging = true;
             diggingTime += Time.deltaTime;
-            radiusOfHole += diggingTime * 0.03f;
-            holePosition = new Vector2(holePosition.x, holePosition.y) - new Vector2(playerTransform.up.x, playerTransform.up.y) * diggingTime * 0.03f;
-            holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);
+            radiusOfHole += diggingTime * 0.03f;//半径增大
+            holePosition = holePosition - dimentionChange(playerTransform.up) * diggingTime * 0.03f;//坑坐标向前挪动
+
+            holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
         }
+
         if (Input.GetKeyUp(KeyCode.Mouse0))//松开鼠标，停止挖掘
         {
             digging = false;
@@ -70,27 +72,29 @@ public class player : MonoBehaviour
     /// </summary>
     void Move()
     {
+        float horizonD = Input.GetAxis("Horizontal");
+        float vertiD = Input.GetAxis("Vertical");
         float xm = 0;
         float ym = 0;//xy轴的移动量分别存储
-        if (Input.GetKey(KeyCode.D) && (!digging))
+        if ((horizonD > 0) && (!digging))
         {
             xm += playerSpeed * Time.deltaTime;//存储移动量
         }
-        if (Input.GetKey(KeyCode.A) && (!digging))
+        if ((horizonD < 0) && (!digging))
         {
             xm -= playerSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.W) && (!digging))
+        if ((vertiD > 0) && (!digging))
         {
             ym += playerSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.S) && (!digging))
+        if ((vertiD < 0) && (!digging))
         {
             ym -= playerSpeed * Time.deltaTime;
         }
 
-        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);//实现挪动
+        playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);//结算并挪动
         if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
         {
             playerTransform.transform.up = new Vector3(-xm, -ym, 0);//只有移动了，玩家才会转向
@@ -110,21 +114,28 @@ public class player : MonoBehaviour
         if ((!running) && (!digging))
         {
             playerAnimator.SetBool("run", false);
-            playerAnimator.SetBool("stay", true);
             playerAnimator.SetBool("dig", false);
         }
         if (running)
         {
             playerAnimator.SetBool("run", true);
-            playerAnimator.SetBool("stay", false);
             playerAnimator.SetBool("dig", false);
         }
         if (digging)
         {
             playerAnimator.SetBool("dig", true);
-            playerAnimator.SetBool("stay", false);
             playerAnimator.SetBool("run", false);
         }
     }
 
+    /// <summary>
+    /// 3D坐标转2D
+    /// </summary>
+    /// <param name="d3Position"></param>
+    /// <returns></returns>
+    Vector2 dimentionChange(Vector3 d3Position)
+    {
+        Vector2 d2Position=new Vector2(d3Position.x,d3Position.y);
+        return d2Position;
+    }
 }
