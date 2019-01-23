@@ -97,7 +97,7 @@ public class player : MonoBehaviour
         playerTransform.Translate(new Vector3(xm, ym, 0), Space.World);//结算并挪动
         if (Mathf.Abs(xm) >= 0.01f || Mathf.Abs(ym) >= 0.01f)
         {
-            playerTransform.transform.up = new Vector3(-xm, -ym, 0);//只有移动了，玩家才会转向
+            playerTransform.transform.right = new Vector3(xm, ym, 0);//只有移动了，玩家才会转向
             running = true;//有移动量，则在跑动
         }
         if (Mathf.Abs(xm) == 0f && Mathf.Abs(ym) == 0f)
@@ -131,9 +131,9 @@ public class player : MonoBehaviour
     /// <summary>
     /// 3D坐标转2D
     /// </summary>
-    /// <param name="d3Position"></param>
-    /// <returns></returns>
-    Vector2 dimentionChange(Vector3 d3Position)
+    /// <param name="3D坐标"></param>
+    /// <returns>2D坐标</returns>
+    public Vector2 dimentionChange(Vector3 d3Position)
     {
         Vector2 d2Position=new Vector2(d3Position.x,d3Position.y);
         return d2Position;
