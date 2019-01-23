@@ -6,7 +6,6 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     private GameObject holeManagerObject;
-    private Transform playerTransform;
     private Collider2D playerCollider;
     private Animator playerAnimator;
 
@@ -22,7 +21,6 @@ public class player : MonoBehaviour
 
     void Start()
     {
-        playerTransform = gameObject.GetComponent<Transform>();
         playerCollider = gameObject.GetComponent<Collider2D>();
         playerAnimator = gameObject.GetComponent<Animator>();
 
@@ -42,27 +40,27 @@ public class player : MonoBehaviour
     /// </summary>
     void Dig()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (!digging))//初次按下鼠标，初始化坑
+        if (InputManager.instance.GetDigKeyDown(playerID) && (!digging))//初次按下鼠标，初始化坑
         {
             digging = true;
 
             diggingTime = 0f;
             radiusOfHole = 0.05f;//半径初始化
-            holePosition = dimentionChange(playerTransform.transform.position) - dimentionChange(playerTransform.up) * 0.3f;//坑的坐标在玩家面前
+            holePosition = dimentionChange(transform.position) - dimentionChange(transform.up) * 0.3f;//坑的坐标在玩家面前
 
             holeID = holeManager.CreateHole(holePosition, radiusOfHole, playerID);//显示坑
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))//一直按下，持续增大
+        if (InputManager.instance.GetDigKey(playerID))//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
             radiusOfHole += diggingTime * 0.03f;//半径增大
-            holePosition = holePosition - dimentionChange(playerTransform.up) * diggingTime * 0.03f;//坑坐标向前挪动
+            holePosition = holePosition - dimentionChange(transform.up) * diggingTime * 0.03f;//坑坐标向前挪动
 
             holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))//松开鼠标，停止挖掘
+        if (InputManager.instance.GetDigKeyUp(playerID))//松开鼠标，停止挖掘
         {
             digging = false;
         }
@@ -73,15 +71,12 @@ public class player : MonoBehaviour
     /// </summary>
     void Move()
     {
-        float horizonD = Input.GetAxis("Horizontal");
-        float vertiD = Input.GetAxis("Vertical");
-        if ((Math.Abs(horizonD) > 0.01f || Mathf.Abs(vertiD) > 0.01f) && !digging)
+        var moveDirection = InputManager.instance.GetAxis(playerID);
+        if (moveDirection != Vector2.zero && !digging)
         {
-            Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
-            
-            playerTransform.Translate(directionMove * playerSpeed * Time.deltaTime, Space.World); //结算并挪动
-            playerTransform.transform.up = -directionMove; //只有移动了，玩家才会转向
-            running = true; //有移动量，则在跑动
+            transform.Translate(moveDirection * playerSpeed * Time.deltaTime, Space.World);//结算并挪动
+            transform.up = -moveDirection;
+            running = true;
         }
         else
         {

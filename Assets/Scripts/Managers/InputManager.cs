@@ -7,9 +7,12 @@ public class InputManager : MonoBehaviour {
 
     public static InputManager instance;
     private Vector2 player1Vector, player2Vector;
-    public bool player1DigKeyDown = false, player2DigKeyDown = false;
-    public bool player1DigKey = false, player2DigKey = false;
-    public bool player1DigKeyUp = false, player2DigKeyUp = false;
+    [HideInInspector]
+    private bool player1DigKeyDown = false, player2DigKeyDown = false;
+    [HideInInspector]
+    private bool player1DigKey = false, player2DigKey = false;
+    [HideInInspector]
+    private bool player1DigKeyUp = false, player2DigKeyUp = false;
 
     private KeyCode[] directionKeys1 = {KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D};
     private KeyCode[] directionKeys2 = {KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow};
@@ -99,6 +102,35 @@ public class InputManager : MonoBehaviour {
             return Vector3.Normalize(player2Vector);
         }
         return Vector2.zero;
+    }
+
+    public bool GetDigKeyDown(int playerID)
+    {
+        if (playerID == 1)
+        {
+            return player1DigKeyDown;
+        }
+
+        if (playerID == 2)
+        {
+            return player2DigKeyDown;
+        }
+
+        return false;
+    }
+
+    public bool GetDigKey(int playerID)
+    {
+        if (playerID == 1) return player1DigKey;
+        if (playerID == 2) return player2DigKey;
+        return false;
+    }
+
+    public bool GetDigKeyUp(int playerID)
+    {
+        if (playerID == 1) return player1DigKeyUp;
+        if (playerID == 2) return player2DigKeyUp;
+        return false;
     }
 
 }
