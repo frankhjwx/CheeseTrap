@@ -67,6 +67,7 @@ public class HoleManager : MonoBehaviour
         //     colors[i].r = 0;
         // }
         holeTexture.SetPixels(0, 0, texWidth, texHeight, colors);
+        holeTexture.filterMode = FilterMode.Point;
         holeTexture.Apply();
         DisplayHoleTexture();
 
