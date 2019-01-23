@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,7 +75,7 @@ public class player : MonoBehaviour
     {
         float horizonD = Input.GetAxis("Horizontal");
         float vertiD = Input.GetAxis("Vertical");
-        if (horizonD != 0 || vertiD != 0)
+        if ((Math.Abs(horizonD) > 0.01f || Mathf.Abs(vertiD) > 0.01f) && !digging)
         {
             Vector3 directionMove = Vector3.Normalize(new Vector3(horizonD, vertiD));
             

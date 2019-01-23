@@ -63,7 +63,7 @@ public class InGamePauseUI : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("Opening");
+        SceneManager.LoadScene("Cover");
     }
     
 }
