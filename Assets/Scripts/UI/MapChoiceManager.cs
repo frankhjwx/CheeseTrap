@@ -25,11 +25,12 @@ public class MapChoiceManager : MonoBehaviour
         DontDestroyOnLoad(this);
         var miceInfo = Resources.Load<TextAsset>("MiceInfo").text;
         root = JSON.Parse(miceInfo);
-        
+        Debug.Log(miceInfo);
     }
 
     public MiceBasicInfo GetMiceBasicInfo(int playerID)
     {
+        GetInfo();
         if (playerID == 1 || playerID == 2) return basicInfo[playerID - 1];
         else return basicInfo[0];
     }
@@ -41,11 +42,13 @@ public class MapChoiceManager : MonoBehaviour
 
     private void GetInfo()
     {
+        Debug.Log(root.Count + " " + p1Choice.CurrentChoice);
         var choice1Node = root[p1Choice.CurrentChoice];
         basicInfo[0] = new MiceBasicInfo(choice1Node["choiceID"].AsInt, choice1Node["speedState1"].AsFloat, 
             choice1Node["speedState2"].AsFloat, choice1Node["speedState3"].AsFloat, choice1Node["speedState4"].AsFloat,
             choice1Node["eatThresholdMin"].AsFloat, choice1Node["eatThresholdMid"].AsFloat, choice1Node["eatThresholdMax"].AsFloat, 
             choice1Node["initialRadius"].AsFloat, choice1Node["deltaRadius"].AsFloat, choice1Node["timeStep"].AsFloat, choice1Node["maxRadius"].AsFloat);
+        Debug.Log(root.Count + " " + p2Choice.CurrentChoice);
         var choice2Node = root[p2Choice.CurrentChoice];
         basicInfo[1] = new MiceBasicInfo(choice2Node["choiceID"].AsInt, choice2Node["speedState1"].AsFloat, 
             choice2Node["speedState2"].AsFloat, choice2Node["speedState3"].AsFloat, choice2Node["speedState4"].AsFloat,

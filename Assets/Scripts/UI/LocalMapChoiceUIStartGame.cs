@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LocalMapChoiceUI : MonoBehaviour
+public class LocalMapChoiceUIStartGame : MonoBehaviour
 {
     public void StartGame()
     {
@@ -13,10 +13,5 @@ public class LocalMapChoiceUI : MonoBehaviour
             MapChoiceManager mapChoiceManager = mapChoice.GetComponent<MapChoiceManager>();
             SceneManager.LoadScene("LocalGame");
         }
-    }
-
-    public void BackCover()
-    {
-        SceneManager.LoadScene("Cover");
     }
 }

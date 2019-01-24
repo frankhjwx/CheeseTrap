@@ -18,6 +18,12 @@ public class GameController : MonoBehaviour {
 
 
     void Start(){
+        if (GameObject.FindWithTag("LocalMapChoiceManager"))
+        {
+            var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
+            gameLevel = localMapChoice.GetMapChosen();
+        }
+        Debug.Log(gameLevel);
         currentStatus = gameStatus.Play;
         holeManager = GameObject.Find("HoleManager");
         holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
@@ -25,6 +31,7 @@ public class GameController : MonoBehaviour {
         mice1 = GameObject.Find("mice1");
         mice2 = GameObject.Find("mice2");
         gameTime = 0f;
+        
     }
 
     void Update() {

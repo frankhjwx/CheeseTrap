@@ -59,17 +59,19 @@ public class player : MonoBehaviour
     ParticleSystem.EmissionModule dustEmission;
     void Start()
     {
+        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
             var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
-            playerSpeed1 = localMapChoice.GetMiceBasicInfo(playerID).speedState1;
-            playerSpeed2 = localMapChoice.GetMiceBasicInfo(playerID).speedState2;
-            playerSpeed3 = localMapChoice.GetMiceBasicInfo(playerID).speedState3;
-            playerSpeed4 = localMapChoice.GetMiceBasicInfo(playerID).speedState4;
+            var basicInfo = localMapChoice.GetMiceBasicInfo(playerID);
+            playerSpeed1 = basicInfo.speedState1;
+            playerSpeed2 = basicInfo.speedState2;
+            playerSpeed3 = basicInfo.speedState3;
+            playerSpeed4 = basicInfo.speedState4;
 
-            thresholdMin = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMin;
-            thresholdMid = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMid;
-            thresholdMax = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMax;
+            thresholdMin = basicInfo.eatThresholdMin;
+            thresholdMid = basicInfo.eatThresholdMid;
+            thresholdMax = basicInfo.eatThresholdMax;
         }
         
         canrun = true;
@@ -78,7 +80,6 @@ public class player : MonoBehaviour
 
         currentSpeed = Vector2.zero;
         acceleration = Vector2.zero;
-        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
 

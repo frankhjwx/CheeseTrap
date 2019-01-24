@@ -37,6 +37,7 @@
             <e p="InGameCountUI.cs" t="Include" />
             <e p="InGamePauseUI.cs" t="Include" />
             <e p="LocalMapChoiceUI.cs" t="Include" />
+            <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
             <e p="MapChoiceManager.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
           </e>

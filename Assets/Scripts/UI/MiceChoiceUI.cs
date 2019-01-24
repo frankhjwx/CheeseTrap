@@ -10,6 +10,10 @@ public class MiceChoiceUI : MonoBehaviour
     public List<GameObject> miceChoicePrefab;
     public RectTransform imagePosition;
     //public float scrollTime = 1.0f;
+
+    public Slider speedSlider;
+    public Slider eatSpeedSlider;
+    public Slider beingFatSpeedSlider;
     
     private int miceKinds;
     private int currentChoice = 0;
@@ -32,9 +36,9 @@ public class MiceChoiceUI : MonoBehaviour
             imageInstance.GetComponent<RectTransform>().localPosition = new Vector3(currentGeneratePos, 0.0f);
             currentGeneratePos += imageWidth;
         }
-        miceKinds = miceChoice.Count;
         */
         currentChosenMiceInstance = Instantiate(miceChoicePrefab[0], imagePosition);
+        miceKinds = miceChoicePrefab.Count;
     }
 
     // Update is called once per frame
@@ -62,6 +66,7 @@ public class MiceChoiceUI : MonoBehaviour
             
             Destroy(currentChosenMiceInstance);
             currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
+            choiceRolling = false;
         }
     }
 
@@ -85,6 +90,21 @@ public class MiceChoiceUI : MonoBehaviour
         if (currentChoice >= miceKinds - 1)
         {
             currentChoice = miceKinds - 1;
+            
+        }
+        else
+        {
+            currentChoice++;
+            //timeLeftToRecover = scrollTime;
+            choiceRolling = true;
+        }
+    }
+    
+    public void rightChoiceLoop()
+    {
+        if (currentChoice >= miceKinds - 1)
+        {
+            currentChoice = 0;
             
         }
         else
