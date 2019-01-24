@@ -72,6 +72,11 @@ public class player : MonoBehaviour
             thresholdMin = basicInfo.eatThresholdMin;
             thresholdMid = basicInfo.eatThresholdMid;
             thresholdMax = basicInfo.eatThresholdMax;
+
+            initialRadius = basicInfo.initialRadius;
+            deltaRadius = basicInfo.deltaRadius;
+            timeStep = basicInfo.timeStep;
+            maxRadius = basicInfo.maxRadius;
         }
         
         canrun = true;
