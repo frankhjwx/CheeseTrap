@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    private GameObject holeManagerObject;
-    private GameController gameController;
+    public GameController gameController;
     private Collider2D playerCollider;
     public Animator playerAnimator;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
+    public float initialRadius = 0.05f;
+    public float deltaRadius = 0.15f;
+    public float timeStep = 0.2f;
+    public float maxRadius = 1.25f;
     
     public float PlayerSpeed
     {
@@ -26,7 +29,7 @@ public class player : MonoBehaviour
     }//跑动速度
     private float diggingTime;//挖坑计时器
     private float radius;
-    HoleManager holeManager;//挂载另一个脚本的物体
+    public HoleManager holeManager;//挂载另一个脚本的物体
     bool digging=false;//挖掘状态
     bool running;//跑动状态
     bool canrun;//是否可跑动
@@ -39,7 +42,6 @@ public class player : MonoBehaviour
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
-    public float maxRadiusOfHole = 1.25f;
     Vector2 holePosition;//坑位置
     Vector2 initiatePosition;
     private Vector2 currentSpeed;
@@ -49,24 +51,35 @@ public class player : MonoBehaviour
     public InGameCountUI uiPresentation;
     public int hungerState = 1;
 
-    GameObject InputManagerG;
-    InputManager InputManager;
+    public InputManager InputManager;
     GameObject AnimationManagerG;
     void Start()
     {
+        if (GameObject.FindWithTag("LocalMapChoiceManager"))
+        {
+            var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
+            playerSpeed1 = localMapChoice.GetMiceBasicInfo(playerID).speedState1;
+            playerSpeed2 = localMapChoice.GetMiceBasicInfo(playerID).speedState2;
+            playerSpeed3 = localMapChoice.GetMiceBasicInfo(playerID).speedState3;
+            playerSpeed4 = localMapChoice.GetMiceBasicInfo(playerID).speedState4;
+
+            thresholdMin = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMin;
+            thresholdMid = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMid;
+            thresholdMax = localMapChoice.GetMiceBasicInfo(playerID).eatThresholdMax;
+        }
+        
         canrun = true;
         playerCollider = gameObject.GetComponent<Collider2D>();
 
-        holeManagerObject = GameObject.Find("HoleManager");
-        holeManager = holeManagerObject.GetComponent<HoleManager>();
-        InputManagerG = GameObject.Find("InputManager");
-        InputManager = InputManagerG.GetComponent<InputManager>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         currentSpeed = Vector2.zero;
         acceleration = Vector2.zero;
 
         hori = true;
+
+        uiPresentation.GetSlider(playerID).level1 = thresholdMin;
+        uiPresentation.GetSlider(playerID).level2 = thresholdMid;
+        uiPresentation.GetSlider(playerID).level3 = thresholdMax;
     }
 
     void Update()
@@ -101,35 +114,45 @@ public class player : MonoBehaviour
             digging = true;
             canrun = false;
             diggingTime = 0f;
-            radius = 0.05f;//半径初始化
+            radius = initialRadius;//半径初始化
             initiatePosition= dimentionChange(transform.position) + dimentionChange(transform.right) * 0.6f;//坑的坐标在玩家面前
 
             holeID = holeManager.CreateHole(initiatePosition, radiusOfHole, playerID);//显示坑
-            hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
+            uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
+            RefreshHungerState();
         }
 
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
-            if (diggingTime >= 0.2f)
+            if (diggingTime >= timeStep)
             {
-                radius += 0.15f;
-                if (radius >= maxRadiusOfHole) radius = maxRadiusOfHole;
+                radius += deltaRadius;
+                if (radius >= maxRadius) radius = maxRadius;
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
                 holeManager.UpdateHole(holeID, holePosition, radius, playerID);//坑刷新显示
                 diggingTime = 0;
             }
 
             holeManager.UpdateHole(holeID, holePosition, radiusOfHole, playerID);//坑刷新显示
-            hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
+            uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
+            RefreshHungerState();
         }
 
-        if (InputManager.instance.GetDigKeyUp(playerID) || Mathf.Abs(radius - maxRadiusOfHole) < 0.01f)//松开鼠标，停止挖掘
+        if (InputManager.instance.GetDigKeyUp(playerID) || Mathf.Abs(radius - maxRadius) < 0.01f)//松开鼠标，停止挖掘
         {
             radius = 0.0f;
             digging = false;
             canrun = true;
         }
+    }
+
+    private void RefreshHungerState()
+    {
+        if (holeManager.areas[playerID] < thresholdMin) hungerState = 1;
+        else if (holeManager.areas[playerID] < thresholdMid) hungerState = 2;
+        else if (holeManager.areas[playerID] < thresholdMax) hungerState = 3;
+        else hungerState = 4;
     }
 
     /// <summary>
