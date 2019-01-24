@@ -8,7 +8,7 @@ public class player : MonoBehaviour
     private GameObject holeManagerObject;
     private GameController gameController;
     private Collider2D playerCollider;
-    private Animator playerAnimator;
+    public Animator playerAnimator;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     
@@ -49,9 +49,6 @@ public class player : MonoBehaviour
     {
         canrun = true;
         playerCollider = gameObject.GetComponent<Collider2D>();
-
-        AnimationManagerG= GameObject.Find("miceanimation");
-        playerAnimator = AnimationManagerG.GetComponent<Animator>();
 
         holeManagerObject = GameObject.Find("HoleManager");
         holeManager = holeManagerObject.GetComponent<HoleManager>();
