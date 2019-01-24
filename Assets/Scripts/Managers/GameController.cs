@@ -30,6 +30,9 @@ public class GameController : MonoBehaviour {
         //inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         mice1 = GameObject.Find("mice1");
         mice2 = GameObject.Find("mice2");
+        mice1.transform.position = startPos1[gameLevel];
+        mice2.transform.position = startPos2[gameLevel];
+        mice2.transform.eulerAngles = new Vector3(0, -180, 0);
         gameTime = 0f;
         
     }
@@ -60,5 +63,8 @@ public class GameController : MonoBehaviour {
         holeManager.GetComponent<HoleManager>().InitializeLevel(level);
         currentStatus = gameStatus.Play;
         gameTime = 0f;
+        mice1.transform.position = startPos1[gameLevel];
+        mice2.transform.position = startPos2[gameLevel];
+        mice2.transform.eulerAngles = new Vector3(0, -180, 0);
     }
 }

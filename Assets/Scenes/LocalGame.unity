@@ -315,6 +315,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47879506}
   m_CullTransparentMesh: 0
+--- !u!1 &72731831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6536512234691037478, guid: 6f50625df7041024494420da85662a3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2563781984331711728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &96231320
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &96231321
 Transform:
   m_ObjectHideFlags: 0
@@ -784,10 +790,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStatus: 0
-  gameLevel: 2
+  gameLevel: 1
   maxTime: 60
-  startPos1: []
-  startPos2: []
+  startPos1:
+  - {x: 0, y: 0}
+  - {x: 6, y: 6.2}
+  - {x: 6, y: 6.2}
+  startPos2:
+  - {x: 0, y: 0}
+  - {x: 13, y: 6.2}
+  - {x: 13, y: 6.2}
 --- !u!4 &266949090
 Transform:
   m_ObjectHideFlags: 0
@@ -2616,6 +2628,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1054494608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6536512234691037478, guid: 6f50625df7041024494420da85662a3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1472214634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1073574887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,6 +3941,26 @@ PrefabInstance:
       propertyPath: playerID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2563781985815301803, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: foodObject
+      value: 
+      objectReference: {fileID: 1054494608}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f50625df7041024494420da85662a3c, type: 3}
 --- !u!1 &1524024169
@@ -4099,12 +4137,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 315a99f00c9971d4a8a7726e92394488, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf20b567f9e4f654b9eea619952c5813, type: 3}
   m_Color: {r: 0.8078432, g: 0.62352943, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 9.6, y: 5.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4391,7 +4429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1755248561
 Transform:
   m_ObjectHideFlags: 0
@@ -5232,5 +5270,70 @@ PrefabInstance:
       propertyPath: InputManager
       value: 
       objectReference: {fileID: 283640677}
+    - target: {fileID: 2563781985815301803, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: foodObject
+      value: 
+      objectReference: {fileID: 72731831}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startRotation.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 3.1415925
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.26376256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172026262481158040, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f50625df7041024494420da85662a3c, type: 3}

@@ -56,7 +56,9 @@ public class player : MonoBehaviour
     GameObject AnimationManagerG;
     
     public GameObject dustObject;
+    public GameObject foodObject;
     ParticleSystem.EmissionModule dustEmission;
+    ParticleSystem.EmissionModule foodEmission;
     void Start()
     {
         dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
@@ -85,6 +87,8 @@ public class player : MonoBehaviour
 
         currentSpeed = Vector2.zero;
         acceleration = Vector2.zero;
+        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
+        foodEmission = foodObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
 
@@ -96,6 +100,7 @@ public class player : MonoBehaviour
     void Update()
     {
         dustEmission.rateOverTime = 0;
+        foodEmission.rateOverTime = 0;
         if (gameController.currentStatus == GameController.gameStatus.Play) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
@@ -157,6 +162,9 @@ public class player : MonoBehaviour
             radius = 0.0f;
             digging = false;
             canrun = true;
+        }
+        if (digging) {
+            foodEmission.rateOverTime = 5;
         }
     }
 
