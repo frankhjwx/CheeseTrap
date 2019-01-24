@@ -6,6 +6,7 @@
         _FlowTex ("Base (RGB)", 2D) = "white" {}
         _ScrollXSpeed("XSpeed", Range(-10, 10)) = -3
         _RotateSpeed("RotateSpeed", Range(-10, 10)) = 0.5
+        _FadeAlpha("Alpha", Range(0, 1)) = 1
     }
     SubShader
     {
@@ -44,6 +45,7 @@
             sampler2D _FlowTex;
             fixed _ScrollXSpeed;
             fixed _RotateSpeed;
+            fixed _FadeAlpha;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -53,10 +55,14 @@
                 fixed2 pos = i.uv-fixed2(0.5, 0.5);
                 fixed4 col = tex2D(_MainTex, fixed2(pos.x*cos(theta) - pos.y*sin(theta), pos.x*sin(theta) + pos.y*cos(theta)) + fixed2(0.5, 0.5));
                 fixed4 flowcol = tex2D(_FlowTex, i.uv + fixed2(xScrollValue, 0));
-                
                 if ((i.uv.x-0.5) * (i.uv.x-0.5) + (i.uv.y-0.5) * (i.uv.y-0.5) > 0.25)
                     col.a = 0;
+                if (col.r == 0 && col.g == 0 && col.b == 0)
+                    col.a = 0;
                 col.rgb = min(col.rgb + flowcol.rgb / 4, 1);
+                if (col.a == 1)
+                    col.a = _FadeAlpha;
+                
                 return col;
             }
             ENDCG
