@@ -29,6 +29,7 @@ public class player : MonoBehaviour
     bool running;//跑动状态
     bool canrun;//是否可跑动
     bool hori;
+    bool up;
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
@@ -42,11 +43,14 @@ public class player : MonoBehaviour
 
     GameObject InputManagerG;
     InputManager InputManager;
+    GameObject AnimationManagerG;
     void Start()
     {
         canrun = true;
         playerCollider = gameObject.GetComponent<Collider2D>();
-        playerAnimator = gameObject.GetComponent<Animator>();
+
+        AnimationManagerG= GameObject.Find("miceanimation");
+        playerAnimator = AnimationManagerG.GetComponent<Animator>();
 
         holeManagerObject = GameObject.Find("HoleManager");
         holeManager = holeManagerObject.GetComponent<HoleManager>();
@@ -133,11 +137,21 @@ public class player : MonoBehaviour
         if(transform.right.y==0)
         {
             hori = true;
+            up = false;
         }
-        if(transform.right.y!=0)
+
+        if (transform.right.y>0)
         {
             hori = false;
+            up = true;
         }
+
+        if (transform.right.y < 0)
+        {
+            hori = false;
+            up = false;
+        }
+        Debug.Log("up:"+up);
     }
 
     /// <summary>
@@ -152,13 +166,22 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("dig", false);
         }
 
-        if ((!running) && (!digging) && (!hori))
+        if ((!running) && (!digging) && (!hori)&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("run" , false );
             playerAnimator.SetBool("dig" , false);
+            playerAnimator.SetBool("up", true);
         }
-         
+
+        if ((!running) && (!digging) && (!hori)&&(!up))
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", false);
+        }
+
         if ((running) && hori)
         {
             playerAnimator.SetBool("hori", true);
@@ -166,11 +189,20 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("dig", false);
         }
 
-        if ((running) && !hori)
+        if ((running) && !hori&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("run", true);
             playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", true);
+        }
+
+        if ((running) && !hori&&!up)
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run", true);
+            playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", false);
         }
 
         if ((digging) && hori)
@@ -180,11 +212,21 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("run", false);
         }
 
-        if ((digging) && !hori)
+        if ((digging) && !hori&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("dig", true);
             playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("up", true);
+
+        }
+
+        if ((digging) && !hori&&!up)
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("dig", true);
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("up", false);
         }
     }
 
