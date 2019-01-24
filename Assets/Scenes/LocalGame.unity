@@ -4104,6 +4104,7 @@ GameObject:
   - component: {fileID: 1848754684}
   - component: {fileID: 1848754686}
   - component: {fileID: 1848754685}
+  - component: {fileID: 1848754687}
   m_Layer: 5
   m_Name: FourLevelSlider
   m_TagString: Untagged
@@ -4171,6 +4172,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848754683}
   m_CullTransparentMesh: 0
+--- !u!114 &1848754687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848754683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126d5613c14e04d46a4115ed28314ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider1: {fileID: 162804158}
+  slider2: {fileID: 1158870873}
+  slider3: {fileID: 857249062}
+  slider4: {fileID: 340122588}
+  level1: 5
+  level2: 10
+  level3: 20
+  level4: 30
 --- !u!1 &1851110845
 GameObject:
   m_ObjectHideFlags: 0
