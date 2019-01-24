@@ -6,8 +6,9 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     private GameObject holeManagerObject;
+    private GameController gameController;
     private Collider2D playerCollider;
-    private Animator playerAnimator;
+    public Animator playerAnimator;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     
@@ -29,12 +30,19 @@ public class player : MonoBehaviour
     bool running;//跑动状态
     bool canrun;//是否可跑动
     bool hori;
+    bool up;
+
+    // terrian = -1 -> die
+    // terrain = 0 -> idle
+    // terrain = 1 -> ice
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
     public float maxRadiusOfHole = 1.25f;
     Vector2 holePosition;//坑位置
     Vector2 initiatePosition;
+    private Vector2 currentSpeed;
+    private Vector2 acceleration;
     int holeID;//坑的标号
 
     public InGameCountUI uiPresentation;
@@ -42,33 +50,44 @@ public class player : MonoBehaviour
 
     GameObject InputManagerG;
     InputManager InputManager;
+    GameObject AnimationManagerG;
     void Start()
     {
         canrun = true;
         playerCollider = gameObject.GetComponent<Collider2D>();
-        playerAnimator = gameObject.GetComponent<Animator>();
 
         holeManagerObject = GameObject.Find("HoleManager");
         holeManager = holeManagerObject.GetComponent<HoleManager>();
         InputManagerG = GameObject.Find("InputManager");
         InputManager = InputManagerG.GetComponent<InputManager>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        currentSpeed = Vector2.zero;
+        acceleration = Vector2.zero;
 
         hori = true;
     }
 
     void Update()
     {
-        terrain = holeManager.getTerrainStatus(transform.position);
-        if(terrain<0)
-        {
-            Debug.Log("youdie!");
+        if (gameController.currentStatus == GameController.gameStatus.Play) {
+            terrain = holeManager.getTerrainStatus(transform.position);
+            if(terrain<0)
+            {
+                gameController.SetGameStatus(GameController.gameStatus.GameOver);
+            }
+            Dig();
+            if(canrun)
+            {
+                Move();
+            }
         }
-        Dig();
+        if (gameController.currentStatus == GameController.gameStatus.GameOver) {
+            
+            digging = false;
+            running = false;
+        }
         PlayerAnimation();
-        if(canrun)
-        {
-            Move();
-        }
     }
 
     /// <summary>
@@ -91,12 +110,10 @@ public class player : MonoBehaviour
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
-            Debug.Log("diggingtime" + diggingTime);
             if (diggingTime >= 0.2f)
             {
                 radius += 0.15f;
                 if (radius >= maxRadiusOfHole) radius = maxRadiusOfHole;
-                Debug.Log("refresh");
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
                 holeManager.UpdateHole(holeID, holePosition, radius, playerID);//坑刷新显示
                 diggingTime = 0;
@@ -120,24 +137,60 @@ public class player : MonoBehaviour
     void Move()
     {
         var moveDirection = InputManager.instance.GetAxis(playerID);
-        if (moveDirection != Vector2.zero && !digging)
-        {
-            transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
-            transform.right = moveDirection;
-            running = true;
-        }
-        else
-        {
-            running = false;//没有移动量，则不跑动
-        }
+        if (terrain == 0){
+            if (moveDirection != Vector2.zero && !digging)
+            {
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
+                transform.right = moveDirection;
+                running = true;
+                
+            }
+            else
+            {
+                running = false;//没有移动量，则不跑动
+            }
 
-        if(transform.right.y==0)
-        {
-            hori = true;
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y>0)
+            {
+                hori = false;
+            }
         }
-        if(transform.right.y!=0)
-        {
-            hori = false;
+        // ice
+        if (terrain == 1) {
+            // having a direction force
+            if (moveDirection != Vector2.zero && !digging) {
+                acceleration = moveDirection.normalized * 5f;
+                currentSpeed += acceleration * Time.deltaTime;
+                if (currentSpeed.magnitude >= PlayerSpeed){
+                    currentSpeed = currentSpeed.normalized * PlayerSpeed;
+                }
+                transform.Translate(currentSpeed * Time.deltaTime, Space.World);
+                transform.right = moveDirection;
+                running = true;
+            } else {
+                running = false;
+                // float
+                if (currentSpeed.magnitude != 0) {
+                    acceleration = -currentSpeed.normalized * 5f;
+                    currentSpeed += acceleration * Time.deltaTime;
+                    if (currentSpeed.normalized.x * acceleration.normalized.x > 0 || currentSpeed.normalized.y * acceleration.normalized.y > 0)
+                        currentSpeed = Vector2.zero;
+                    transform.Translate(currentSpeed * Time.deltaTime, Space.World);
+                    transform.right = currentSpeed.normalized;
+                }
+            }
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y!=0)
+            {
+                hori = false;
+            }
         }
     }
 
@@ -153,13 +206,22 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("dig", false);
         }
 
-        if ((!running) && (!digging) && (!hori))
+        if ((!running) && (!digging) && (!hori)&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("run" , false );
             playerAnimator.SetBool("dig" , false);
+            playerAnimator.SetBool("up", true);
         }
-         
+
+        if ((!running) && (!digging) && (!hori)&&(!up))
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", false);
+        }
+
         if ((running) && hori)
         {
             playerAnimator.SetBool("hori", true);
@@ -167,11 +229,20 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("dig", false);
         }
 
-        if ((running) && !hori)
+        if ((running) && !hori&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("run", true);
             playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", true);
+        }
+
+        if ((running) && !hori&&!up)
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("run", true);
+            playerAnimator.SetBool("dig", false);
+            playerAnimator.SetBool("up", false);
         }
 
         if ((digging) && hori)
@@ -181,11 +252,21 @@ public class player : MonoBehaviour
             playerAnimator.SetBool("run", false);
         }
 
-        if ((digging) && !hori)
+        if ((digging) && !hori&&up)
         {
             playerAnimator.SetBool("hori", false);
             playerAnimator.SetBool("dig", true);
             playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("up", true);
+
+        }
+
+        if ((digging) && !hori&&!up)
+        {
+            playerAnimator.SetBool("hori", false);
+            playerAnimator.SetBool("dig", true);
+            playerAnimator.SetBool("run", false);
+            playerAnimator.SetBool("up", false);
         }
     }
 
