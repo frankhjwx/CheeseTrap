@@ -30,12 +30,18 @@ public class player : MonoBehaviour
     bool running;//跑动状态
     bool canrun;//是否可跑动
     bool hori;
+
+    // terrian = -1 -> die
+    // terrain = 0 -> idle
+    // terrain = 1 -> ice
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
     public float maxRadiusOfHole = 1.25f;
     Vector2 holePosition;//坑位置
     Vector2 initiatePosition;
+    private Vector2 currentSpeed;
+    private Vector2 acceleration;
     int holeID;//坑的标号
 
     public InGameCountUI uiPresentation;
@@ -54,6 +60,9 @@ public class player : MonoBehaviour
         InputManagerG = GameObject.Find("InputManager");
         InputManager = InputManagerG.GetComponent<InputManager>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+
+        currentSpeed = Vector2.zero;
+        acceleration = Vector2.zero;
 
         hori = true;
     }
@@ -127,24 +136,60 @@ public class player : MonoBehaviour
     void Move()
     {
         var moveDirection = InputManager.instance.GetAxis(playerID);
-        if (moveDirection != Vector2.zero && !digging)
-        {
-            transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
-            transform.right = moveDirection;
-            running = true;
-        }
-        else
-        {
-            running = false;//没有移动量，则不跑动
-        }
+        if (terrain == 0){
+            if (moveDirection != Vector2.zero && !digging)
+            {
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
+                transform.right = moveDirection;
+                running = true;
+                
+            }
+            else
+            {
+                running = false;//没有移动量，则不跑动
+            }
 
-        if(transform.right.y==0)
-        {
-            hori = true;
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y!=0)
+            {
+                hori = false;
+            }
         }
-        if(transform.right.y!=0)
-        {
-            hori = false;
+        // ice
+        if (terrain == 1) {
+            // having a direction force
+            if (moveDirection != Vector2.zero && !digging) {
+                acceleration = moveDirection.normalized * 5f;
+                currentSpeed += acceleration * Time.deltaTime;
+                if (currentSpeed.magnitude >= PlayerSpeed){
+                    currentSpeed = currentSpeed.normalized * PlayerSpeed;
+                }
+                transform.Translate(currentSpeed * Time.deltaTime, Space.World);
+                transform.right = moveDirection;
+                running = true;
+            } else {
+                running = false;
+                // float
+                if (currentSpeed.magnitude != 0) {
+                    acceleration = -currentSpeed.normalized * 5f;
+                    currentSpeed += acceleration * Time.deltaTime;
+                    if (currentSpeed.normalized.x * acceleration.normalized.x > 0 || currentSpeed.normalized.y * acceleration.normalized.y > 0)
+                        currentSpeed = Vector2.zero;
+                    transform.Translate(currentSpeed * Time.deltaTime, Space.World);
+                    transform.right = currentSpeed.normalized;
+                }
+            }
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y!=0)
+            {
+                hori = false;
+            }
         }
     }
 

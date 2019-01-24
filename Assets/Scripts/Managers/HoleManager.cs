@@ -87,7 +87,7 @@ public class HoleManager : MonoBehaviour
     void LoadLevelTerrainTexture(int level){
         // tbd Resources.Load() blahblah
         // read the preset map
-        terrainTexture = Resources.Load("Terrains/level" + level.ToString() + "_terrain") as Texture2D;
+        terrainTexture = Resources.Load("Terrains/level" + level.ToString() + "_terrain_icetest") as Texture2D;
     }
 
     public int CreateHole(Vector2 position, float radius, int playerID){
