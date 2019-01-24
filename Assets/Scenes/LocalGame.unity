@@ -3946,6 +3946,21 @@ PrefabInstance:
       propertyPath: foodObject
       value: 
       objectReference: {fileID: 1054494608}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f50625df7041024494420da85662a3c, type: 3}
 --- !u!1 &1524024169
@@ -4122,12 +4137,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 315a99f00c9971d4a8a7726e92394488, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf20b567f9e4f654b9eea619952c5813, type: 3}
   m_Color: {r: 0.8078432, g: 0.62352943, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.2, y: 10.8}
+  m_Size: {x: 9.6, y: 5.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5268,12 +5283,12 @@ PrefabInstance:
     - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
@@ -5309,6 +5324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 0.26376256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8701339350666567694, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2172026262481158040, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
