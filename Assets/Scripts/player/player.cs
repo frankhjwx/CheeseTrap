@@ -11,6 +11,7 @@ public class player : MonoBehaviour
     public Animator playerAnimator;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
+    public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
     
     public float PlayerSpeed
     {
