@@ -23,18 +23,12 @@ public class HoleManager : MonoBehaviour
     // SpriteRenderer sr;
 
     // Start is called before the first frame update
-    void Start()
+    public void InitializeLevel(int level)
     {
         holes = new List<Hole>();
         areas = new int[playerNum + 1];
-        LoadLevelTerrainTexture(0);
+        LoadLevelTerrainTexture(level);
         InitializeHoleTexture();
-
-        //bool test = ConnectivityJudger.isConnected(new Vector2(0, 0), new Vector2(19, 8), holeTexture);
-        // UpdateHoleTexture(new Vector2(960, 480), 50, 255);
-        // Debug.Log(holeTexture.GetPixel(25, 25));
-        // Sprite pic = Sprite.Create(holeTexture, new Rect(0, 0, texWidth, texHeight), new Vector2(0.5f, 0.5f));
-        // sr.sprite = pic;
     }
 
     // Update is called once per frame
@@ -93,7 +87,7 @@ public class HoleManager : MonoBehaviour
     void LoadLevelTerrainTexture(int level){
         // tbd Resources.Load() blahblah
         // read the preset map
-        terrainTexture = Resources.Load("Terrains/level1_terrain") as Texture2D;
+        terrainTexture = Resources.Load("Terrains/level" + level.ToString() + "_terrain") as Texture2D;
     }
 
     public int CreateHole(Vector2 position, float radius, int playerID){
@@ -106,9 +100,6 @@ public class HoleManager : MonoBehaviour
         hole.gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         holes.Add(hole);
         UpdateHoleTexture(position, radius, playerID);
-
-        Debug.Log(ConnectivityJudger.isConnected(new Vector2(0, 0), new Vector2(19, 9), holeTexture));
-        //Debug.Log(OccupyAreaCalculator.getConnectedArea(new Vector2(0.1f, 0.1f), holeTexture));
         
         // return value is the hole ID
         return holes.Count;
@@ -160,7 +151,7 @@ public class HoleManager : MonoBehaviour
     }
 
     public void DisplayHoleTexture(){
-        GameObject map = GameObject.Find("Map");
+        GameObject map = GameObject.Find("ForeGround");
         map.GetComponent<SpriteRenderer>().material.SetTexture("_Mask", holeTexture);
         GameObject shadow = GameObject.Find("HoleShadow");
         shadow.GetComponent<SpriteRenderer>().material.SetTexture("_Mask", holeTexture);

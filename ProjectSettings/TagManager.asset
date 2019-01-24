@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - HoleCollider
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: LevelBackGround
+    uniqueID: 3944767325
+    locked: 0
+  - name: LevelHoleShadow
+    uniqueID: 3870108597
+    locked: 0
+  - name: LevelForeGround
+    uniqueID: 2653328417
     locked: 0

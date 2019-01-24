@@ -91,7 +91,6 @@ public class player : MonoBehaviour
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
-            Debug.Log("diggingtime" + diggingTime);
             if (diggingTime >= 0.2f)
             {
                 radius += 0.15f;
