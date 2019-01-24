@@ -54,6 +54,9 @@ public class player : MonoBehaviour
 
     public InputManager InputManager;
     GameObject AnimationManagerG;
+    
+    public GameObject dustObject;
+    ParticleSystem.EmissionModule dustEmission;
     void Start()
     {
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
@@ -75,6 +78,7 @@ public class player : MonoBehaviour
 
         currentSpeed = Vector2.zero;
         acceleration = Vector2.zero;
+        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
 
@@ -85,6 +89,7 @@ public class player : MonoBehaviour
 
     void Update()
     {
+        dustEmission.rateOverTime = 0;
         if (gameController.currentStatus == GameController.gameStatus.Play) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
@@ -238,6 +243,9 @@ public class player : MonoBehaviour
                 hori = false;
                 up = true;
             }
+        }
+        if (running) {
+            dustEmission.rateOverTime = 12;
         }
     }
 
