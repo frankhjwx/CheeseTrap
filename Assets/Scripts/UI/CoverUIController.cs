@@ -10,7 +10,7 @@ public class CoverUIController : MonoBehaviour
     
     public void LocalGame()
     {
-        SceneManager.LoadScene("LocalGame");
+        SceneManager.LoadScene("LocalMapChoose");
     }
 
     public void NetworkGame()

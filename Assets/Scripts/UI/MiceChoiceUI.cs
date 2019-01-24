@@ -7,22 +7,23 @@ using UnityEngine.UI;
 public class MiceChoiceUI : MonoBehaviour
 {
 
-    public List<Sprite> miceChoice;
-    public GameObject miceChoiceImagePrefab;
-    public RectTransform imageCollection;
-    public float scrollTime = 1.0f;
+    public List<GameObject> miceChoicePrefab;
+    public RectTransform imagePosition;
+    //public float scrollTime = 1.0f;
     
     private int miceKinds;
     private int currentChoice = 0;
 
     public int CurrentChoice => currentChoice;
-    public float imageWidth = 400;
+    //public float imageWidth = 400;
     private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
-
+    private GameObject currentChosenMiceInstance;
+    
     // Start is called before the first frame update
     void Start()
     {
+        /*
         float currentGeneratePos = 0;
         foreach (Sprite miceSprite in miceChoice)
         {
@@ -32,6 +33,8 @@ public class MiceChoiceUI : MonoBehaviour
             currentGeneratePos += imageWidth;
         }
         miceKinds = miceChoice.Count;
+        */
+        currentChosenMiceInstance = Instantiate(miceChoicePrefab[0], imagePosition);
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class MiceChoiceUI : MonoBehaviour
     {
         if (choiceRolling)
         {
+            /*
             if (timeLeftToRecover <= Time.deltaTime)
             {
                 timeLeftToRecover = 0;
@@ -54,6 +58,10 @@ public class MiceChoiceUI : MonoBehaviour
                 localPosition += deltaVector;
                 imageCollection.localPosition = localPosition;
             }
+            */
+            
+            Destroy(currentChosenMiceInstance);
+            currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
         }
     }
 
@@ -67,7 +75,7 @@ public class MiceChoiceUI : MonoBehaviour
         else
         {
             currentChoice--;
-            timeLeftToRecover = scrollTime;
+            //timeLeftToRecover = scrollTime;
             choiceRolling = true;
         }
     }
@@ -82,17 +90,10 @@ public class MiceChoiceUI : MonoBehaviour
         else
         {
             currentChoice++;
-            timeLeftToRecover = scrollTime;
+            //timeLeftToRecover = scrollTime;
             choiceRolling = true;
         }
     }
 
-    private float TimeRemap(float time)
-    {
-        if (scrollTime < 0.01) return time;
-        float scale = 1 - time / scrollTime;
-        float scaleRemapped = scale * scale;
-        return scrollTime * (1 - scaleRemapped);
-    }
 
 }

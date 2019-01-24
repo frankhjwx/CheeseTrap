@@ -7,6 +7,10 @@
         "speedState4" : 2,
         "eatThresholdMin" : 25000,
         "eatThresholdMid" : 45000,
-        "eatThresholdMax" : 70000
+        "eatThresholdMax" : 70000,
+        "initialRadius" : 0.05,
+        "deltaRadius" : 0.15,
+        "timeStep" : 0.2,
+        "maxRadius" : 1.25
     }
 ]
