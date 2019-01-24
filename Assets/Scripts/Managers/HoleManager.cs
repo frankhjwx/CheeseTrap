@@ -44,7 +44,7 @@ public class HoleManager : MonoBehaviour
     public int getTerrainStatus(Vector2 position){
         position.x *= 50;
         position.y *= 50;
-        if (holeTexture.GetPixel((int)position.x, (int)position.y).r != 0 ||
+        if ((holeTexture.GetPixel((int)position.x, (int)position.y).r != 0 && holeTexture.GetPixel((int)position.x, (int)position.y).r != 1) ||
             holeTexture.GetPixel((int)position.x, (int)position.y).g == 1)
             return -1;
         return (int)Mathf.Round(holeTexture.GetPixel((int)position.x, (int)position.y).g * 255);
@@ -87,17 +87,13 @@ public class HoleManager : MonoBehaviour
     void LoadLevelTerrainTexture(int level){
         // tbd Resources.Load() blahblah
         // read the preset map
-        terrainTexture = Resources.Load("Terrains/level" + level.ToString() + "_terrain_icetest") as Texture2D;
+        terrainTexture = Resources.Load("Terrains/level" + level.ToString() + "_terrain") as Texture2D;
     }
 
     public int CreateHole(Vector2 position, float radius, int playerID){
         Hole hole = new Hole();
         hole.position = position;
         hole.radius = radius;
-        hole.gameObject = Instantiate(holeColliderPrefab);
-        hole.gameObject.name = "Hole-" + holes.Count.ToString();
-        hole.gameObject.GetComponent<CircleCollider2D>().radius = radius;
-        hole.gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         holes.Add(hole);
         UpdateHoleTexture(position, radius, playerID);
         
@@ -108,8 +104,6 @@ public class HoleManager : MonoBehaviour
     public void UpdateHole(int holeID, Vector2 position, float radius, int playerID){
         holes[holeID-1].position = position;
         holes[holeID-1].radius = radius;
-        holes[holeID-1].gameObject.GetComponent<CircleCollider2D>().radius = radius;
-        holes[holeID-1].gameObject.GetComponent<CircleCollider2D>().transform.position = position;
         UpdateHoleTexture(position, radius, playerID);
         
         return;

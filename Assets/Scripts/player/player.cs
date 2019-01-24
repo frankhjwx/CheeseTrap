@@ -39,6 +39,7 @@ public class player : MonoBehaviour
     // terrian = -1 -> die
     // terrain = 0 -> idle
     // terrain = 1 -> ice
+    // terrain = 2 -> cream
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
@@ -120,6 +121,7 @@ public class player : MonoBehaviour
             holeID = holeManager.CreateHole(initiatePosition, radiusOfHole, playerID);//显示坑
             uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
             RefreshHungerState();
+            currentSpeed = Vector2.zero;
         }
 
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
