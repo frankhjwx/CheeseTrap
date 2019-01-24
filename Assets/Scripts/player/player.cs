@@ -244,6 +244,37 @@ public class player : MonoBehaviour
                 up = true;
             }
         }
+        if (terrain == 2){
+            if (moveDirection != Vector2.zero && !digging)
+            {
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 0.25f, Space.World);//结算并挪动
+                transform.right = moveDirection;
+                running = true;
+                
+            }
+            else
+            {
+                running = false;//没有移动量，则不跑动
+            }
+
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y > 0)
+            {
+                hori = false;
+                up = true;
+            }
+
+            if (transform.right.y < 0)
+            {
+                hori = false;
+                up = false;
+            }
+
+
+        }
         if (running) {
             dustEmission.rateOverTime = 12;
         }
