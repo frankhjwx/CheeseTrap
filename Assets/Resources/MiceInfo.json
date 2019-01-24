@@ -1,0 +1,12 @@
+[
+    {
+        "choiceID" : 0,
+        "speedState1" : 5,
+        "speedState2" : 4, 
+        "speedState3" : 3,
+        "speedState4" : 2,
+        "eatThresholdMin" : 25000,
+        "eatThresholdMid" : 45000,
+        "eatThresholdMax" : 70000
+    }
+]
