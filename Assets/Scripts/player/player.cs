@@ -154,15 +154,25 @@ public class player : MonoBehaviour
             {
                 hori = true;
             }
-            if(transform.right.y>0)
+            if(transform.right.y > 0)
             {
                 hori = false;
+                up = true;
             }
+
+            if (transform.right.y < 0)
+            {
+                hori = false;
+                up = false;
+            }
+
+
         }
         // ice
         if (terrain == 1) {
             // having a direction force
-            if (moveDirection != Vector2.zero && !digging) {
+            if (moveDirection != Vector2.zero && !digging)
+            {
                 acceleration = moveDirection.normalized * 5f;
                 currentSpeed += acceleration * Time.deltaTime;
                 if (currentSpeed.magnitude >= PlayerSpeed){
@@ -170,8 +180,11 @@ public class player : MonoBehaviour
                 }
                 transform.Translate(currentSpeed * Time.deltaTime, Space.World);
                 transform.right = moveDirection;
+                Debug.Log("transform.right" + transform.right);
                 running = true;
-            } else {
+            }
+            else
+            {
                 running = false;
                 // float
                 if (currentSpeed.magnitude != 0) {
@@ -180,16 +193,24 @@ public class player : MonoBehaviour
                     if (currentSpeed.normalized.x * acceleration.normalized.x > 0 || currentSpeed.normalized.y * acceleration.normalized.y > 0)
                         currentSpeed = Vector2.zero;
                     transform.Translate(currentSpeed * Time.deltaTime, Space.World);
-                    transform.right = currentSpeed.normalized;
+                    //transform.right = currentSpeed.normalized;
                 }
             }
+
+
             if(transform.right.y==0)
             {
                 hori = true;
             }
-            if(transform.right.y!=0)
+            if (transform.right.y < 0)
             {
                 hori = false;
+                up = false;
+            }
+            if (transform.right.y > 0)
+            {
+                hori = false;
+                up = true;
             }
         }
     }
