@@ -50,6 +50,9 @@ public class player : MonoBehaviour
 
     GameObject InputManagerG;
     InputManager InputManager;
+
+    public GameObject dustObject;
+    ParticleSystem.EmissionModule dustEmission;
     void Start()
     {
         canrun = true;
@@ -64,12 +67,14 @@ public class player : MonoBehaviour
 
         currentSpeed = Vector2.zero;
         acceleration = Vector2.zero;
+        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
     }
 
     void Update()
     {
+        dustEmission.rateOverTime = 0;
         if (gameController.currentStatus == GameController.gameStatus.Play) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
@@ -216,6 +221,9 @@ public class player : MonoBehaviour
             {
                 hori = false;
             }
+        }
+        if (running) {
+            dustEmission.rateOverTime = 12;
         }
     }
 
