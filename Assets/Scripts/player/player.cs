@@ -34,6 +34,7 @@ public class player : MonoBehaviour
     // terrian = -1 -> die
     // terrain = 0 -> idle
     // terrain = 1 -> ice
+    // terrain = 2 -> cream
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
@@ -87,6 +88,7 @@ public class player : MonoBehaviour
             running = false;
         }
         PlayerAnimation();
+        Debug.Log(terrain);
     }
 
     /// <summary>
@@ -104,6 +106,7 @@ public class player : MonoBehaviour
 
             holeID = holeManager.CreateHole(initiatePosition, radiusOfHole, playerID);//显示坑
             hungerState = uiPresentation.SetEatAmount(playerID, holeManager.areas[playerID]);
+            currentSpeed = Vector2.zero;
         }
 
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
@@ -182,6 +185,29 @@ public class player : MonoBehaviour
                     transform.right = currentSpeed.normalized;
                 }
             }
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y!=0)
+            {
+                hori = false;
+            }
+        }
+        // cream
+        if (terrain == 2){
+            if (moveDirection != Vector2.zero && !digging)
+            {
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 0.25f, Space.World);//结算并挪动
+                transform.right = moveDirection;
+                running = true;
+                
+            }
+            else
+            {
+                running = false;//没有移动量，则不跑动
+            }
+
             if(transform.right.y==0)
             {
                 hori = true;

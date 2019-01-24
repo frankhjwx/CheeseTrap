@@ -12,13 +12,15 @@ public class GameController : MonoBehaviour {
     private float gameTime;
     public float maxTime = 60f;
 
+    public Vector2[] startPos1, startPos2;
+
     //InputManager inputManager;
 
 
     void Start(){
         currentStatus = gameStatus.Play;
         holeManager = GameObject.Find("HoleManager");
-        holeManager.GetComponent<HoleManager>().InitializeLevel(1);
+        holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
         //inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         mice1 = GameObject.Find("mice1");
         mice2 = GameObject.Find("mice2");
