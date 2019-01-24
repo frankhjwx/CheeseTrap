@@ -180,16 +180,22 @@ public class player : MonoBehaviour
                     if (currentSpeed.normalized.x * acceleration.normalized.x > 0 || currentSpeed.normalized.y * acceleration.normalized.y > 0)
                         currentSpeed = Vector2.zero;
                     transform.Translate(currentSpeed * Time.deltaTime, Space.World);
-                    transform.right = currentSpeed.normalized;
+                    //transform.right = currentSpeed.normalized;
                 }
             }
             if(transform.right.y==0)
             {
                 hori = true;
             }
-            if(transform.right.y!=0)
+            if(transform.right.y>0)
             {
                 hori = false;
+                up = true;
+            }
+            if (transform.right.y < 0)
+            {
+                hori = false;
+                up = false;
             }
         }
     }
