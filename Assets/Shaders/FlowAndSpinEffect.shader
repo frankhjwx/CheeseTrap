@@ -1,10 +1,11 @@
-﻿Shader "Custom/FlowEffect"
+﻿Shader "Custom/FlowAndSpinEffect"
 {
     Properties
     {
         _MainTex ("Sprite Texture", 2D) = "white" {}
         _FlowTex ("Base (RGB)", 2D) = "white" {}
         _ScrollXSpeed("XSpeed", Range(-10, 10)) = -3
+        _RotateSpeed("RotateSpeed", Range(-10, 10)) = 0.5
     }
     SubShader
     {
@@ -42,13 +43,19 @@
             sampler2D _MainTex;
             sampler2D _FlowTex;
             fixed _ScrollXSpeed;
+            fixed _RotateSpeed;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed xScrollValue = _ScrollXSpeed * _Time.y;
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed theta = _RotateSpeed * _Time.y;
+
+                fixed2 pos = i.uv-fixed2(0.5, 0.5);
+                fixed4 col = tex2D(_MainTex, fixed2(pos.x*cos(theta) - pos.y*sin(theta), pos.x*sin(theta) + pos.y*cos(theta)) + fixed2(0.5, 0.5));
                 fixed4 flowcol = tex2D(_FlowTex, i.uv + fixed2(xScrollValue, 0));
                 
+                if ((i.uv.x-0.5) * (i.uv.x-0.5) + (i.uv.y-0.5) * (i.uv.y-0.5) > 0.25)
+                    col.a = 0;
                 col.rgb = min(col.rgb + flowcol.rgb / 4, 1);
                 return col;
             }
