@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/DiskChoiceUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
-              <caret line="29" column="66" lean-forward="true" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
+              <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
               <folding>
                 <marker date="1548344833699" expanded="false" signature="6:100" ph="..." />
                 <marker date="1548344833699" expanded="true" signature="143:2792" ph="{...}" />
@@ -75,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Resources/MiceInfo.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
-              <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+              <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -187,7 +187,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Shaders/FlowAndSpinEffect.shader">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
               <folding>
                 <marker date="1548344186686" expanded="true" signature="34:2128" ph="{...}" />
                 <marker date="1548344186686" expanded="true" signature="55:320" ph="{...}" />
@@ -203,7 +203,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/HoleManager.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="152" column="88" lean-forward="true" selection-start-line="152" selection-start-column="88" selection-end-line="152" selection-end-column="88" />
+              <caret line="152" column="88" selection-start-line="152" selection-start-column="88" selection-end-line="152" selection-end-column="88" />
               <folding>
                 <marker date="1548340874543" expanded="false" signature="6:78" ph="..." />
                 <marker date="1548340874543" expanded="true" signature="120:5094" ph="{...}" />
@@ -376,7 +376,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62526000" />
+    <option name="totallyTimeSpent" value="63107000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -728,7 +728,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/HoleManager.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="152" column="88" lean-forward="true" selection-start-line="152" selection-start-column="88" selection-end-line="152" selection-end-column="88" />
+          <caret line="152" column="88" selection-start-line="152" selection-start-column="88" selection-end-line="152" selection-end-column="88" />
           <folding>
             <marker date="1548340874543" expanded="false" signature="6:78" ph="..." />
             <marker date="1548340874543" expanded="true" signature="120:5094" ph="{...}" />
@@ -802,7 +802,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Shaders/FlowAndSpinEffect.shader">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding>
             <marker date="1548344186686" expanded="true" signature="34:2128" ph="{...}" />
             <marker date="1548344186686" expanded="true" signature="55:320" ph="{...}" />
@@ -816,7 +816,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/DiskChoiceUI.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
-          <caret line="29" column="66" lean-forward="true" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
+          <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
           <folding>
             <marker date="1548344833699" expanded="false" signature="6:100" ph="..." />
             <marker date="1548344833699" expanded="true" signature="143:2792" ph="{...}" />
@@ -843,7 +843,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Resources/MiceInfo.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
-          <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
         </state>
       </provider>
     </entry>
