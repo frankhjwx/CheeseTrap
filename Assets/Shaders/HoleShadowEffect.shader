@@ -56,6 +56,11 @@
                     if ((i.uv + float2(0, hStep*k)).y <= 1 && maskk.r == 0)
                         col.a = 1;
                 }
+                if (col.a == 1) {
+                    col.r -= 30.0 / 255;
+                    col.g -= 30.0 / 255;
+                    col.b -= 0.0 / 255;
+                }
                 
                 return col;
             }
