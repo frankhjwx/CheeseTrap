@@ -6,6 +6,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     private GameObject holeManagerObject;
+    private GameController gameController;
     private Collider2D playerCollider;
     private Animator playerAnimator;
 
@@ -56,23 +57,31 @@ public class player : MonoBehaviour
         holeManager = holeManagerObject.GetComponent<HoleManager>();
         InputManagerG = GameObject.Find("InputManager");
         InputManager = InputManagerG.GetComponent<InputManager>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         hori = true;
     }
 
     void Update()
     {
-        terrain = holeManager.getTerrainStatus(transform.position);
-        if(terrain<0)
-        {
-            Debug.Log("youdie!");
+        if (gameController.currentStatus == GameController.gameStatus.Play) {
+            terrain = holeManager.getTerrainStatus(transform.position);
+            if(terrain<0)
+            {
+                gameController.SetGameStatus(GameController.gameStatus.GameOver);
+            }
+            Dig();
+            if(canrun)
+            {
+                Move();
+            }
         }
-        Dig();
+        if (gameController.currentStatus == GameController.gameStatus.GameOver) {
+            
+            digging = false;
+            running = false;
+        }
         PlayerAnimation();
-        if(canrun)
-        {
-            Move();
-        }
     }
 
     /// <summary>
@@ -99,7 +108,6 @@ public class player : MonoBehaviour
             {
                 radius += 0.15f;
                 if (radius >= maxRadiusOfHole) radius = maxRadiusOfHole;
-                Debug.Log("refresh");
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
                 holeManager.UpdateHole(holeID, holePosition, radius, playerID);//坑刷新显示
                 diggingTime = 0;
