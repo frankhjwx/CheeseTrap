@@ -8,7 +8,7 @@ public class MapChoiceManager : MonoBehaviour
 
     public MiceChoiceUI p1Choice;
     public MiceChoiceUI p2Choice;
-    public MiceChoiceUI mapChoice;
+    public DiskChoiceUI mapChoice;
 
     private MiceBasicInfo[] basicInfo = new MiceBasicInfo[2];
     private JSONNode root;

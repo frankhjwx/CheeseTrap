@@ -11,6 +11,26 @@
         "initialRadius" : 0.05,
         "deltaRadius" : 0.15,
         "timeStep" : 0.2,
-        "maxRadius" : 1.25
+        "maxRadius" : 1.25,
+        "speedLevel" : 0.75, 
+        "eatSpeedLevel" : 0.65, 
+        "beingFatSpeedLevel" : 0.45
+    },
+    {
+        "choiceID" : 1,
+        "speedState1" : 4,
+        "speedState2" : 3, 
+        "speedState3" : 2,
+        "speedState4" : 1.5,
+        "eatThresholdMin" : 45000,
+        "eatThresholdMid" : 65000,
+        "eatThresholdMax" : 90000,
+        "initialRadius" : 0.15,
+        "deltaRadius" : 0.15,
+        "timeStep" : 0.2,
+        "maxRadius" : 1.5,
+        "speedLevel" : 0.5, 
+        "eatSpeedLevel" : 0.70, 
+        "beingFatSpeedLevel" : 0.35
     }
 ]

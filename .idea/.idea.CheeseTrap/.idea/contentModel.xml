@@ -22,6 +22,7 @@
             <e p="GameController.cs" t="Include" />
             <e p="HoleManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
+            <e p="LevelManager.cs" t="Include" />
           </e>
           <e p="Misc" t="Include">
             <e p="Hole.cs" t="Include" />
@@ -33,6 +34,8 @@
           <e p="UI" t="Include">
             <e p="counterSlider.cs" t="Include" />
             <e p="CoverUIController.cs" t="Include" />
+            <e p="DiskChoiceUI.cs" t="Include" />
+            <e p="DiskRolling.cs" t="Include" />
             <e p="FourLevelSlider.cs" t="Include" />
             <e p="InGameCountUI.cs" t="Include" />
             <e p="InGamePauseUI.cs" t="Include" />
@@ -43,6 +46,7 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
+          <e p="FlowEffect.shader" t="Include" />
           <e p="HoleEffect.shader" t="Include" />
           <e p="HoleShadowEffect.shader" t="Include" />
         </e>

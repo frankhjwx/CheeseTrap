@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
+using SimpleJSON;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +25,7 @@ public class MiceChoiceUI : MonoBehaviour
     private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
     private GameObject currentChosenMiceInstance;
+    private JSONNode miceInfoRoot;
     
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,13 @@ public class MiceChoiceUI : MonoBehaviour
         */
         currentChosenMiceInstance = Instantiate(miceChoicePrefab[0], imagePosition);
         miceKinds = miceChoicePrefab.Count;
+
+        TextAsset textAsset = Resources.Load<TextAsset>("MiceInfo");
+        miceInfoRoot = JSON.Parse(textAsset.text);
+        
+        speedSlider.value = miceInfoRoot[currentChoice]["speedLevel"].AsFloat;
+        eatSpeedSlider.value = miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat;
+        beingFatSpeedSlider.value = miceInfoRoot[currentChoice]["beingFatSpeedLevel"].AsFloat;
     }
 
     // Update is called once per frame
@@ -67,6 +77,10 @@ public class MiceChoiceUI : MonoBehaviour
             Destroy(currentChosenMiceInstance);
             currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
             choiceRolling = false;
+
+            StartCoroutine(SliderSetNewValue(speedSlider, miceInfoRoot[currentChoice]["speedLevel"].AsFloat));
+            StartCoroutine(SliderSetNewValue(eatSpeedSlider, miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat));
+            StartCoroutine(SliderSetNewValue(beingFatSpeedSlider, miceInfoRoot[currentChoice]["beingFatSpeedLevel"].AsFloat));
         }
     }
 
@@ -82,6 +96,7 @@ public class MiceChoiceUI : MonoBehaviour
             currentChoice--;
             //timeLeftToRecover = scrollTime;
             choiceRolling = true;
+            Debug.Log(currentChoice);
         }
     }
     
@@ -97,6 +112,7 @@ public class MiceChoiceUI : MonoBehaviour
             currentChoice++;
             //timeLeftToRecover = scrollTime;
             choiceRolling = true;
+            Debug.Log(currentChoice);
         }
     }
     
@@ -105,7 +121,7 @@ public class MiceChoiceUI : MonoBehaviour
         if (currentChoice >= miceKinds - 1)
         {
             currentChoice = 0;
-            
+            choiceRolling = true;
         }
         else
         {
@@ -113,6 +129,22 @@ public class MiceChoiceUI : MonoBehaviour
             //timeLeftToRecover = scrollTime;
             choiceRolling = true;
         }
+    }
+
+    IEnumerator SliderSetNewValue(Slider slider, float newValue)
+    {
+        slider.value = 0;
+        float totalUseTime = 0.5f;
+        float timer = 0;
+        while (timer < totalUseTime)
+        {
+            slider.value = newValue * timer / totalUseTime;
+            Debug.Log(slider.name + slider.value);
+            timer += Time.deltaTime;
+            yield return 0;
+        }
+
+        slider.value = newValue;
     }
 
 

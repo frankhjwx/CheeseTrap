@@ -4867,6 +4867,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc9f94276c8502747b6c34eaaa67c202, type: 3}
+--- !u!1 &4749146712807984794 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1108859805942113385, guid: fc9f94276c8502747b6c34eaaa67c202,
+    type: 3}
+  m_PrefabInstance: {fileID: 4749146712807984793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4749146712807984795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5259919565713120218, guid: fc9f94276c8502747b6c34eaaa67c202,
+    type: 3}
+  m_PrefabInstance: {fileID: 4749146712807984793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4749146712807984796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6792644729974326289, guid: fc9f94276c8502747b6c34eaaa67c202,
+    type: 3}
+  m_PrefabInstance: {fileID: 4749146712807984793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9120290690904020065 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9120290690904020065, guid: fc9f94276c8502747b6c34eaaa67c202,
@@ -4901,3 +4919,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2769a4091c674f542b41f22fa9e8f9b7, type: 3}
   - {fileID: 21300000, guid: f8dca5bbe7095014799c17c21d691918, type: 3}
   - {fileID: 0}
+  foregroundObject: {fileID: 4749146712807984796}
+  holeshadowObject: {fileID: 4749146712807984795}
+  backgroundObject: {fileID: 4749146712807984794}
