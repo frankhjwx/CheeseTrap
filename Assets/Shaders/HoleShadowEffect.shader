@@ -48,11 +48,15 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 mask = tex2D(_Mask, i.uv);
-                half4 mask2 = tex2D(_Mask, i.uv + float2(-0.006, 0.02));
-                if (mask.r != 0 && mask.r != 1 && mask2.r == 0)
-                    col.a = 1;
-                else
-                    col.a = 0;
+                float hStep = 1.0 / 960;
+                col.a = 0;
+            
+                for (int k = 0; k <= 80; k++){
+                    half4 maskk = tex2D(_Mask, i.uv + float2(0, hStep*k));
+                    if ((i.uv + float2(0, hStep*k)).y <= 1 && maskk.r == 0)
+                        col.a = 1;
+                }
+                
                 return col;
             }
             ENDCG
