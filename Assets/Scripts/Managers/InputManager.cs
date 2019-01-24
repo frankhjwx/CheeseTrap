@@ -31,7 +31,6 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (Input.GetKey(directionKeys1[2]) && !Input.GetKey(directionKeys1[3])) {
             player1Vector.x = -1;
         } else if (Input.GetKey(directionKeys1[3]) && !Input.GetKey(directionKeys1[2])) {
@@ -134,6 +133,10 @@ public class InputManager : MonoBehaviour {
         if (playerID == 1) return player1DigKeyUp;
         if (playerID == 2) return player2DigKeyUp;
         return false;
+    }
+
+    public bool GetRestart(){
+        return Input.GetKey(KeyCode.Escape);
     }
 
 }
