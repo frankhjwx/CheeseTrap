@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 42e20cc39abcc3f4fada6c0320cc583d
+guid: 13d21436cb973e74cb4cd0aca35d5b47
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\u4ED3\u9F20idle2_0"
-    21300002: "\u4ED3\u9F20idle2_1"
-    21300004: "\u4ED3\u9F20idle2_2"
-    21300006: "\u4ED3\u9F20idle2_3"
-    21300008: "\u4ED3\u9F20idle2_4"
-    21300010: "\u4ED3\u9F20idle2_5"
-    21300012: "\u4ED3\u9F20idle2_6"
-    21300014: "\u4ED3\u9F20idle2_7"
+    21300000: "\u4E0BIDLE_0"
+    21300002: "\u4E0BIDLE_1"
+    21300004: "\u4E0BIDLE_2"
+    21300006: "\u4E0BIDLE_3"
+    21300008: "\u4E0BIDLE_4"
+    21300010: "\u4E0BIDLE_5"
+    21300012: "\u4E0BIDLE_6"
+    21300014: "\u4E0BIDLE_7"
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -92,13 +92,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_0"
+      name: "\u4E0BIDLE_0"
       rect:
         serializedVersion: 2
-        x: 16
+        x: 14
         y: 0
-        width: 42
-        height: 31
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,19 +106,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcbe6327012076a40bbaee322a514db1
+      spriteID: b7ec67bd90c396942a61148b0647d9e5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_1"
+      name: "\u4E0BIDLE_1"
       rect:
         serializedVersion: 2
-        x: 80
+        x: 78
         y: 0
-        width: 42
-        height: 32
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,19 +126,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a010e040d55fda4eba75107cb20c360
+      spriteID: ad2cc3d4436ea304b92edc2a733c1397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_2"
+      name: "\u4E0BIDLE_2"
       rect:
         serializedVersion: 2
-        x: 144
+        x: 142
         y: 0
-        width: 42
-        height: 32
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,19 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba1ebbd4b58fc8f4bb1ebf51946bc872
+      spriteID: bc4400225da0d374f9ba50890b2ad759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_3"
+      name: "\u4E0BIDLE_3"
       rect:
         serializedVersion: 2
-        x: 208
+        x: 206
         y: 0
-        width: 42
-        height: 32
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e6dd010573689542a2d2fa0c046aaf0
+      spriteID: f5cf24cca29a68442925b58cdfc4e422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_4"
+      name: "\u4E0BIDLE_4"
       rect:
         serializedVersion: 2
-        x: 272
+        x: 270
         y: 0
-        width: 42
-        height: 31
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,19 +186,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ee5415fb8473f4ab45ffdd906e86dc
+      spriteID: d840ffed7ab10304e8f287c493030fc4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_5"
+      name: "\u4E0BIDLE_5"
       rect:
         serializedVersion: 2
-        x: 336
+        x: 334
         y: 0
-        width: 42
-        height: 31
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,19 +206,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a23c08176abe36144b735cc6a0a969cf
+      spriteID: c3f5a37f1700a9a479dafc876920f3ef
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_6"
+      name: "\u4E0BIDLE_6"
       rect:
         serializedVersion: 2
-        x: 400
+        x: 398
         y: 0
-        width: 42
-        height: 31
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,19 +226,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8987019f4f338db4c8e983cdcf116b4d
+      spriteID: 802110efb1ade884a9c6401798b1f498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u4ED3\u9F20idle2_7"
+      name: "\u4E0BIDLE_7"
       rect:
         serializedVersion: 2
-        x: 464
+        x: 462
         y: 0
-        width: 42
-        height: 31
+        width: 36
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb76c2cfe19c59447862e4acdf38c5b3
+      spriteID: cf9736502b247c049a97808b83114b34
       vertices: []
       indices: 
       edges: []
@@ -254,7 +254,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9c0ff56c3cd54914eba56bcee4bc0034
+    spriteID: c19d549eaabb6ce4eba5ee0e8eec9a11
     vertices: []
     indices: 
     edges: []
