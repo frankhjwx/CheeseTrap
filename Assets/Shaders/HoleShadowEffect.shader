@@ -48,10 +48,10 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 half4 mask = tex2D(_Mask, i.uv);
-                float hStep = 1.0 / 960;
+                float hStep = 1.0 / 540;
                 col.a = 0;
             
-                for (int k = 0; k <= 80; k++){
+                for (int k = 0; k <= 45; k++){
                     half4 maskk = tex2D(_Mask, i.uv + float2(0, hStep*k));
                     if ((i.uv + float2(0, hStep*k)).y <= 1 && maskk.r == 0)
                         col.a = 1;
