@@ -17,6 +17,8 @@ public class HoleManager : MonoBehaviour
     private Texture2D holeTexture;  
     private Texture2D terrainTexture;
 
+    public int gameLevel;
+
     // only for debug
     // private GameObject testTextureDisplay;
 

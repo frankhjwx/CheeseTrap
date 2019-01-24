@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
     public gameStatus currentStatus;
     public int gameLevel = 1;
     private GameObject holeManager;
+    private GameObject levelManager;
     private GameObject mice1, mice2;
     private float gameTime;
     public float maxTime = 60f;
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour {
         currentStatus = gameStatus.Play;
         holeManager = GameObject.Find("HoleManager");
         holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
+        levelManager = GameObject.Find("LevelManager");
+        levelManager.GetComponent<LevelManager>().SetGameLevel(gameLevel);
         //inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
         mice1 = GameObject.Find("mice1");
         mice2 = GameObject.Find("mice2");
