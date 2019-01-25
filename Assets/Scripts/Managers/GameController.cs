@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public enum gameStatus {Play, Pause, GameOver};
@@ -63,11 +64,14 @@ public class GameController : MonoBehaviour {
     }
 
     public void startGame(int level){
+        /*
         holeManager.GetComponent<HoleManager>().InitializeLevel(level);
         currentStatus = gameStatus.Play;
         gameTime = 0f;
         mice1.transform.position = startPos1[gameLevel];
         mice2.transform.position = startPos2[gameLevel];
         mice2.transform.eulerAngles = new Vector3(0, -180, 0);
+        */
+        SceneManager.LoadScene("LocalGame");
     }
 }

@@ -965,6 +965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd8d817b7245af41974b00a96060ca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p1Choice: {fileID: 1460614536}
+  p2Choice: {fileID: 567311704}
+  mapChoice: {fileID: 537605027}
 --- !u!1 &331014554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,9 +1276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665943e52a1193641bcbfa5e3e6d704f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Choice: {fileID: 1460614536}
-  p2Choice: {fileID: 567311704}
-  mapChoice: {fileID: 537605027}
+  p1ChoiceIndex: 0
+  p2ChoiceIndex: 0
+  mapChoiceIndex: 0
 --- !u!4 &433087747
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,6 +1470,7 @@ MonoBehaviour:
   - {fileID: 613057477267218097, guid: bd67d26d8b1f6a3489475733b31acc48, type: 3}
   - {fileID: 1916840429252696213, guid: 7af1d8bcebf13bb45a2c8d644caacfa9, type: 3}
   imagePosition: {fileID: 1533391678}
+  localMapChoiceUi: {fileID: 270713206}
 --- !u!222 &537605029
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1535,6 +1539,7 @@ MonoBehaviour:
   speedSlider: {fileID: 1299446729}
   eatSpeedSlider: {fileID: 1563825840}
   beingFatSpeedSlider: {fileID: 717494447}
+  localMapChoiceUi: {fileID: 270713206}
 --- !u!222 &567311705
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2828,6 +2833,7 @@ MonoBehaviour:
   speedSlider: {fileID: 372992800}
   eatSpeedSlider: {fileID: 859869527}
   beingFatSpeedSlider: {fileID: 81149562}
+  localMapChoiceUi: {fileID: 270713206}
 --- !u!1 &1469063679
 GameObject:
   m_ObjectHideFlags: 0
