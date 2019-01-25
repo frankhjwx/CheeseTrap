@@ -51,7 +51,7 @@
                 if (mask.r != 0 && mask.r != 1)
                     col.a = 0;
                 if (abs(mask.g*255 - 3) <= 0.01){
-                    col.rgb = float3(92.0/255, 40.0/255, 0/255);
+                    col.rgb = float3(228.0/255, 124.0/255, 63.0/255);
                 }
                 return col;
             }

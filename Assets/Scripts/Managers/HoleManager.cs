@@ -168,6 +168,7 @@ public class HoleManager : MonoBehaviour
         holeTexture.SetPixel(x, y, new Color(c.r, 3.0f/255, c.b, c.a));
         yield return new WaitForSeconds(1.5f);
         if (caramelCoolDown[x,y] == 1){
+            c = holeTexture.GetPixel(x, y);
             holeTexture.SetPixel(x, y, new Color(c.r, 0, c.b, c.a));
         }
         caramelCoolDown[x,y] -= 1;
