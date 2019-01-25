@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> level1Miscs;
     public List<GameObject> level2Miscs;
     public List<GameObject> level3Miscs;
+    public List<GameObject> level4Miscs;
     
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,14 @@ public class LevelManager : MonoBehaviour
         if (gameLevel == 3)
         {
             foreach (GameObject misc in level3Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
+
+        if (gameLevel == 4)
+        {
+            foreach (GameObject misc in level4Miscs)
             {
                 misc.SetActive(true);
             }
