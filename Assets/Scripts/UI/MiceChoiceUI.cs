@@ -21,7 +21,7 @@ public class MiceChoiceUI : MonoBehaviour
 
     public int CurrentChoice => currentChoice;
     //public float imageWidth = 400;
-    private float timeLeftToRecover = 0.0f;
+    //private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
     private GameObject currentChosenMiceInstance;
     private JSONNode miceInfoRoot;
