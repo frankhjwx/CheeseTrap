@@ -18,6 +18,13 @@ public class InputManager : MonoBehaviour {
     private KeyCode[] directionKeys2 = {KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow};
     private KeyCode DigKey1 = KeyCode.Space, DigKey2 = KeyCode.Return;
 
+    private int leftRightClickCountRequest = 0;
+    private int leftRightClickCounter = 0;
+    private bool leftRightClickMode = false;
+    //-1为左， 1 为右，0为未开始按
+    private int leftRightClickLatestKey = 0;
+    public bool leftRightClickFinished = true;
+    
     private void Awake()
     {
         instance = this;
@@ -46,7 +53,6 @@ public class InputManager : MonoBehaviour {
             player1Vector.y = 0;
         }
         
-
         if (Input.GetKey(directionKeys2[2]) && !Input.GetKey(directionKeys2[3])) {
             player2Vector.x = -1;
         } else if (Input.GetKey(directionKeys2[3]) && !Input.GetKey(directionKeys2[2])) {
@@ -93,6 +99,27 @@ public class InputManager : MonoBehaviour {
             player2DigKeyDown = true;
         else
             player2DigKeyDown = false;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && leftRightClickMode && (leftRightClickLatestKey == 1 || leftRightClickLatestKey == 0))
+        {
+            leftRightClickCounter++;
+            leftRightClickLatestKey = -1;
+            if (leftRightClickCounter >= leftRightClickCountRequest)
+            {
+                leftRightClickMode = false;
+                leftRightClickFinished = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && leftRightClickMode && (leftRightClickLatestKey == -1 || leftRightClickLatestKey == 0))
+        {
+            leftRightClickCounter++;
+            leftRightClickLatestKey = 1;
+            if (leftRightClickCounter >= leftRightClickCountRequest)
+            {
+                leftRightClickMode = false;
+                leftRightClickFinished = true;
+            }
+        }
 	}
 
     // playerID = 1 or 2
@@ -137,6 +164,15 @@ public class InputManager : MonoBehaviour {
 
     public bool GetRestart(){
         return Input.GetKey(KeyCode.Escape);
+    }
+
+    public void StartLeftRightClickCount(int countTime)
+    {
+        leftRightClickCountRequest = countTime;
+        leftRightClickMode = true;
+        leftRightClickLatestKey = 0;
+        leftRightClickCounter = 0;
+        leftRightClickFinished = false;
     }
 
 }

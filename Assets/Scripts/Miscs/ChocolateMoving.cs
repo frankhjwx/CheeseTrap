@@ -20,5 +20,10 @@ public class ChocolateMoving : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        float ratio = (timer % circleTime) / circleTime * 2;
+        if (ratio > 1) ratio = 2 - ratio;
+        Debug.Log(ratio);
+        Vector2 deltaV = (EndPoint - StartPoint) * ratio;
+        transform.localPosition = new Vector3(deltaV.x + StartPoint.x, deltaV.y + StartPoint.y, deltaV.y + StartPoint.y - 0.7f);
     }
 }

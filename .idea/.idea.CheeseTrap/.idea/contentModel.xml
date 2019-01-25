@@ -29,6 +29,7 @@
             <e p="AppleObstacle.cs" t="Include" />
             <e p="ChocolateMoving.cs" t="Include" />
             <e p="Hole.cs" t="Include" />
+            <e p="TrackingMole.cs" t="Include" />
           </e>
           <e p="player" t="Include">
             <e p="MiceBasicInfo.cs" t="Include" />

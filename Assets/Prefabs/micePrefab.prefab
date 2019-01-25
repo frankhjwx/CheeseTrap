@@ -4888,6 +4888,7 @@ MonoBehaviour:
   deltaRadius: 0.15
   timeStep: 0.2
   maxRadius: 1.25
+  vertigoTime: 2
   holeManager: {fileID: 0}
   playerID: 1
   uiPresentation: {fileID: 0}
