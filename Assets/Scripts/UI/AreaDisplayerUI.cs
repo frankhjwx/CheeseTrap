@@ -62,5 +62,6 @@ public class AreaDisplayerUI : MonoBehaviour
             alpha = Mathf.Min(cnt/20.0f, 1f);
             yield return null;
         }
+        alpha = 1;
     }
 }
