@@ -121,7 +121,6 @@ public class InputManager : MonoBehaviour {
                 leftRightClickMode2 = false;
                 leftRightClickFinished2 = true;
             }
-            Debug.Log(leftRightClickCounter2);
         }
 	}
 
