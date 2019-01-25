@@ -8,6 +8,7 @@ public class player : MonoBehaviour
     public GameController gameController;
     private Collider2D playerCollider;
     public Animator playerAnimator;
+    AudioPlayer AudioPlayer1;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -65,11 +66,12 @@ public class player : MonoBehaviour
     ParticleSystem.EmissionModule foodEmission;
 
     private float swampFactor = 1;
-    private float swampToControlTime = 2;
+    private float swampToControlTime = 1;
     private float swampTimer = 0;
     private bool swampPunishmentOn = false;
     void Start()
     {
+        AudioPlayer1 = this.GetComponent<AudioPlayer>();
         dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
@@ -110,6 +112,22 @@ public class player : MonoBehaviour
     {
         dustEmission.rateOverTime = 0;
         foodEmission.rateOverTime = 0;
+
+        if (terrain == 1 || terrain == 2)
+        {
+            AudioPlayer1.PlayAudioClips("runice");
+        }
+
+        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(!running)&&(terrain==0))
+        { 
+                AudioPlayer1.PlayAudioClips("runcheese");
+        }
+
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) && (!running) && (terrain == 1))
+        {
+            AudioPlayer1.PlayAudioClips("runcheese");
+        }
+
         if (gameController.currentStatus == GameController.gameStatus.Play) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
@@ -138,6 +156,7 @@ public class player : MonoBehaviour
     {
         if (InputManager.instance.GetDigKeyDown(playerID) && (!digging) && canDig)//初次按下鼠标，初始化坑
         {
+            AudioPlayer1.PlayAudioClips("eat");
             digging = true;
             canrun = false;
             diggingTime = 0f;
@@ -197,8 +216,7 @@ public class player : MonoBehaviour
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
                 transform.right = moveDirection;
-                running = true;
-                
+                running = true;                
             }
             else
             {
