@@ -332,7 +332,7 @@ public class player : MonoBehaviour
         //swamp
         if (terrain == 4)
         {
-            if (swampFactor >= 0)
+            if (swampFactor > 0)
             {
                 swampFactor = (swampToControlTime - swampTimer) / swampToControlTime;
                 if (moveDirection != Vector2.zero && !digging)
@@ -365,18 +365,19 @@ public class player : MonoBehaviour
             }
             else
             {
-                if (!swampPunishmentOn){
-                    canrun = false;
+                if (!swampPunishmentOn)
+                {
+                    swampFactor = 0;
                     canDig = false;
-                    InputManager.instance.StartLeftRightClickCount(10);
+                    InputManager.instance.StartLeftRightClickCount(playerID, 10);
                     swampPunishmentOn = true;
                 }
                 else
                 {
-                    if (InputManager.leftRightClickFinished)
+                    if (InputManager.GetLeftRightClickFinished(playerID))
                     {
                         canrun = true;
-                        canDig = false;
+                        canDig = true;
                         swampPunishmentOn = false;
                         swampTimer = 0;
                         swampFactor = 1;

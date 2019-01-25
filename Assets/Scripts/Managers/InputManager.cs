@@ -18,12 +18,15 @@ public class InputManager : MonoBehaviour {
     private KeyCode[] directionKeys2 = {KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow};
     private KeyCode DigKey1 = KeyCode.Space, DigKey2 = KeyCode.Return;
 
-    private int leftRightClickCountRequest = 0;
-    private int leftRightClickCounter = 0;
-    private bool leftRightClickMode = false;
-    //-1为左， 1 为右，0为未开始按
-    private int leftRightClickLatestKey = 0;
-    public bool leftRightClickFinished = true;
+    private int leftRightClickCountRequest1 = 0;
+    private int leftRightClickCounter1 = 0;
+    private bool leftRightClickMode1 = false;
+    public bool leftRightClickFinished1 = true;
+    
+    private int leftRightClickCountRequest2 = 0;
+    private int leftRightClickCounter2 = 0;
+    private bool leftRightClickMode2 = false;
+    public bool leftRightClickFinished2 = true;
     
     private void Awake()
     {
@@ -100,25 +103,25 @@ public class InputManager : MonoBehaviour {
         else
             player2DigKeyDown = false;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && leftRightClickMode && (leftRightClickLatestKey == 1 || leftRightClickLatestKey == 0))
+        if ((Input.GetKeyDown(directionKeys1[0]) || Input.GetKeyDown(directionKeys1[1]) || Input.GetKeyDown(directionKeys1[2]) || Input.GetKeyDown(directionKeys1[3])) && leftRightClickMode1)
         {
-            leftRightClickCounter++;
-            leftRightClickLatestKey = -1;
-            if (leftRightClickCounter >= leftRightClickCountRequest)
+            leftRightClickCounter1++;
+            if (leftRightClickCounter1 >= leftRightClickCountRequest1)
             {
-                leftRightClickMode = false;
-                leftRightClickFinished = true;
+                leftRightClickMode1 = false;
+                leftRightClickFinished1 = true;
             }
+            Debug.Log(leftRightClickCounter1);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && leftRightClickMode && (leftRightClickLatestKey == -1 || leftRightClickLatestKey == 0))
+        if ((Input.GetKeyDown(directionKeys2[0]) || Input.GetKeyDown(directionKeys2[1]) || Input.GetKeyDown(directionKeys2[2]) || Input.GetKeyDown(directionKeys2[3])) && leftRightClickMode2)
         {
-            leftRightClickCounter++;
-            leftRightClickLatestKey = 1;
-            if (leftRightClickCounter >= leftRightClickCountRequest)
+            leftRightClickCounter2++;
+            if (leftRightClickCounter2 >= leftRightClickCountRequest2)
             {
-                leftRightClickMode = false;
-                leftRightClickFinished = true;
+                leftRightClickMode2 = false;
+                leftRightClickFinished2 = true;
             }
+            Debug.Log(leftRightClickCounter2);
         }
 	}
 
@@ -166,13 +169,29 @@ public class InputManager : MonoBehaviour {
         return Input.GetKey(KeyCode.Escape);
     }
 
-    public void StartLeftRightClickCount(int countTime)
+    public void StartLeftRightClickCount(int playerID, int countTime)
     {
-        leftRightClickCountRequest = countTime;
-        leftRightClickMode = true;
-        leftRightClickLatestKey = 0;
-        leftRightClickCounter = 0;
-        leftRightClickFinished = false;
+        if (playerID == 1)
+        {
+            leftRightClickCountRequest1 = countTime;
+            leftRightClickMode1 = true;
+            leftRightClickCounter1 = 0;
+            leftRightClickFinished1 = false;
+        }
+        if (playerID == 2)
+        {
+            leftRightClickCountRequest2 = countTime;
+            leftRightClickMode2 = true;
+            leftRightClickCounter2 = 0;
+            leftRightClickFinished2 = false;
+        }
+    }
+
+    public bool GetLeftRightClickFinished(int playerID)
+    {
+        if (playerID == 1) return leftRightClickFinished1;
+        if (playerID == 2) return leftRightClickFinished2;
+        return false;
     }
 
 }
