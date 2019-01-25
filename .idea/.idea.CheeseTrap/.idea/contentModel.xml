@@ -39,6 +39,7 @@
             <e p="Wind.cs" t="Include" />
           </e>
           <e p="player" t="Include">
+            <e p="AutoEater.cs" t="Include" />
             <e p="MiceBasicInfo.cs" t="Include" />
             <e p="player.cs" t="Include" />
           </e>
@@ -59,6 +60,7 @@
             <e p="LocalMapChoiceUI.cs" t="Include" />
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
+            <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />
           </e>
         </e>

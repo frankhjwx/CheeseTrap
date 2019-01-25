@@ -20,18 +20,11 @@ public class CoverUIController : MonoBehaviour
 
     public void About()
     {
-        aboutPanel.gameObject.SetActive(true);
-        coverButtonPanel.gameObject.SetActive(false);
+        SceneManager.LoadScene("TeamInfo");
     }
 
     public void Quit()
     {
         Application.Quit();
-    }
-
-    public void AboutBack()
-    {
-        aboutPanel.gameObject.SetActive(false);
-        coverButtonPanel.gameObject.SetActive(true);
     }
 }

@@ -26,8 +26,8 @@ public class AreaDisplayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        p1Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum1/10, 9999));
-        p2Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum2/10, 9999));
+        p1Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum1/20, 9999));
+        p2Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum2/20, 9999));
         p1Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
         p2Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
     }

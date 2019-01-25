@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public Sprite[] foreground, shadow, background;
     public GameObject foregroundObject, holeshadowObject, backgroundObject;
 
+    public List<GameObject> level0Miscs;
     public List<GameObject> level1Miscs;
     public List<GameObject> level2Miscs;
     public List<GameObject> level3Miscs;
@@ -38,6 +39,13 @@ public class LevelManager : MonoBehaviour
 
     void UpdateMisc()
     {
+        if (gameLevel == 0)
+        {
+            foreach (GameObject misc in level0Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
         if (gameLevel == 1)
         {
             foreach (GameObject misc in level1Miscs)
