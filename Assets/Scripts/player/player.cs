@@ -42,6 +42,7 @@ public class player : MonoBehaviour
     // terrain = 0 -> idle
     // terrain = 1 -> ice
     // terrain = 2 -> cream
+    // terrain = 3 -> caramel
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
@@ -107,7 +108,7 @@ public class player : MonoBehaviour
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
             {
-                gameController.SetGameStatus(GameController.gameStatus.GameOver);
+                gameController.MouseDieGameOver(playerID);
                 GameOver();
             }
             Dig();
@@ -116,7 +117,7 @@ public class player : MonoBehaviour
                 Move();
             }
         }
-        if (gameController.currentStatus == GameController.gameStatus.GameOver) {
+        if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || gameController.currentStatus == GameController.gameStatus.TimeUpOver) {
             
             digging = false;
             running = false;
@@ -289,9 +290,39 @@ public class player : MonoBehaviour
                 hori = false;
                 up = false;
             }
+        }
+        if (terrain == 3){
+            if (moveDirection != Vector2.zero && !digging)
+            {
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 1.5f, Space.World);//结算并挪动
+                transform.right = moveDirection;
+                running = true;
+                
+            }
+            else
+            {
+                running = false;//没有移动量，则不跑动
+            }
+
+            if(transform.right.y==0)
+            {
+                hori = true;
+            }
+            if(transform.right.y > 0)
+            {
+                hori = false;
+                up = true;
+            }
+
+            if (transform.right.y < 0)
+            {
+                hori = false;
+                up = false;
+            }
 
 
         }
+
         if (running) {
             dustEmission.rateOverTime = 12;
         }
@@ -410,18 +441,18 @@ public class player : MonoBehaviour
     }
 
     IEnumerator miceDie(){
-        float maxTime = 1f;
+        float maxTime = 1.5f;
         float timer = 0;
         Vector3 initialScale = transform.localScale;
-        yield return new WaitForSeconds(0.2f);
-        while (timer < maxTime){
-            if (timer >= 1){
-                timer = 1f;
+        yield return new WaitForSeconds(0.1f);
+        while (timer <= maxTime){
+            if (timer >= maxTime){
+                timer = maxTime;
             }
-            transform.localScale = initialScale * EasingFuncs.ElasticOut(1-timer);
+            transform.localScale = initialScale * EasingFuncs.ElasticOut(1-timer/maxTime);
             timer += Time.deltaTime;
             yield return 0;
         }
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

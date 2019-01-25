@@ -17,6 +17,6 @@ public class TimeDisplayerUI : MonoBehaviour
     void Update()
     {
         currentTime = gameController.GetComponent<GameController>().GetGameTime();
-        GetComponent<Image>().material.SetInt("_GameTime", 60 - currentTime);
+        GetComponent<Image>().material.SetInt("_GameTime", gameController.GetComponent<GameController>().maxTime - currentTime);
     }
 }
