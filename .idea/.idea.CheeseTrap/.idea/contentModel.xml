@@ -46,6 +46,7 @@
             <e p="EasingFuncs.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="AreaDisplayerUI.cs" t="Include" />
             <e p="counterSlider.cs" t="Include" />
             <e p="CoverUIController.cs" t="Include" />
             <e p="DiskChoiceUI.cs" t="Include" />
@@ -60,6 +61,7 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
+          <e p="AreaDisplayEffect.shader" t="Include" />
           <e p="FlowAndSpinEffect.shader" t="Include" />
           <e p="HoleEffect.shader" t="Include" />
           <e p="HoleShadowEffect.shader" t="Include" />

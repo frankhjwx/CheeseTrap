@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
     public int maxTime = 60;
 
     public Vector2[] startPos1, startPos2;
-    public GameObject GameOverUI, TimeUpUI;
+    public GameObject GameOverUI, AreaDisplayer;
 
 
     //InputManager inputManager;
@@ -76,26 +76,31 @@ public class GameController : MonoBehaviour {
 
     public void MouseDieGameOver(int playerID){
         SetGameStatus(GameController.gameStatus.MouseDieOver);
-        string msg;
         if (playerID == 1) {
-            msg = "Player 2 wins!";
+            GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
+            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
         } else {
-            msg = "Player 1 wins!";
+            GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
+            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
         }
-        GameOverUI.transform.GetChild(1).GetComponent<Text>().text = msg;
         GameOverUI.transform.position = new Vector2(960, 540);
+        GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
+        GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
+        AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
 
     public void TimeUpGameOver(){
         SetGameStatus(GameController.gameStatus.TimeUpOver);
-        string msg;
         if (holeManager.GetComponent<HoleManager>().areas[1] > holeManager.GetComponent<HoleManager>().areas[2]) {
-            msg = "Player 1 wins!";
+            GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
+            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
         } else {
-            msg = "Player 2 wins!";
+            GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
+            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
         }
-        TimeUpUI.transform.GetChild(1).GetComponent<Text>().text = msg;
-        TimeUpUI.transform.GetChild(2).GetComponent<Text>().text = "P1 Area:" + holeManager.GetComponent<HoleManager>().areas[1].ToString() + "\nP2 Area:" + holeManager.GetComponent<HoleManager>().areas[2].ToString();
-        TimeUpUI.transform.position = new Vector2(960, 540);
+        GameOverUI.transform.position = new Vector2(960, 540);
+        GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
+        AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
+
 }

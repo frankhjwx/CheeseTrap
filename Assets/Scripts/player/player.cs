@@ -64,7 +64,6 @@ public class player : MonoBehaviour
     public GameObject foodObject;
     ParticleSystem.EmissionModule dustEmission;
     ParticleSystem.EmissionModule foodEmission;
-    public Transform shadowTrans;
 
     private float swampFactor = 1;
     private float swampToControlTime = 1;
@@ -522,14 +521,14 @@ public class player : MonoBehaviour
 
     public void Vertigo()
     {
-        StartCoroutine(miceVertigo());
+        StartCoroutine(miceVertigo(vertigoTime));
     }
 
-    IEnumerator miceVertigo()
+    IEnumerator miceVertigo(float time)
     {
         canrun = false;
         canDig = false;
-        yield return new WaitForSeconds(vertigoTime);
+        yield return new WaitForSeconds(time);
         canrun = true;
         canDig = true;
     }
@@ -553,5 +552,11 @@ public class player : MonoBehaviour
     private void CorrectDirection(Vector3 speedDirection)
     {
         transform.right = speedDirection;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.name == "cat_hand_down") {
+            StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
+        }
     }
 }
