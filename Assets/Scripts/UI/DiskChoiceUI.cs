@@ -7,7 +7,8 @@ public class DiskChoiceUI : MonoBehaviour
 {
     public List<GameObject> miceChoicePrefab;
     public RectTransform imagePosition;
-    
+
+    public LocalMapChoiceUI localMapChoiceUi;
     private int miceKinds;
     private int currentChoice = 0;
 
@@ -20,11 +21,13 @@ public class DiskChoiceUI : MonoBehaviour
     {
         currentChosenMiceInstance = Instantiate(miceChoicePrefab[0], imagePosition);
         miceKinds = miceChoicePrefab.Count;
+        currentChosenMiceInstance.GetComponent<Image>().material.SetFloat("_FadeAlpha", 1);
     }
     void Update()
     {
         if (choiceRolling)
         {
+            localMapChoiceUi.Refresh();
             StartCoroutine(DiskFadeOut(currentChosenMiceInstance));
             currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
             StartCoroutine(DiskFadeIn(currentChosenMiceInstance));
@@ -88,6 +91,7 @@ public class DiskChoiceUI : MonoBehaviour
             timer += Time.deltaTime;
             yield return 0;
         }
+        material.SetFloat("_FadeAlpha", 0);
         Destroy(disk);
     }
     

@@ -293,6 +293,10 @@ public class player : MonoBehaviour
         if (running) {
             dustEmission.rateOverTime = 12;
         }
+
+        var localPosition = transform.localPosition;
+        localPosition = new Vector3(localPosition.x, localPosition.y, localPosition.y);
+        transform.localPosition = localPosition;
     }
 
     /// <summary>

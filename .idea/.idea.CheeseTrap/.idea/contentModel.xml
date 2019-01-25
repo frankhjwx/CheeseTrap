@@ -23,13 +23,19 @@
             <e p="HoleManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
             <e p="LevelManager.cs" t="Include" />
+            <e p="MapChoiceManager.cs" t="Include" />
           </e>
-          <e p="Misc" t="Include">
+          <e p="Miscs" t="Include">
+            <e p="AppleObstacle.cs" t="Include" />
+            <e p="ChocolateMoving.cs" t="Include" />
             <e p="Hole.cs" t="Include" />
           </e>
           <e p="player" t="Include">
             <e p="MiceBasicInfo.cs" t="Include" />
             <e p="player.cs" t="Include" />
+          </e>
+          <e p="Tools" t="Include">
+            <e p="EasingFuncs.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="counterSlider.cs" t="Include" />
@@ -41,14 +47,15 @@
             <e p="InGamePauseUI.cs" t="Include" />
             <e p="LocalMapChoiceUI.cs" t="Include" />
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
-            <e p="MapChoiceManager.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
+            <e p="TimeDisplayerUI.cs" t="Include" />
           </e>
         </e>
         <e p="Shaders" t="Include">
           <e p="FlowAndSpinEffect.shader" t="Include" />
           <e p="HoleEffect.shader" t="Include" />
           <e p="HoleShadowEffect.shader" t="Include" />
+          <e p="TimeDisplayEffect.shader" t="Include" />
         </e>
       </e>
       <e p="CheeseTrap.sln" t="IncludeFlat" />

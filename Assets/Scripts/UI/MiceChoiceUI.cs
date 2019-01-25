@@ -14,13 +14,14 @@ public class MiceChoiceUI : MonoBehaviour
     public Slider speedSlider;
     public Slider eatSpeedSlider;
     public Slider beingFatSpeedSlider;
+    public LocalMapChoiceUI localMapChoiceUi;
     
     private int miceKinds;
     private int currentChoice = 0;
 
     public int CurrentChoice => currentChoice;
     //public float imageWidth = 400;
-    private float timeLeftToRecover = 0.0f;
+    //private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
     private GameObject currentChosenMiceInstance;
     private JSONNode miceInfoRoot;
@@ -75,6 +76,7 @@ public class MiceChoiceUI : MonoBehaviour
             Destroy(currentChosenMiceInstance);
             currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
             choiceRolling = false;
+            localMapChoiceUi.Refresh();
 
             StartCoroutine(SliderSetNewValue(speedSlider, miceInfoRoot[currentChoice]["speedLevel"].AsFloat));
             StartCoroutine(SliderSetNewValue(eatSpeedSlider, miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat));
