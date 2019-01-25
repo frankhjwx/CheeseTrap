@@ -18,6 +18,7 @@
             <e p="ConnectivityJudger.cs" t="Include" />
             <e p="OccupyAreaCalculator.cs" t="Include" />
           </e>
+          <e p="AppleObstacle.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="GameController.cs" t="Include" />
             <e p="HoleManager.cs" t="Include" />
