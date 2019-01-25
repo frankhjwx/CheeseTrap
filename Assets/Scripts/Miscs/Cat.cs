@@ -91,15 +91,25 @@ public class Cat : MonoBehaviour
                 }
             }
             waitTimer += Time.deltaTime;
-            yield return 0;
+            yield return null;
         }
-        yield return 0;
+        yield return null;
     }
 
     IEnumerator Pat(){
-        catHandDown.GetComponent<PolygonCollider2D>().enabled = true;
         float patTimer = 0;
+        Color c = catHandDown.GetComponent<SpriteRenderer>().color;
+        catHandDown.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, 1);
+
+        catHandDown.GetComponent<Collider2D>().isTrigger = true;
         yield return new WaitForSeconds(0.2f);
-        catHandDown.GetComponent<PolygonCollider2D>().enabled = false;
+        catHandDown.GetComponent<Collider2D>().isTrigger = false;
+        yield return new WaitForSeconds(patTime - 1.2f);
+        while (patTimer < 1.0f){
+            catHandDown.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, 1 - patTimer);
+            patTimer += Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
     }
 }

@@ -516,14 +516,14 @@ public class player : MonoBehaviour
 
     public void Vertigo()
     {
-        StartCoroutine(miceVertigo());
+        StartCoroutine(miceVertigo(vertigoTime));
     }
 
-    IEnumerator miceVertigo()
+    IEnumerator miceVertigo(float time)
     {
         canrun = false;
         canDig = false;
-        yield return new WaitForSeconds(vertigoTime);
+        yield return new WaitForSeconds(time);
         canrun = true;
         canDig = true;
     }
@@ -546,7 +546,7 @@ public class player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.name == "cat_hand_down") {
-            StartCoroutine(miceVertigo());
+            StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
         }
     }
 }
