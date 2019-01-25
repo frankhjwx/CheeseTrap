@@ -11,7 +11,7 @@ public class LocalMapChoiceUI : MonoBehaviour
     void Start()
     {
         mapChoiceManager = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
-        
+        Refresh();
     }
 
     public void Refresh()
