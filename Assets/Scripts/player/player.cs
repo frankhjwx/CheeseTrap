@@ -394,18 +394,18 @@ public class player : MonoBehaviour
     }
 
     IEnumerator miceDie(){
-        float maxTime = 1f;
+        float maxTime = 1.5f;
         float timer = 0;
         Vector3 initialScale = transform.localScale;
-        yield return new WaitForSeconds(0.2f);
-        while (timer < maxTime){
-            if (timer >= 1){
-                timer = 1f;
+        yield return new WaitForSeconds(0.1f);
+        while (timer <= maxTime){
+            if (timer >= maxTime){
+                timer = maxTime;
             }
-            transform.localScale = initialScale * EasingFuncs.ElasticOut(1-timer);
+            transform.localScale = initialScale * EasingFuncs.ElasticOut(1-timer/maxTime);
             timer += Time.deltaTime;
             yield return 0;
         }
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
