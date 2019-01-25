@@ -88,32 +88,30 @@ public class MiceChoiceUI : MonoBehaviour
     {
         if (currentChoice <= 0)
         {
-            currentChoice = 0;
+            currentChoice = miceKinds - 1;
             
         }
         else
         {
             currentChoice--;
             //timeLeftToRecover = scrollTime;
-            choiceRolling = true;
-            Debug.Log(currentChoice);
         }
+        choiceRolling = true;
     }
     
     public void rightChoice()
     {
         if (currentChoice >= miceKinds - 1)
         {
-            currentChoice = miceKinds - 1;
+            currentChoice = 0;
             
         }
         else
         {
             currentChoice++;
             //timeLeftToRecover = scrollTime;
-            choiceRolling = true;
-            Debug.Log(currentChoice);
         }
+        choiceRolling = true;
     }
     
     public void rightChoiceLoop()
