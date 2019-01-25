@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour {
     public int maxTime = 60;
 
     public Vector2[] startPos1, startPos2;
-    public GameObject GameOverUI;
+    public GameObject GameOverUI, AreaDisplayer;
 
 
     //InputManager inputManager;
@@ -84,8 +84,9 @@ public class GameController : MonoBehaviour {
             GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
         }
         GameOverUI.transform.position = new Vector2(960, 540);
-        GameOverUI.transform.GetChild(7).gameObject.SetActive(false);
+        GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
+        AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
 
     public void TimeUpGameOver(){
@@ -99,6 +100,7 @@ public class GameController : MonoBehaviour {
         }
         GameOverUI.transform.position = new Vector2(960, 540);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
+        AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
 
 }
