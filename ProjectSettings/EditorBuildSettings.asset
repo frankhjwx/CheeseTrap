@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Cover.unity
     guid: ecd9eff9c5a347a42b573a6cb167dd6f
   - enabled: 1
+    path: Assets/Scenes/TeamInfo.unity
+    guid: 7fde95f772e87d44e9b344cc88e7b32b
+  - enabled: 1
     path: Assets/Scenes/LocalMapChoose.unity
     guid: 760ff9bfd6a723a4a9e539a190c64185
   - enabled: 1
-    path: Assets/Scenes/TeamInfo.unity
-    guid: 7fde95f772e87d44e9b344cc88e7b32b
+    path: Assets/Scenes/LocalGame.unity
+    guid: fcf3138dd6e2bdf4bb3826696502158d
   m_configObjects: {}
