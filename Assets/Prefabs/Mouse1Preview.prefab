@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9136136930720626671}
   - component: {fileID: 1228632110329393735}
   m_Layer: 5
-  m_Name: Mouse0Preview
+  m_Name: Mouse1Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9febf7f841ff9734b83893379b9e3f87, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c8d9609a559d354db0cd568f2c63596, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
