@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-    public enum gameStatus {Play, Pause, GameOver};
+    public enum gameStatus {Play, Pause, MouseDieOver, TimeUpOver};
     public gameStatus currentStatus;
     public int gameLevel = 1;
     private GameObject holeManager;
@@ -15,6 +16,8 @@ public class GameController : MonoBehaviour {
     public float maxTime = 60f;
 
     public Vector2[] startPos1, startPos2;
+    public GameObject GameOverUI, TimeUpUI;
+
 
     //InputManager inputManager;
 
@@ -45,13 +48,13 @@ public class GameController : MonoBehaviour {
         if (currentStatus == gameStatus.Play){
             gameTime += Time.deltaTime;
         }
-        if (currentStatus == gameStatus.GameOver && InputManager.instance.GetRestart()){
+        if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) && InputManager.instance.GetRestart()){
             gameTime = 0f;
             startGame(gameLevel);
         }
         if (gameTime >= maxTime) {
             // send a signal of Game Over
-            currentStatus = gameStatus.GameOver;
+            TimeUpGameOver();
         }
     }
 
@@ -73,5 +76,30 @@ public class GameController : MonoBehaviour {
         mice2.transform.eulerAngles = new Vector3(0, -180, 0);
         */
         SceneManager.LoadScene("LocalGame");
+    }
+
+    public void MouseDieGameOver(int playerID){
+        SetGameStatus(GameController.gameStatus.MouseDieOver);
+        string msg;
+        if (playerID == 1) {
+            msg = "Player 2 wins!";
+        } else {
+            msg = "Player 1 wins!";
+        }
+        GameOverUI.transform.GetChild(1).GetComponent<Text>().text = msg;
+        GameOverUI.transform.position = new Vector2(960, 540);
+    }
+
+    public void TimeUpGameOver(){
+        SetGameStatus(GameController.gameStatus.TimeUpOver);
+        string msg;
+        if (holeManager.GetComponent<HoleManager>().areas[1] > holeManager.GetComponent<HoleManager>().areas[2]) {
+            msg = "Player 1 wins!";
+        } else {
+            msg = "Player 2 wins!";
+        }
+        TimeUpUI.transform.GetChild(1).GetComponent<Text>().text = msg;
+        TimeUpUI.transform.GetChild(2).GetComponent<Text>().text = "P1 Area:" + holeManager.GetComponent<HoleManager>().areas[1].ToString() + "\nP2 Area:" + holeManager.GetComponent<HoleManager>().areas[2].ToString();
+        TimeUpUI.transform.position = new Vector2(960, 540);
     }
 }

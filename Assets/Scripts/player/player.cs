@@ -105,7 +105,7 @@ public class player : MonoBehaviour
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
             {
-                gameController.SetGameStatus(GameController.gameStatus.GameOver);
+                gameController.MouseDieGameOver(playerID);
                 GameOver();
             }
             Dig();
@@ -114,7 +114,7 @@ public class player : MonoBehaviour
                 Move();
             }
         }
-        if (gameController.currentStatus == GameController.gameStatus.GameOver) {
+        if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || gameController.currentStatus == GameController.gameStatus.TimeUpOver) {
             
             digging = false;
             running = false;
