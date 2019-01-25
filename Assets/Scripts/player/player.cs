@@ -323,6 +323,12 @@ public class player : MonoBehaviour
 
         }
 
+        //swamp
+        if (terrain == 4)
+        {
+            
+        }
+
         if (running) {
             dustEmission.rateOverTime = 12;
         }
