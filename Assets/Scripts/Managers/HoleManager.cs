@@ -154,7 +154,7 @@ public class HoleManager : MonoBehaviour
         for (int x = cx - radius; x <= cx + radius; x++){
             for (int y = cy - radius; y <= cy + radius; y++){
                 if (x >= 0 && x < texWidth && y >= 0 && y < texHeight && (x-cx)*(x-cx) + (y-cy)*(y-cy) <= radius * radius &&
-                    holeTexture.GetPixel(x,y).r == 0){
+                    holeTexture.GetPixel(x,y).r == 0 && holeTexture.GetPixel(x,y).g != 1){
                         StartCoroutine(SetCaramel(x, y));
                     }
             }

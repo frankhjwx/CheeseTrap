@@ -43,6 +43,7 @@ public class player : MonoBehaviour
     // terrain = 1 -> ice
     // terrain = 2 -> cream
     // terrain = 3 -> caramel
+    // terrain = 4 -> swamp
     int terrain;
     public int playerID = 1;//用户ID
     private float radiusOfHole;//坑半径
@@ -62,6 +63,11 @@ public class player : MonoBehaviour
     public GameObject foodObject;
     ParticleSystem.EmissionModule dustEmission;
     ParticleSystem.EmissionModule foodEmission;
+
+    private float swampFactor = 1;
+    private float swampToControlTime = 2;
+    private float swampTimer = 0;
+    private bool swampPunishmentOn = false;
     void Start()
     {
         dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
@@ -294,7 +300,7 @@ public class player : MonoBehaviour
         if (terrain == 3){
             if (moveDirection != Vector2.zero && !digging)
             {
-                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 1.5f, Space.World);//结算并挪动
+                transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 2f, Space.World);//结算并挪动
                 transform.right = moveDirection;
                 running = true;
                 
@@ -326,7 +332,64 @@ public class player : MonoBehaviour
         //swamp
         if (terrain == 4)
         {
-            
+            if (swampFactor >= 0)
+            {
+                swampFactor = (swampToControlTime - swampTimer) / swampToControlTime;
+                if (moveDirection != Vector2.zero && !digging)
+                {
+                    transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * swampFactor, Space.World);//结算并挪动
+                    transform.right = moveDirection;
+                    running = true;
+                
+                }
+                else
+                {
+                    running = false;//没有移动量，则不跑动
+                }
+
+                if(transform.right.y==0)
+                {
+                    hori = true;
+                }
+                if(transform.right.y > 0)
+                {
+                    hori = false;
+                    up = true;
+                }
+
+                if (transform.right.y < 0)
+                {
+                    hori = false;
+                    up = false;
+                }
+            }
+            else
+            {
+                if (!swampPunishmentOn){
+                    canrun = false;
+                    canDig = false;
+                    InputManager.instance.StartLeftRightClickCount(10);
+                    swampPunishmentOn = true;
+                }
+                else
+                {
+                    if (InputManager.leftRightClickFinished)
+                    {
+                        canrun = true;
+                        canDig = false;
+                        swampPunishmentOn = false;
+                        swampTimer = 0;
+                        swampFactor = 1;
+                    }
+                }
+            }
+
+            swampTimer += Time.deltaTime;
+        }
+        else
+        {
+            swampFactor = 1;
+            swampTimer = 0;
         }
 
         if (running) {
