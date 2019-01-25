@@ -21,6 +21,7 @@ public class DiskChoiceUI : MonoBehaviour
     {
         currentChosenMiceInstance = Instantiate(miceChoicePrefab[0], imagePosition);
         miceKinds = miceChoicePrefab.Count;
+        currentChosenMiceInstance.GetComponent<Image>().material.SetFloat("_FadeAlpha", 1);
     }
     void Update()
     {
@@ -90,6 +91,7 @@ public class DiskChoiceUI : MonoBehaviour
             timer += Time.deltaTime;
             yield return 0;
         }
+        material.SetFloat("_FadeAlpha", 0);
         Destroy(disk);
     }
     
