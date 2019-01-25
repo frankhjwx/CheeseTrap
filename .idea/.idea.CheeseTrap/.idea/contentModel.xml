@@ -19,6 +19,9 @@
             <e p="OccupyAreaCalculator.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">
+            <e p="AudioClipsManager.cs" t="Include" />
+            <e p="AudioManager.cs" t="Include" />
+            <e p="AudioPlayer.cs" t="Include" />
             <e p="GameController.cs" t="Include" />
             <e p="HoleManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />

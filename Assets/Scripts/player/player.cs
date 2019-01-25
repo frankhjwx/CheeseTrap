@@ -8,6 +8,7 @@ public class player : MonoBehaviour
     public GameController gameController;
     private Collider2D playerCollider;
     public Animator playerAnimator;
+    AudioPlayer AudioPlayer1;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -70,6 +71,7 @@ public class player : MonoBehaviour
     private bool swampPunishmentOn = false;
     void Start()
     {
+        AudioPlayer1 = this.GetComponent<AudioPlayer>();
         dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
@@ -138,6 +140,7 @@ public class player : MonoBehaviour
     {
         if (InputManager.instance.GetDigKeyDown(playerID) && (!digging) && canDig)//初次按下鼠标，初始化坑
         {
+            AudioPlayer1.AudioPlay("eat");
             digging = true;
             canrun = false;
             diggingTime = 0f;
@@ -152,6 +155,7 @@ public class player : MonoBehaviour
 
         if (InputManager.instance.GetDigKey(playerID) && digging && canDig)//一直按下，持续增大
         {
+            AudioPlayer1.AudioPlay("eat");
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
             {
