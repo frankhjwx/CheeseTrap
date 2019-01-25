@@ -860,15 +860,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStatus: 0
-  gameLevel: 3
+  gameLevel: 4
   maxTime: 60
   startPos1:
   - {x: 0, y: 0}
   - {x: 6, y: 6.2}
   - {x: 6, y: 6.2}
   - {x: 6, y: 6.2}
+  - {x: 6, y: 6.2}
   startPos2:
   - {x: 0, y: 0}
+  - {x: 13, y: 6.2}
   - {x: 13, y: 6.2}
   - {x: 13, y: 6.2}
   - {x: 13, y: 6.2}
@@ -7485,16 +7487,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8e08c67b9ec2451408c31df7d43683cb, type: 3}
   - {fileID: 21300000, guid: f6c2976768bdb044ebd6782c9d675cef, type: 3}
   - {fileID: 21300000, guid: f3810768c89158747a734b1be6fafd1d, type: 3}
+  - {fileID: 21300000, guid: b45c0afcb3385c54bb76430117fb7240, type: 3}
   shadow:
   - {fileID: 0}
   - {fileID: 21300000, guid: cf20b567f9e4f654b9eea619952c5813, type: 3}
   - {fileID: 21300000, guid: 70e595890d2cb764e805e15f32f031db, type: 3}
   - {fileID: 21300000, guid: f353a2fcd824ae641839f7a9c2686ad9, type: 3}
+  - {fileID: 21300000, guid: fcbd433527e61094da76887ca3631ebd, type: 3}
   background:
   - {fileID: 0}
   - {fileID: 21300000, guid: 2769a4091c674f542b41f22fa9e8f9b7, type: 3}
   - {fileID: 21300000, guid: f8dca5bbe7095014799c17c21d691918, type: 3}
   - {fileID: 21300000, guid: 3e58e73b37c98da488496daac438b390, type: 3}
+  - {fileID: 21300000, guid: 297c2feba6265964f874d8c6cd007566, type: 3}
   foregroundObject: {fileID: 4749146712807984796}
   holeshadowObject: {fileID: 4749146712807984795}
   backgroundObject: {fileID: 4749146712807984794}
