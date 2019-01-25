@@ -35,7 +35,6 @@ public class Cat : MonoBehaviour
             SetRest();
             timer = Random.Range(0, restTime - 5f);
         }
-        Debug.Log(posX);
         transform.position = new Vector3(posX, 5.4f, 0);
     }
 
@@ -59,6 +58,7 @@ public class Cat : MonoBehaviour
         catHand.SetActive(false);
         catAlarm.SetActive(false);
         catHandDown.SetActive(true);
+        StartCoroutine(Pat());
     }
 
     IEnumerator WaitMove(){
@@ -75,7 +75,7 @@ public class Cat : MonoBehaviour
                 Color c = catHand.GetComponent<SpriteRenderer>().color;
                 catHand.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, waitTimer);
                 c = catAlarm.GetComponent<SpriteRenderer>().color;
-                catHand.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, waitTimer);
+                catAlarm.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, waitTimer);
             }
             if (moveDirection) {
                 posX += moveSpeed * Time.deltaTime;
@@ -94,5 +94,12 @@ public class Cat : MonoBehaviour
             yield return 0;
         }
         yield return 0;
+    }
+
+    IEnumerator Pat(){
+        catHandDown.GetComponent<PolygonCollider2D>().enabled = true;
+        float patTimer = 0;
+        yield return new WaitForSeconds(0.2f);
+        catHandDown.GetComponent<PolygonCollider2D>().enabled = false;
     }
 }

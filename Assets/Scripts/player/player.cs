@@ -525,4 +525,10 @@ public class player : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.name == "cat_hand_down") {
+            StartCoroutine(miceVertigo());
+        }
+    }
 }
