@@ -106,6 +106,7 @@ public class player : MonoBehaviour
             if(terrain<0)
             {
                 gameController.SetGameStatus(GameController.gameStatus.GameOver);
+                GameOver();
             }
             Dig();
             if(canrun)
@@ -379,5 +380,28 @@ public class player : MonoBehaviour
     {
         Vector2 d2Position=new Vector2(d3Position.x,d3Position.y);
         return d2Position;
+    }
+
+    /// <summary>
+    /// 仓鼠死亡
+    /// </summary>
+    public void GameOver(){
+        StartCoroutine(miceDie());
+    }
+
+    IEnumerator miceDie(){
+        float maxTime = 1f;
+        float timer = 0;
+        Vector3 initialScale = transform.localScale;
+        yield return new WaitForSeconds(0.2f);
+        while (timer < maxTime){
+            if (timer >= 1){
+                timer = 1f;
+            }
+            transform.localScale = initialScale * EasingFuncs.ElasticOut(1-timer);
+            timer += Time.deltaTime;
+            yield return 0;
+        }
+        Destroy(this);
     }
 }
