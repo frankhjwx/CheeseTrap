@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CoverUIController : MonoBehaviour
 {
-    public RectTransform coverButtonPanel;
-    public RectTransform aboutPanel;
+    public RectTransform comingSoonPanel;
     
     public void LocalGame()
     {
@@ -15,7 +14,8 @@ public class CoverUIController : MonoBehaviour
 
     public void NetworkGame()
     {
-        SceneManager.LoadScene("LANConnect");
+        comingSoonPanel.gameObject.SetActive(true);
+        StartCoroutine(DelayDisappear(0.6f));
     }
 
     public void About()
@@ -26,5 +26,11 @@ public class CoverUIController : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    IEnumerator DelayDisappear(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        comingSoonPanel.gameObject.SetActive(false);
     }
 }
