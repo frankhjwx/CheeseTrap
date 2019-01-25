@@ -64,6 +64,7 @@ public class player : MonoBehaviour
     public GameObject foodObject;
     ParticleSystem.EmissionModule dustEmission;
     ParticleSystem.EmissionModule foodEmission;
+    public Transform shadowTrans;
 
     private float swampFactor = 1;
     private float swampToControlTime = 1;
@@ -215,8 +216,9 @@ public class player : MonoBehaviour
             if (moveDirection != Vector2.zero && !digging)
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
-                transform.right = moveDirection;
-                running = true;                
+                //transform.right = moveDirection;
+                CorrectDirection(moveDirection);
+                running = true;
             }
             else
             {
@@ -252,7 +254,8 @@ public class player : MonoBehaviour
                     currentSpeed = currentSpeed.normalized * PlayerSpeed;
                 }
                 transform.Translate(currentSpeed * Time.deltaTime, Space.World);
-                transform.right = moveDirection;
+                //transform.right = moveDirection;
+                CorrectDirection(moveDirection);
                 Debug.Log("transform.right" + transform.right);
                 running = true;
             }
@@ -290,7 +293,8 @@ public class player : MonoBehaviour
             if (moveDirection != Vector2.zero && !digging)
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 0.25f, Space.World);//结算并挪动
-                transform.right = moveDirection;
+                //transform.right = moveDirection;
+                CorrectDirection(moveDirection);
                 running = true;
                 
             }
@@ -319,7 +323,8 @@ public class player : MonoBehaviour
             if (moveDirection != Vector2.zero && !digging)
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * 2f, Space.World);//结算并挪动
-                transform.right = moveDirection;
+                //transform.right = moveDirection;
+                CorrectDirection(moveDirection);
                 running = true;
                 
             }
@@ -356,7 +361,8 @@ public class player : MonoBehaviour
                 if (moveDirection != Vector2.zero && !digging)
                 {
                     transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime * swampFactor, Space.World);//结算并挪动
-                    transform.right = moveDirection;
+                    //transform.right = moveDirection;
+                    CorrectDirection(moveDirection);
                     running = true;
                 
                 }
@@ -542,5 +548,10 @@ public class player : MonoBehaviour
             yield return 0;
         }
         Destroy(this.gameObject);
+    }
+
+    private void CorrectDirection(Vector3 speedDirection)
+    {
+        transform.right = speedDirection;
     }
 }

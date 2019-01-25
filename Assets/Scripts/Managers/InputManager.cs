@@ -21,12 +21,12 @@ public class InputManager : MonoBehaviour {
     private int leftRightClickCountRequest1 = 0;
     private int leftRightClickCounter1 = 0;
     private bool leftRightClickMode1 = false;
-    public bool leftRightClickFinished1 = true;
+    private bool leftRightClickFinished1 = true;
     
     private int leftRightClickCountRequest2 = 0;
     private int leftRightClickCounter2 = 0;
     private bool leftRightClickMode2 = false;
-    public bool leftRightClickFinished2 = true;
+    private bool leftRightClickFinished2 = true;
     
     private void Awake()
     {
