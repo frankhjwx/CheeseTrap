@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/micePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/micePrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cover.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cover.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LocalMapChoose.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LocalMapChoose.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/dig.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/dig.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/downrun.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/downrun.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/downstay.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/downstay.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/run.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/materials/animation/stay.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/materials/animation/stay.anim" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -476,7 +466,7 @@
       <workItem from="1548229558425" duration="742000" />
       <workItem from="1548295972433" duration="3446000" />
       <workItem from="1548336216986" duration="4272000" />
-      <workItem from="1548423674606" duration="3723000" />
+      <workItem from="1548423674606" duration="4332000" />
     </task>
     <task id="LOCAL-00001" summary="重命名一个变量">
       <created>1548218918378</created>
@@ -489,7 +479,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95453000" />
+    <option name="totallyTimeSpent" value="96062000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
