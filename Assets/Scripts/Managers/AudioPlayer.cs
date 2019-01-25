@@ -7,69 +7,82 @@ using UnityEngine.SceneManagement;
 
 public class AudioPlayer : MonoBehaviour
 {
-    AudioClipsManager AudioClipsManagerScript;
-    GameObject AudioPrefab;
+    public AudioSource Effect;
+    public GameObject AudioPrefab;
+    public GameObject Audio1;
     public AudioClip eat;
     public AudioClip fat;
     public AudioClip runcheese;
     public AudioClip runice;
     public AudioClip runoil;
-    public AudioClip choco;
     public AudioClip die;
     public AudioClip start;
     public AudioClip end;
     public AudioClip touch;
     public AudioClip click;
+    public AudioClip dizzy;
     // Start is called before the first frame update
     void Start()
     {
         AudioPrefab = (GameObject)Resources.Load("Prefabs/SmallAudio");
+        Audio1 = Instantiate(AudioPrefab) as GameObject;
+        Effect = Audio1.GetComponent<AudioSource>();
     }
-
-    /// <summary>
-    /// 音乐播放以及播放器销毁
-    /// </summary>
-    /// <param name="_type"></param>
 
     public void PlayAudioClips(string _type)
     {
         switch (_type)
         {
+            case "end":
+                Effect.Stop();
+                break;
             case "eat":
-                Effect.PlayOneShot(eat);
-                Debug.Log("eat");
+                Effect.clip = eat;
+                Effect.Play();
                 break;
             case "fat":
-                Effect.PlayOneShot(fat);
+                Effect.clip = fat;
+                Effect.Play();
                 break;
             case "runcheese":
-                Effect.PlayOneShot(runcheese);
+                Effect.clip = runcheese;
+                Effect.Play();
                 break;
             case "runice":
-                Effect.PlayOneShot(runice);
+                Effect.clip = runice;
+                Effect.Play();
                 break;
             case "runoil":
-                Effect.PlayOneShot(runoil);
+                Effect.clip = runice;
+                Effect.Play();
                 break;
-            case "choco":
-                Effect.PlayOneShot(choco);
-                break;
+          
             case "die":
-                Effect.PlayOneShot(die);
+                Effect.clip = die;
+                Effect.Play();
                 break;
             case "start":
-                Effect.PlayOneShot(start);
-                break;
-            case "end":
-                Effect.PlayOneShot(end);
+                Effect.clip = start;
+                Effect.Play();
                 break;
             case "touch":
-                Effect.PlayOneShot(touch);
+                Effect.clip = touch;
+                Effect.Play();
                 break;
             case "click":
-                Effect.PlayOneShot(click);
+                Effect.clip = click;
+                Effect.Play();
+                break;
+            case "dizzy":
+                Effect.clip = dizzy;
+                Effect.Play();
                 break;
         }
+    }
+    void Click()
+    {
+        Effect.clip = click;
+        Effect.Play();
     }
 
 }

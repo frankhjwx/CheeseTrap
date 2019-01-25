@@ -103,6 +103,22 @@ public class player : MonoBehaviour
     {
         dustEmission.rateOverTime = 0;
         foodEmission.rateOverTime = 0;
+
+        if (terrain == 1 || terrain == 2)
+        {
+            AudioPlayer1.PlayAudioClips("runice");
+        }
+
+        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(!running)&&(terrain==0))
+        { 
+                AudioPlayer1.PlayAudioClips("runcheese");
+        }
+
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) && (!running) && (terrain == 1))
+        {
+            AudioPlayer1.PlayAudioClips("runcheese");
+        }
+
         if (gameController.currentStatus == GameController.gameStatus.Play) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
@@ -130,7 +146,7 @@ public class player : MonoBehaviour
     {
         if (InputManager.instance.GetDigKeyDown(playerID) && (!digging))//初次按下鼠标，初始化坑
         {
-            AudioPlayer1.AudioPlay("eat");
+            AudioPlayer1.PlayAudioClips("eat");
             digging = true;
             canrun = false;
             diggingTime = 0f;
@@ -145,7 +161,6 @@ public class player : MonoBehaviour
 
         if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
         {
-            AudioPlayer1.AudioPlay("eat");
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
             {
@@ -191,8 +206,7 @@ public class player : MonoBehaviour
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
                 transform.right = moveDirection;
-                running = true;
-                
+                running = true;                
             }
             else
             {
