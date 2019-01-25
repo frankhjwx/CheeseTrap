@@ -11,17 +11,18 @@ public class CounterSlider : MonoBehaviour
     private float leftValue = 0;
     public float LeftValue
     {
-        get => leftValue;
+        get { return leftValue; }
         set
         {
             leftValue = value;
             RefreshTruePosition();
         }
     }
+
     private float rightValue = 0;
     public float RightValue
     {
-        get => rightValue;
+        get { return rightValue; }
         set
         {
             rightValue = value;

@@ -48,7 +48,9 @@
           <e p="UI" t="Include">
             <e p="AreaDisplayerUI.cs" t="Include" />
             <e p="counterSlider.cs" t="Include" />
+            <e p="CoverMiceUpUI.cs" t="Include" />
             <e p="CoverUIController.cs" t="Include" />
+            <e p="CoverUIScaler.cs" t="Include" />
             <e p="DiskChoiceUI.cs" t="Include" />
             <e p="DiskRolling.cs" t="Include" />
             <e p="FourLevelSlider.cs" t="Include" />
