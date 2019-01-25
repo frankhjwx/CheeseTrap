@@ -65,7 +65,7 @@ public class player : MonoBehaviour
     ParticleSystem.EmissionModule foodEmission;
 
     private float swampFactor = 1;
-    private float swampToControlTime = 2;
+    private float swampToControlTime = 1;
     private float swampTimer = 0;
     private bool swampPunishmentOn = false;
     void Start()

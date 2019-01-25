@@ -919,7 +919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229501f3af748c9439750b7e84447c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftRightClickFinished: 1
+  leftRightClickFinished1: 1
+  leftRightClickFinished2: 1
 --- !u!4 &283640678
 Transform:
   m_ObjectHideFlags: 0
@@ -2996,7 +2997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &903795374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4084,7 +4085,6 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 1912226641}
-  - {fileID: 1454953271}
   m_Father: {fileID: 521291421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4498,7 +4498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1329985505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,7 +5124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1552577929
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7512,3 +7512,5 @@ MonoBehaviour:
   level2Miscs: []
   level3Miscs:
   - {fileID: 1329985504}
+  - {fileID: 903795373}
+  - {fileID: 1552577928}
