@@ -15,6 +15,7 @@ public class player : MonoBehaviour
     public float deltaRadius = 0.15f;
     public float timeStep = 0.2f;
     public float maxRadius = 1.25f;
+    public float vertigoTime = 1.0f;
     
     public float PlayerSpeed
     {
@@ -31,6 +32,7 @@ public class player : MonoBehaviour
     private float radius;
     public HoleManager holeManager;//挂载另一个脚本的物体
     bool digging=false;//挖掘状态
+    private bool canDig = true;
     bool running;//跑动状态
     bool canrun;//是否可跑动
     bool hori;
@@ -128,7 +130,7 @@ public class player : MonoBehaviour
     /// </summary>
     void Dig()
     {
-        if (InputManager.instance.GetDigKeyDown(playerID) && (!digging))//初次按下鼠标，初始化坑
+        if (InputManager.instance.GetDigKeyDown(playerID) && (!digging) && canDig)//初次按下鼠标，初始化坑
         {
             digging = true;
             canrun = false;
@@ -142,7 +144,7 @@ public class player : MonoBehaviour
             currentSpeed = Vector2.zero;
         }
 
-        if (InputManager.instance.GetDigKey(playerID) && digging)//一直按下，持续增大
+        if (InputManager.instance.GetDigKey(playerID) && digging && canDig)//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
@@ -422,6 +424,20 @@ public class player : MonoBehaviour
     /// </summary>
     public void GameOver(){
         StartCoroutine(miceDie());
+    }
+
+    public void Vertigo()
+    {
+        StartCoroutine(miceVertigo());
+    }
+
+    IEnumerator miceVertigo()
+    {
+        canrun = false;
+        canDig = false;
+        yield return new WaitForSeconds(vertigoTime);
+        canrun = true;
+        canDig = true;
     }
 
     IEnumerator miceDie(){
