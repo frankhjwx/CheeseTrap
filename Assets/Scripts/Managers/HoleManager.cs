@@ -19,6 +19,8 @@ public class HoleManager : MonoBehaviour
 
     public int gameLevel;
 
+    private int[,] caramelCoolDown = new int[960,540];
+
     // only for debug
     // private GameObject testTextureDisplay;
 
@@ -145,6 +147,33 @@ public class HoleManager : MonoBehaviour
         holeTexture.Apply();
         DisplayHoleTexture();
     }
+
+    public void GenerateCaramelAtPoint(Vector2 position, int radius){
+        int cx = (int) position.x;
+        int cy = (int) position.y;
+        for (int x = cx - radius; x <= cx + radius; x++){
+            for (int y = cy - radius; y <= cy + radius; y++){
+                if (x >= 0 && x < texWidth && y >= 0 && y < texHeight && (x-cx)*(x-cx) + (y-cy)*(y-cy) <= radius * radius &&
+                    holeTexture.GetPixel(x,y).r == 0){
+                        StartCoroutine(SetCaramel(x, y));
+                    }
+            }
+        }
+        holeTexture.Apply();
+    }
+
+    IEnumerator SetCaramel(int x, int y){
+        caramelCoolDown[x,y] += 1;
+        Color c = holeTexture.GetPixel(x, y);
+        holeTexture.SetPixel(x, y, new Color(c.r, 3.0f/255, c.b, c.a));
+        yield return new WaitForSeconds(1.5f);
+        if (caramelCoolDown[x,y] == 1){
+            holeTexture.SetPixel(x, y, new Color(c.r, 0, c.b, c.a));
+        }
+        caramelCoolDown[x,y] -= 1;
+        yield return null;
+    }
+
 
     public void DisplayHoleTexture(){
         GameObject map = GameObject.Find("ForeGround");

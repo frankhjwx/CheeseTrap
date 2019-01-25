@@ -50,6 +50,9 @@
                 half4 mask = tex2D(_Mask, i.uv);
                 if (mask.r != 0 && mask.r != 1)
                     col.a = 0;
+                if (abs(mask.g*255 - 3) <= 0.01){
+                    col.rgb = float3(92.0/255, 40.0/255, 0/255);
+                }
                 return col;
             }
             ENDCG

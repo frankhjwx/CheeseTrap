@@ -4100,6 +4100,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293976904}
   m_CullTransparentMesh: 0
+--- !u!1 &1329985504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1329985506}
+  - component: {fileID: 1329985505}
+  m_Layer: 0
+  m_Name: Caramel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1329985505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329985504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c422545dbacfa3d4a85f690b0d10a06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseTime: 2
+  startPoint1: {x: 0, y: 0}
+  endPoint1: {x: 1280, y: 720}
+  startPoint2: {x: 0, y: 540}
+  endPoint2: {x: 1280, y: -180}
+  oneStripeTime: 10
+  holeManager: {fileID: 1529862450}
+--- !u!4 &1329985506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329985504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 784.41815, y: 495.80142, z: -31.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338783147
 GameObject:
   m_ObjectHideFlags: 0
@@ -6348,11 +6398,6 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2172026262481158040, guid: 6f50625df7041024494420da85662a3c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2563781984034891524, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
       propertyPath: InitialModule.startRotationX.minMaxState
@@ -6387,6 +6432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172026262481158040, guid: 6f50625df7041024494420da85662a3c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f50625df7041024494420da85662a3c, type: 3}
@@ -6610,6 +6660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOver
       objectReference: {fileID: 0}
+    - target: {fileID: 5414966412209830204, guid: 80f70a42098e8244aa4385b977d5dfb6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 7637951873020619223, guid: 80f70a42098e8244aa4385b977d5dfb6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6714,11 +6769,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5414966412209830204, guid: 80f70a42098e8244aa4385b977d5dfb6,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80f70a42098e8244aa4385b977d5dfb6, type: 3}
