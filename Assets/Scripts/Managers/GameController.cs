@@ -48,10 +48,10 @@ public class GameController : MonoBehaviour {
         if (currentStatus == gameStatus.Play){
             gameTime += Time.deltaTime;
         }
-        if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) && InputManager.instance.GetRestart()){
-            gameTime = 0f;
-            startGame(gameLevel);
-        }
+        // if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) && InputManager.instance.GetRestart()){
+        //     gameTime = 0f;
+        //     startGame(gameLevel);
+        // }
         if (gameTime >= maxTime) {
             // send a signal of Game Over
             TimeUpGameOver();
@@ -66,16 +66,12 @@ public class GameController : MonoBehaviour {
         return (int)gameTime;
     }
 
-    public void startGame(int level){
-        /*
-        holeManager.GetComponent<HoleManager>().InitializeLevel(level);
-        currentStatus = gameStatus.Play;
-        gameTime = 0f;
-        mice1.transform.position = startPos1[gameLevel];
-        mice2.transform.position = startPos2[gameLevel];
-        mice2.transform.eulerAngles = new Vector3(0, -180, 0);
-        */
+    public void RestartGame(){
         SceneManager.LoadScene("LocalGame");
+    }
+
+    public void SelectLevel(){
+        SceneManager.LoadScene("LocalMapChoose");
     }
 
     public void MouseDieGameOver(int playerID){
