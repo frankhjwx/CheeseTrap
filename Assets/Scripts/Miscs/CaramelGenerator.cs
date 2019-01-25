@@ -15,6 +15,7 @@ public class CaramelGenerator : MonoBehaviour
     private enum MovingStatus {Pause, Moving};
     private MovingStatus currentStatus;
     public GameObject holeManager;
+    private GameObject machine;
     private Vector2 dir;
 
     void Start(){
@@ -22,6 +23,7 @@ public class CaramelGenerator : MonoBehaviour
         currentPosition = Vector2.zero;
         currentDirection = 1;
         currentStatus = MovingStatus.Pause;
+        machine = transform.GetChild(0).gameObject;
     }
 
     void Update(){
@@ -45,10 +47,15 @@ public class CaramelGenerator : MonoBehaviour
             }
             if (currentDirection == 1){
                 currentPosition = Vector2.Lerp(startPoint1, endPoint1, timer/oneStripeTime);
+                machine.transform.position = new Vector2((float)currentPosition.x/50.0f + 3f, (float)currentPosition.y/50.0f + 2.7f);
+                machine.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             } else {
                 currentPosition = Vector2.Lerp(startPoint2, endPoint2, timer/oneStripeTime);
+                machine.transform.position = new Vector2((float)currentPosition.x/50.0f - 3f, (float)currentPosition.y/50.0f + 2.7f);
+                machine.transform.localScale = new Vector3(-2.5f, 2.5f, 2.5f);
             }
             holeManager.GetComponent<HoleManager>().GenerateCaramelAtPoint(currentPosition, 20);
+            
             
         }
     }
