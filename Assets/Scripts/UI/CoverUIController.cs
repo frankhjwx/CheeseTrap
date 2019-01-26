@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CoverUIController : MonoBehaviour
 {
     public RectTransform comingSoonPanel;
+
     
     public void LocalGame()
     {
