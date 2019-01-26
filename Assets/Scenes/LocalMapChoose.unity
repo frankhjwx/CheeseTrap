@@ -1618,6 +1618,7 @@ MonoBehaviour:
   - {fileID: 613057477267218097, guid: bd67d26d8b1f6a3489475733b31acc48, type: 3}
   - {fileID: 1916840429252696213, guid: 7af1d8bcebf13bb45a2c8d644caacfa9, type: 3}
   - {fileID: 1916840429252696213, guid: b55bd1401b60f21498deacb31571e8df, type: 3}
+  - {fileID: 1916840429252696213, guid: 9b00c020f8813ff41884eefd1cd840df, type: 3}
   imagePosition: {fileID: 1533391678}
   localMapChoiceUi: {fileID: 270713206}
 --- !u!222 &537605029

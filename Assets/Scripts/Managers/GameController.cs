@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour {
         //     gameTime = 0f;
         //     startGame(gameLevel);
         // }
-        if (gameTime >= maxTime) {
+        if (gameTime >= maxTime && currentStatus != gameStatus.TimeUpOver) {
             // send a signal of Game Over
             TimeUpGameOver();
         }

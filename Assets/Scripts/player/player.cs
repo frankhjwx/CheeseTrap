@@ -69,6 +69,7 @@ public class player : MonoBehaviour
     private float swampToControlTime = 1;
     private float swampTimer = 0;
     private bool swampPunishmentOn = false;
+    public GameObject swampPunishment;
     void Start()
     {
         AudioPlayer1 = this.GetComponent<AudioPlayer>();
@@ -128,7 +129,7 @@ public class player : MonoBehaviour
             AudioPlayer1.PlayAudioClips("runcheese");
         }
 
-        if (gameController.currentStatus == GameController.gameStatus.Play) {
+        if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
             {
@@ -409,11 +410,13 @@ public class player : MonoBehaviour
             }
 
             swampTimer += Time.deltaTime;
+            swampPunishment.SetActive(true);
         }
         else
         {
             swampFactor = 1;
             swampTimer = 0;
+            swampPunishment.SetActive(false);
         }
 
         if (running) {
