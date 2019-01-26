@@ -107,7 +107,7 @@ public class Cat : MonoBehaviour
             } else if (t*4/0.2f >= 2f && t*4/0.2f < 3f) {
                 catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani2;
             } else if (t*4/0.2f >= 3f && t*4/0.2f < 4f) {
-                catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani2;
+                catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani3;
             }
             waitTimer += Time.deltaTime;
             yield return null;
