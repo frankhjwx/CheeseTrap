@@ -6,6 +6,7 @@ Shader "Custom/AreaDisplayEffect"
         _TimeTex ("Texture", 2D) = "white" {}
         _Area ("Area", Range(0, 10000)) = 0
         _Alpha ("Alpha", Range(0, 1)) = 0
+        _Color ("Color", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -45,6 +46,7 @@ Shader "Custom/AreaDisplayEffect"
             sampler2D _TimeTex;
             int _Area;
             float _Alpha;
+            fixed4 _Color;
 
             // i = 0~9
             // uv = (0,0) - (1,1)
@@ -76,8 +78,10 @@ Shader "Custom/AreaDisplayEffect"
                 } else {
                     col = tex2D(_TimeTex, getNumberuv(num4, float2((targetuv.x-0.75) / 0.25, targetuv.y)));
                 }
-                if (col.a != 0)
+                if (col.a != 0){
+                    col.rgb = _Color.rgb;
                     col.a = _Alpha;
+                }
 
                 return col;
             }

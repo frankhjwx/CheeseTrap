@@ -82,24 +82,38 @@ public class GameController : MonoBehaviour {
         if (playerID == 1) {
             GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
         } else {
             GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
         }
         GameOverUI.transform.localPosition = new Vector2(0, 0);
-        GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
+        GameOverUI.transform.GetChild(10).gameObject.SetActive(false);
+        GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
         AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
 
     public void TimeUpGameOver(){
         SetGameStatus(GameController.gameStatus.TimeUpOver);
-        if (holeManager.GetComponent<HoleManager>().areas[1] > holeManager.GetComponent<HoleManager>().areas[2]) {
+        int area1 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[1]/20, 9999);
+        int area2 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[2]/20, 9999);
+        if (area1 == area2) {
+            GameOverUI.transform.GetChild(3).gameObject.SetActive(true);
+            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
+        } else if (area1 > area2) {
             GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
         } else {
             GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
+            GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
         }
         GameOverUI.transform.localPosition = new Vector2(0, 0);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
