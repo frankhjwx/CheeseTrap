@@ -68,10 +68,12 @@ public class GameController : MonoBehaviour {
     }
 
     public void RestartGame(){
+        Time.timeScale = 1;
         SceneManager.LoadScene("LocalGame");
     }
 
     public void SelectLevel(){
+        Time.timeScale = 1;
         SceneManager.LoadScene("LocalMapChoose");
     }
 
