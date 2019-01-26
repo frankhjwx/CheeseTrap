@@ -4,13 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/micePrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/micePrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LocalGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Area2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Area2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" afterDir="false" />
-    </list>
+    <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,25 +228,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="101" column="18" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="18" />
+            <state relative-caret-position="420">
+              <caret line="103" column="64" lean-forward="true" selection-start-line="103" selection-start-column="64" selection-end-line="103" selection-end-column="64" />
               <folding>
-                <marker date="1548473488314" expanded="false" signature="6:149" ph="..." />
-                <marker date="1548473488314" expanded="true" signature="195:3917" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="645:1616" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="707:897" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="1636:2119" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="1683:1734" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="1743:1954" ph="/* if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) &amp;&amp; InputManager.insta ... */" />
-                <marker date="1548473488314" expanded="true" signature="2030:2113" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2169:2208" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2238:2275" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2306:2358" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2389:2446" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2494:3180" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="2586:2744" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="3214:3914" ph="{...}" />
-                <marker date="1548473488314" expanded="true" signature="3390:3548" ph="{...}" />
+                <marker date="1548474485943" expanded="false" signature="6:149" ph="..." />
+                <marker date="1548474485943" expanded="true" signature="195:3919" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="645:1616" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="707:897" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="1636:2119" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="1683:1734" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="1743:1954" ph="/* if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) &amp;&amp; InputManager.insta ... */" />
+                <marker date="1548474485943" expanded="true" signature="2030:2113" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2169:2208" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2238:2275" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2306:2358" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2389:2446" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2494:3181" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="2586:2744" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="3215:3916" ph="{...}" />
+                <marker date="1548474485943" expanded="true" signature="3391:3549" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -420,7 +414,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108780000" />
+    <option name="totallyTimeSpent" value="109162000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1089,25 +1083,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/GameController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="101" column="18" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="18" />
+        <state relative-caret-position="420">
+          <caret line="103" column="64" lean-forward="true" selection-start-line="103" selection-start-column="64" selection-end-line="103" selection-end-column="64" />
           <folding>
-            <marker date="1548473488314" expanded="false" signature="6:149" ph="..." />
-            <marker date="1548473488314" expanded="true" signature="195:3917" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="645:1616" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="707:897" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="1636:2119" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="1683:1734" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="1743:1954" ph="/* if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) &amp;&amp; InputManager.insta ... */" />
-            <marker date="1548473488314" expanded="true" signature="2030:2113" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2169:2208" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2238:2275" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2306:2358" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2389:2446" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2494:3180" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="2586:2744" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="3214:3914" ph="{...}" />
-            <marker date="1548473488314" expanded="true" signature="3390:3548" ph="{...}" />
+            <marker date="1548474485943" expanded="false" signature="6:149" ph="..." />
+            <marker date="1548474485943" expanded="true" signature="195:3919" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="645:1616" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="707:897" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="1636:2119" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="1683:1734" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="1743:1954" ph="/* if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) &amp;&amp; InputManager.insta ... */" />
+            <marker date="1548474485943" expanded="true" signature="2030:2113" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2169:2208" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2238:2275" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2306:2358" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2389:2446" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2494:3181" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="2586:2744" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="3215:3916" ph="{...}" />
+            <marker date="1548474485943" expanded="true" signature="3391:3549" ph="{...}" />
           </folding>
         </state>
       </provider>
