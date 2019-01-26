@@ -205,10 +205,15 @@ public class player : MonoBehaviour
 
     private void RefreshHungerState()
     {
+        int originalHungerState = hungerState;
         if (holeManager.areas[playerID] < thresholdMin) hungerState = 1;
         else if (holeManager.areas[playerID] < thresholdMid) hungerState = 2;
         else if (holeManager.areas[playerID] < thresholdMax) hungerState = 3;
         else hungerState = 4;
+        if (originalHungerState != hungerState)
+        {
+            StartCoroutine(FatterHint(1.5f, 1.0f));
+        }
     }
 
     /// <summary>
@@ -566,5 +571,26 @@ public class player : MonoBehaviour
         if (collider.gameObject.name == "cat_hand_down") {
             StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
         }
+    }
+
+    IEnumerator FatterHint(float factor, float hintTime)
+    {
+        Vector3 originalScale = transform.localScale;
+        float timer = 0.0f;
+        while (timer < hintTime / 2)
+        {
+            transform.localScale = originalScale * (timer / hintTime * 2 * (factor - 1) + 1);
+            timer += Time.deltaTime;
+            yield return 0;
+        }
+
+        while (timer > 0)
+        {
+            transform.localScale = originalScale * (timer / hintTime * 2 * (factor - 1) + 1);
+            timer -= Time.deltaTime;
+            yield return 0;
+        }
+
+        transform.localScale = originalScale;
     }
 }
