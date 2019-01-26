@@ -12,6 +12,7 @@ public class AudioPlayer : MonoBehaviour
     public GameObject Audio1;
     public AudioClip eat;
     public AudioClip fat;
+    public AudioClip chocolate;
     public AudioClip runcheese;
     public AudioClip runice;
     public AudioClip runoil;
@@ -21,6 +22,7 @@ public class AudioPlayer : MonoBehaviour
     public AudioClip touch;
     public AudioClip click;
     public AudioClip dizzy;
+    public AudioClip catClaw;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,10 @@ public class AudioPlayer : MonoBehaviour
                 break;
             case "eat":
                 Effect.clip = eat;
+                Effect.Play();
+                break;
+            case "chocolate":
+                Effect.clip = chocolate;
                 Effect.Play();
                 break;
             case "fat":

@@ -114,18 +114,27 @@ public class player : MonoBehaviour
         foodEmission.rateOverTime = 0;
 
         if (terrain == 1 || terrain == 2)
-        {
+        { 
             AudioPlayer1.PlayAudioClips("runice");
         }
 
-        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(!running)&&(terrain==0))
-        { 
-                AudioPlayer1.PlayAudioClips("runcheese");
-        }
-
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) && (!running) && (terrain == 1))
+        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(terrain==0))
         {
-            AudioPlayer1.PlayAudioClips("runcheese");
+
+            if (terrain == 0)
+            {
+                AudioPlayer1.PlayAudioClips("runcheese");
+            }
+
+            if (terrain == 1&terrain==2)
+            {
+                AudioPlayer1.PlayAudioClips("runice");
+            }
+
+            if (terrain == 4)
+            {
+                AudioPlayer1.PlayAudioClips("chocolate");
+            }
         }
 
         if (gameController.currentStatus == GameController.gameStatus.Play) {
@@ -174,6 +183,7 @@ public class player : MonoBehaviour
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
             {
+                AudioPlayer1.PlayAudioClips("eat");
                 radius += deltaRadius;
                 if (radius >= maxRadius) radius = maxRadius;
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
