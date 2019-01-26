@@ -55,6 +55,7 @@
             <e p="DiskChoiceUI.cs" t="Include" />
             <e p="DiskRolling.cs" t="Include" />
             <e p="FourLevelSlider.cs" t="Include" />
+            <e p="GaussionBlur.cs" t="Include" />
             <e p="InGameCountUI.cs" t="Include" />
             <e p="InGamePauseUI.cs" t="Include" />
             <e p="LocalMapChoiceUI.cs" t="Include" />
@@ -67,6 +68,7 @@
         <e p="Shaders" t="Include">
           <e p="AreaDisplayEffect.shader" t="Include" />
           <e p="FlowAndSpinEffect.shader" t="Include" />
+          <e p="GaussianBlurEffect.shader" t="Include" />
           <e p="HoleEffect.shader" t="Include" />
           <e p="HoleShadowEffect.shader" t="Include" />
           <e p="TimeDisplayEffect.shader" t="Include" />

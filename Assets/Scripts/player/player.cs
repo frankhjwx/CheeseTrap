@@ -71,6 +71,7 @@ public class player : MonoBehaviour
     private float swampToControlTime = 1;
     private float swampTimer = 0;
     private bool swampPunishmentOn = false;
+    public GameObject swampPunishment;
     void Start()
     {
         AudioPlayer1 = this.GetComponent<AudioPlayer>();
@@ -117,18 +118,22 @@ public class player : MonoBehaviour
         smokeEmission.rateOverTime = 0;
 
         if (terrain == 1 || terrain == 2)
-        {
+        { 
             AudioPlayer1.PlayAudioClips("runice");
         }
 
-        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(!running)&&(terrain==0))
-        { 
-                AudioPlayer1.PlayAudioClips("runcheese");
-        }
-
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) && (!running) && (terrain == 1))
+        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(terrain==0))
         {
-            AudioPlayer1.PlayAudioClips("runcheese");
+
+            if (terrain == 1&terrain==2)
+            {
+                AudioPlayer1.PlayAudioClips("runIce");
+            }
+
+            if (terrain == 4)
+            {
+                AudioPlayer1.PlayAudioClips("chocolate");
+            }
         }
 
         if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
@@ -178,6 +183,7 @@ public class player : MonoBehaviour
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
             {
+                AudioPlayer1.PlayAudioClips("eat");
                 radius += deltaRadius;
                 if (radius >= maxRadius) radius = maxRadius;
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
@@ -203,10 +209,15 @@ public class player : MonoBehaviour
 
     private void RefreshHungerState()
     {
+        int originalHungerState = hungerState;
         if (holeManager.areas[playerID] < thresholdMin) hungerState = 1;
         else if (holeManager.areas[playerID] < thresholdMid) hungerState = 2;
         else if (holeManager.areas[playerID] < thresholdMax) hungerState = 3;
         else hungerState = 4;
+        if (originalHungerState != hungerState)
+        {
+            StartCoroutine(FatterHint(1.5f, 1.0f));
+        }
     }
 
     /// <summary>
@@ -413,11 +424,13 @@ public class player : MonoBehaviour
             }
 
             swampTimer += Time.deltaTime;
+            swampPunishment.SetActive(true);
         }
         else
         {
             swampFactor = 1;
             swampTimer = 0;
+            swampPunishment.SetActive(false);
         }
 
         if (running) {
@@ -565,5 +578,26 @@ public class player : MonoBehaviour
         if (collider.gameObject.name == "cat_hand_down") {
             StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
         }
+    }
+
+    IEnumerator FatterHint(float factor, float hintTime)
+    {
+        Vector3 originalScale = transform.localScale;
+        float timer = 0.0f;
+        while (timer < hintTime / 2)
+        {
+            transform.localScale = originalScale * (timer / hintTime * 2 * (factor - 1) + 1);
+            timer += Time.deltaTime;
+            yield return 0;
+        }
+
+        while (timer > 0)
+        {
+            transform.localScale = originalScale * (timer / hintTime * 2 * (factor - 1) + 1);
+            timer -= Time.deltaTime;
+            yield return 0;
+        }
+
+        transform.localScale = originalScale;
     }
 }

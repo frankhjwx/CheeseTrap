@@ -1618,6 +1618,7 @@ MonoBehaviour:
   - {fileID: 613057477267218097, guid: bd67d26d8b1f6a3489475733b31acc48, type: 3}
   - {fileID: 1916840429252696213, guid: 7af1d8bcebf13bb45a2c8d644caacfa9, type: 3}
   - {fileID: 1916840429252696213, guid: b55bd1401b60f21498deacb31571e8df, type: 3}
+  - {fileID: 1916840429252696213, guid: 9b00c020f8813ff41884eefd1cd840df, type: 3}
   imagePosition: {fileID: 1533391678}
   localMapChoiceUi: {fileID: 270713206}
 --- !u!222 &537605029
@@ -1684,7 +1685,7 @@ MonoBehaviour:
   miceChoicePrefab:
   - {fileID: 5563000996714238180, guid: 277ebfd49a709bf44a64f7d66ad36a6c, type: 3}
   - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
-  - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
+  - {fileID: 5563000996714238180, guid: 51622500225add04ea069bf84b6c8624, type: 3}
   imagePosition: {fileID: 1098685197}
   speedSlider: {fileID: 1299446729}
   eatSpeedSlider: {fileID: 1563825840}
@@ -2857,6 +2858,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158682293}
   m_CullTransparentMesh: 0
+--- !u!1001 &1283213863
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6407653204343562740, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManagerG
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1011.6528
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 522.343
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.0450683
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407653204343562742, guid: 080373e3393c46c4e9f4f3e277eb0e16,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 080373e3393c46c4e9f4f3e277eb0e16, type: 3}
 --- !u!1 &1299446727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3207,7 +3277,7 @@ MonoBehaviour:
   miceChoicePrefab:
   - {fileID: 5563000996714238180, guid: 277ebfd49a709bf44a64f7d66ad36a6c, type: 3}
   - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
-  - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
+  - {fileID: 5563000996714238180, guid: 51622500225add04ea069bf84b6c8624, type: 3}
   imagePosition: {fileID: 1835123041}
   speedSlider: {fileID: 372992800}
   eatSpeedSlider: {fileID: 859869527}

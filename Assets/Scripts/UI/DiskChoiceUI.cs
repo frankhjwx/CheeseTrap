@@ -10,9 +10,9 @@ public class DiskChoiceUI : MonoBehaviour
 
     public LocalMapChoiceUI localMapChoiceUi;
     private int miceKinds;
-    private int currentChoice = 0;
 
-    public int CurrentChoice => currentChoice;
+    public int CurrentChoice { get; private set; } = 0;
+
     private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
     private GameObject currentChosenMiceInstance;
@@ -29,7 +29,7 @@ public class DiskChoiceUI : MonoBehaviour
         {
             localMapChoiceUi.Refresh();
             StartCoroutine(DiskFadeOut(currentChosenMiceInstance));
-            currentChosenMiceInstance = Instantiate(miceChoicePrefab[currentChoice], imagePosition);
+            currentChosenMiceInstance = Instantiate(miceChoicePrefab[CurrentChoice], imagePosition);
             StartCoroutine(DiskFadeIn(currentChosenMiceInstance));
             choiceRolling = false;
         }
@@ -37,42 +37,42 @@ public class DiskChoiceUI : MonoBehaviour
 
     public void leftChoice()
     {
-        if (currentChoice <= 0)
+        if (CurrentChoice <= 0)
         {
-            currentChoice = 0;
+            CurrentChoice = 0;
             
         }
         else
         {
-            currentChoice--;
+            CurrentChoice--;
             choiceRolling = true;
         }
     }
     
     public void rightChoice()
     {
-        if (currentChoice >= miceKinds - 1)
+        if (CurrentChoice >= miceKinds - 1)
         {
-            currentChoice = miceKinds - 1;
+            CurrentChoice = miceKinds - 1;
             
         }
         else
         {
-            currentChoice++;
+            CurrentChoice++;
             choiceRolling = true;
         }
     }
     
     public void rightChoiceLoop()
     {
-        if (currentChoice >= miceKinds - 1)
+        if (CurrentChoice >= miceKinds - 1)
         {
-            currentChoice = 0;
+            CurrentChoice = 0;
             choiceRolling = true;
         }
         else
         {
-            currentChoice++;
+            CurrentChoice++;
             choiceRolling = true;
         }
     }
