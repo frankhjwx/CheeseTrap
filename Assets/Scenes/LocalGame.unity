@@ -1125,47 +1125,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &415513999 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2563781985815301799, guid: 6f50625df7041024494420da85662a3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2563781984331711728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &415514000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563781985815301805, guid: 6f50625df7041024494420da85662a3c,
     type: 3}
   m_PrefabInstance: {fileID: 2563781984331711728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &415514005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415513999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd0a2343913586646a405a3afb4f5d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Effect: {fileID: 0}
-  AudioPrefab: {fileID: 0}
-  Audio1: {fileID: 0}
-  eat: {fileID: 8300000, guid: 1d2483a91b38be54c904124ffcd118a9, type: 3}
-  goalSum: {fileID: 8300000, guid: 79740ac8d78282e47876575b2f1dc003, type: 3}
-  chocolate: {fileID: 8300000, guid: 92b6110be5f013d4e891096cd3d0299e, type: 3}
-  runIce: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
-  runOil: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
-  die: {fileID: 8300000, guid: e7f465aa7f9b6bc489b56c7fbf83f593, type: 3}
-  start: {fileID: 8300000, guid: 6667e587152797940ae18eb82428e810, type: 3}
-  end: {fileID: 8300000, guid: ac19afb15c3f6e44da81bcfb3806501e, type: 3}
-  click: {fileID: 8300000, guid: ef2096ac9bcb5fe4b8fbbbc424a00cf3, type: 3}
-  dizzy: {fileID: 8300000, guid: 26336d7f2e9eef94ca3d4a09f0606c75, type: 3}
-  catClaw: {fileID: 8300000, guid: 520c399d43158bd4592eccc7835465fc, type: 3}
-  wind: {fileID: 8300000, guid: 59be2025dc63368439e9ed7f8d2db495, type: 3}
-  mole: {fileID: 8300000, guid: 6c9423e70615680458309eb15b2465ee, type: 3}
-  countDown: {fileID: 0}
 --- !u!1 &434608141
 GameObject:
   m_ObjectHideFlags: 0
@@ -5283,7 +5248,7 @@ PrefabInstance:
     - target: {fileID: 2563781985914253616, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2563781985914253616, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
@@ -5318,47 +5283,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1472214634}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480258841}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e66c7b52d1a5d43a14be524b5f8734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1480258841 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2563781985815301799, guid: 6f50625df7041024494420da85662a3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1472214634}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1480258847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480258841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd0a2343913586646a405a3afb4f5d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Effect: {fileID: 0}
-  AudioPrefab: {fileID: 0}
-  Audio1: {fileID: 0}
-  eat: {fileID: 8300000, guid: 1d2483a91b38be54c904124ffcd118a9, type: 3}
-  goalSum: {fileID: 8300000, guid: 79740ac8d78282e47876575b2f1dc003, type: 3}
-  chocolate: {fileID: 8300000, guid: 92b6110be5f013d4e891096cd3d0299e, type: 3}
-  runIce: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
-  runOil: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
-  die: {fileID: 8300000, guid: e7f465aa7f9b6bc489b56c7fbf83f593, type: 3}
-  start: {fileID: 8300000, guid: 6667e587152797940ae18eb82428e810, type: 3}
-  end: {fileID: 8300000, guid: ac19afb15c3f6e44da81bcfb3806501e, type: 3}
-  click: {fileID: 8300000, guid: ef2096ac9bcb5fe4b8fbbbc424a00cf3, type: 3}
-  dizzy: {fileID: 8300000, guid: 26336d7f2e9eef94ca3d4a09f0606c75, type: 3}
-  catClaw: {fileID: 8300000, guid: 520c399d43158bd4592eccc7835465fc, type: 3}
-  wind: {fileID: 8300000, guid: 59be2025dc63368439e9ed7f8d2db495, type: 3}
-  mole: {fileID: 8300000, guid: 6c9423e70615680458309eb15b2465ee, type: 3}
-  countDown: {fileID: 8300000, guid: 95838916d491d28498ef1f56bc803131, type: 3}
 --- !u!1 &1529862450
 GameObject:
   m_ObjectHideFlags: 0
@@ -8265,7 +8195,7 @@ PrefabInstance:
     - target: {fileID: 2563781985914253616, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2563781985914253616, guid: 6f50625df7041024494420da85662a3c,
         type: 3}
@@ -8350,7 +8280,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2563781984331711728}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415513999}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5e66c7b52d1a5d43a14be524b5f8734, type: 3}

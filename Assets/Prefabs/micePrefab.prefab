@@ -4791,6 +4791,7 @@ GameObject:
   - component: {fileID: 2563781985815301803}
   - component: {fileID: 2563781985815301802}
   - component: {fileID: 2563781985815301801}
+  - component: {fileID: 5874256988800993552}
   m_Layer: 0
   m_Name: micePrefab
   m_TagString: Player
@@ -4934,6 +4935,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5874256988800993552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563781985815301799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0a2343913586646a405a3afb4f5d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effect: {fileID: 0}
+  AudioPrefab: {fileID: 0}
+  Audio1: {fileID: 0}
+  eat: {fileID: 8300000, guid: 1d2483a91b38be54c904124ffcd118a9, type: 3}
+  goalSum: {fileID: 8300000, guid: 79740ac8d78282e47876575b2f1dc003, type: 3}
+  chocolate: {fileID: 8300000, guid: 92b6110be5f013d4e891096cd3d0299e, type: 3}
+  runIce: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
+  runOil: {fileID: 8300000, guid: 0e6703d115e568345bc87e98b1c2439d, type: 3}
+  die: {fileID: 8300000, guid: e7f465aa7f9b6bc489b56c7fbf83f593, type: 3}
+  start: {fileID: 8300000, guid: 6667e587152797940ae18eb82428e810, type: 3}
+  end: {fileID: 8300000, guid: ac19afb15c3f6e44da81bcfb3806501e, type: 3}
+  click: {fileID: 8300000, guid: ef2096ac9bcb5fe4b8fbbbc424a00cf3, type: 3}
+  dizzy: {fileID: 8300000, guid: 26336d7f2e9eef94ca3d4a09f0606c75, type: 3}
+  catClaw: {fileID: 8300000, guid: 520c399d43158bd4592eccc7835465fc, type: 3}
+  wind: {fileID: 8300000, guid: 59be2025dc63368439e9ed7f8d2db495, type: 3}
+  mole: {fileID: 8300000, guid: 6c9423e70615680458309eb15b2465ee, type: 3}
+  countDown: {fileID: 8300000, guid: 95838916d491d28498ef1f56bc803131, type: 3}
 --- !u!1 &2563781985914253645
 GameObject:
   m_ObjectHideFlags: 0
