@@ -11,18 +11,19 @@ public class AudioPlayer : MonoBehaviour
     public GameObject AudioPrefab;
     public GameObject Audio1;
     public AudioClip eat;
-    public AudioClip fat;
+    public AudioClip goalSum;
     public AudioClip chocolate;
-    public AudioClip runcheese;
-    public AudioClip runice;
-    public AudioClip runoil;
+    public AudioClip runIce;
+    public AudioClip runOil;
     public AudioClip die;
     public AudioClip start;
     public AudioClip end;
-    public AudioClip touch;
     public AudioClip click;
     public AudioClip dizzy;
     public AudioClip catClaw;
+    public AudioClip wind;
+    public AudioClip mole;
+    public AudioClip countDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,20 +47,16 @@ public class AudioPlayer : MonoBehaviour
                 Effect.clip = chocolate;
                 Effect.Play();
                 break;
-            case "fat":
-                Effect.clip = fat;
+            case "goalSum":
+                Effect.clip = goalSum;
                 Effect.Play();
                 break;
-            case "runcheese":
-                Effect.clip = runcheese;
+            case "runIce":
+                Effect.clip = runIce;
                 Effect.Play();
                 break;
-            case "runice":
-                Effect.clip = runice;
-                Effect.Play();
-                break;
-            case "runoil":
-                Effect.clip = runice;
+            case "runOil":
+                Effect.clip = runIce;
                 Effect.Play();
                 break;
           
@@ -71,10 +68,6 @@ public class AudioPlayer : MonoBehaviour
                 Effect.clip = start;
                 Effect.Play();
                 break;
-            case "touch":
-                Effect.clip = touch;
-                Effect.Play();
-                break;
             case "click":
                 Effect.clip = click;
                 Effect.Play();
@@ -83,12 +76,19 @@ public class AudioPlayer : MonoBehaviour
                 Effect.clip = dizzy;
                 Effect.Play();
                 break;
+            case "wind":
+                Effect.clip = wind;
+                Effect.Play();
+                break;
+            case "mole":
+                Effect.clip = mole;
+                Effect.Play();
+                break;
+            case "countDown":
+                Effect.clip = countDown;
+                Effect.Play();
+                break;
         }
-    }
-    void Click()
-    {
-        Effect.clip = click;
-        Effect.Play();
     }
 
 }
