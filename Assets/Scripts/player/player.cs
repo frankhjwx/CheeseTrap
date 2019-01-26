@@ -122,14 +122,9 @@ public class player : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(terrain==0))
         {
 
-            if (terrain == 0)
-            {
-                AudioPlayer1.PlayAudioClips("runcheese");
-            }
-
             if (terrain == 1&terrain==2)
             {
-                AudioPlayer1.PlayAudioClips("runice");
+                AudioPlayer1.PlayAudioClips("runIce");
             }
 
             if (terrain == 4)
