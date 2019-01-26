@@ -10,7 +10,12 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         AudioManagerG = this.GetComponent<AudioManager>();
-        DontDestroyOnLoad(AudioManagerG);
+        
+        if(AudioManagerG.tag==default)
+        {
+            AudioManagerG.tag = "add";
+            DontDestroyOnLoad(AudioManagerG);
+        }
     }
 
 
