@@ -273,16 +273,19 @@ MonoBehaviour:
   AudioPrefab: {fileID: 0}
   Audio1: {fileID: 0}
   eat: {fileID: 0}
-  fat: {fileID: 0}
-  runcheese: {fileID: 0}
-  runice: {fileID: 0}
-  runoil: {fileID: 0}
+  goalSum: {fileID: 0}
+  chocolate: {fileID: 0}
+  runIce: {fileID: 0}
+  runOil: {fileID: 0}
   die: {fileID: 0}
   start: {fileID: 0}
   end: {fileID: 0}
-  touch: {fileID: 0}
   click: {fileID: 8300000, guid: ef2096ac9bcb5fe4b8fbbbc424a00cf3, type: 3}
   dizzy: {fileID: 0}
+  catClaw: {fileID: 0}
+  wind: {fileID: 0}
+  mole: {fileID: 0}
+  countDown: {fileID: 0}
 --- !u!1001 &466078875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,7 +963,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f929870bb6ffe814c95b15a6296231af,
+      objectReference: {fileID: 21300000, guid: 6590e2236c92fe54d88e119cf319e48a,
         type: 3}
     - target: {fileID: 4390297147143295090, guid: fc9f94276c8502747b6c34eaaa67c202,
         type: 3}
@@ -972,7 +975,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2999af676efc7b14288bf2bed99a3427,
+      objectReference: {fileID: 21300000, guid: c995be3a847ec294a9b12c8637ed59dc,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc9f94276c8502747b6c34eaaa67c202, type: 3}
@@ -1012,9 +1015,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbffbb50a9f43b4f9b03ced87adffcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLevel: 4
+  gameLevel: 0
   foreground:
-  - {fileID: 21300000, guid: 2999af676efc7b14288bf2bed99a3427, type: 3}
+  - {fileID: 21300000, guid: c995be3a847ec294a9b12c8637ed59dc, type: 3}
   - {fileID: 21300000, guid: 8e08c67b9ec2451408c31df7d43683cb, type: 3}
   - {fileID: 21300000, guid: f6c2976768bdb044ebd6782c9d675cef, type: 3}
   - {fileID: 21300000, guid: f3810768c89158747a734b1be6fafd1d, type: 3}
@@ -1026,7 +1029,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f353a2fcd824ae641839f7a9c2686ad9, type: 3}
   - {fileID: 21300000, guid: fcbd433527e61094da76887ca3631ebd, type: 3}
   background:
-  - {fileID: 21300000, guid: f929870bb6ffe814c95b15a6296231af, type: 3}
+  - {fileID: 21300000, guid: 6590e2236c92fe54d88e119cf319e48a, type: 3}
   - {fileID: 21300000, guid: 2769a4091c674f542b41f22fa9e8f9b7, type: 3}
   - {fileID: 21300000, guid: f8dca5bbe7095014799c17c21d691918, type: 3}
   - {fileID: 21300000, guid: 3e58e73b37c98da488496daac438b390, type: 3}
@@ -1048,3 +1051,4 @@ MonoBehaviour:
   - {fileID: 0}
   level4Miscs:
   - {fileID: 0}
+  level5Miscs: []
