@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour {
             GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
         }
-        GameOverUI.transform.position = new Vector2(960, 540);
+        GameOverUI.transform.localPosition = new Vector2(0, 0);
         GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
         AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour {
             GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
             GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
         }
-        GameOverUI.transform.position = new Vector2(960, 540);
+        GameOverUI.transform.localPosition = new Vector2(0, 0);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
         AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
