@@ -144,8 +144,9 @@ public class player : MonoBehaviour
                 Move();
             }
         }
-        if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || gameController.currentStatus == GameController.gameStatus.TimeUpOver) {
-            
+        if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || 
+            gameController.currentStatus == GameController.gameStatus.TimeUpOver ||
+            Time.timeScale == 0) {
             digging = false;
             running = false;
         }
