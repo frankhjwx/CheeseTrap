@@ -32,7 +32,7 @@ public class AudioPlayer : MonoBehaviour
         Effect = Audio1.GetComponent<AudioSource>();
     }
 
-    public void PlayAudioClips(string _type)
+    public void PlayAudio(string _type)
     {
         switch (_type)
         {
