@@ -1685,7 +1685,7 @@ MonoBehaviour:
   miceChoicePrefab:
   - {fileID: 5563000996714238180, guid: 277ebfd49a709bf44a64f7d66ad36a6c, type: 3}
   - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
-  - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
+  - {fileID: 5563000996714238180, guid: 51622500225add04ea069bf84b6c8624, type: 3}
   imagePosition: {fileID: 1098685197}
   speedSlider: {fileID: 1299446729}
   eatSpeedSlider: {fileID: 1563825840}
@@ -3277,7 +3277,7 @@ MonoBehaviour:
   miceChoicePrefab:
   - {fileID: 5563000996714238180, guid: 277ebfd49a709bf44a64f7d66ad36a6c, type: 3}
   - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
-  - {fileID: 5563000996714238180, guid: 6b15f0df67faedb4689dba13b7f51ddd, type: 3}
+  - {fileID: 5563000996714238180, guid: 51622500225add04ea069bf84b6c8624, type: 3}
   imagePosition: {fileID: 1835123041}
   speedSlider: {fileID: 372992800}
   eatSpeedSlider: {fileID: 859869527}
