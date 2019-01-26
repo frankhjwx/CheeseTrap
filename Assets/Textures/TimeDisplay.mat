@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 5000
+  m_CustomRenderQueue: 4500
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -73,7 +73,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FadeAlpha: 1
-    - _GameTime: 58
+    - _GameTime: 60
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

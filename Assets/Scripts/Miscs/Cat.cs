@@ -14,6 +14,7 @@ public class Cat : MonoBehaviour
     private float timer;
     public GameObject catHand, catAlarm, catHandDown;
     private float posX;
+    public Sprite cathand_ani0, cathand_ani1, cathand_ani2, cathand_ani3;
 
     void Start(){
         currentStatus = CatStatus.Rest;
@@ -62,6 +63,7 @@ public class Cat : MonoBehaviour
     }
 
     IEnumerator WaitMove(){
+        catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani0;
         posX = Random.Range(xMin, xMax);
         bool moveDirection;
         if (Random.value > 0.5) {
@@ -93,6 +95,24 @@ public class Cat : MonoBehaviour
             waitTimer += Time.deltaTime;
             yield return null;
         }
+        while (waitTimer < waitTime - 0.2f) {
+            waitTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        while (waitTimer < waitTime){
+            float t = waitTime - waitTimer;
+            if (t*4/0.2f >= 1f && t*4/0.2f < 2f) {
+                catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani1;
+            } else if (t*4/0.2f >= 2f && t*4/0.2f < 3f) {
+                catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani2;
+            } else if (t*4/0.2f >= 3f && t*4/0.2f < 4f) {
+                catHand.GetComponent<SpriteRenderer>().sprite = cathand_ani2;
+            }
+            waitTimer += Time.deltaTime;
+            yield return null;
+        }
+
         yield return null;
     }
 

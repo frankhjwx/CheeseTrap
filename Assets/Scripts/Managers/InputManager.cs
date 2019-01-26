@@ -126,6 +126,8 @@ public class InputManager : MonoBehaviour {
 
     // playerID = 1 or 2
     public Vector2 GetAxis(int playerID){
+        if (Time.timeScale == 0)
+            return Vector2.zero;
         if (playerID == 1) {
             return Vector3.Normalize(player1Vector);
         }
@@ -137,6 +139,8 @@ public class InputManager : MonoBehaviour {
 
     public bool GetDigKeyDown(int playerID)
     {
+        if (Time.timeScale == 0)
+            return false;
         if (playerID == 1)
         {
             return player1DigKeyDown;
@@ -152,6 +156,8 @@ public class InputManager : MonoBehaviour {
 
     public bool GetDigKey(int playerID)
     {
+        if (Time.timeScale == 0)
+            return false;
         if (playerID == 1) return player1DigKey;
         if (playerID == 2) return player2DigKey;
         return false;
@@ -159,12 +165,16 @@ public class InputManager : MonoBehaviour {
 
     public bool GetDigKeyUp(int playerID)
     {
+        if (Time.timeScale == 0)
+            return false;
         if (playerID == 1) return player1DigKeyUp;
         if (playerID == 2) return player2DigKeyUp;
         return false;
     }
 
     public bool GetRestart(){
+        if (Time.timeScale == 0)
+            return false;
         return Input.GetKey(KeyCode.Escape);
     }
 
