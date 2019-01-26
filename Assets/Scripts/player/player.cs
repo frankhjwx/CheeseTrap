@@ -62,8 +62,10 @@ public class player : MonoBehaviour
     
     public GameObject dustObject;
     public GameObject foodObject;
-    ParticleSystem.EmissionModule dustEmission;
-    ParticleSystem.EmissionModule foodEmission;
+    public GameObject smokeObject;
+    private ParticleSystem.EmissionModule dustEmission;
+    private ParticleSystem.EmissionModule foodEmission;
+    private ParticleSystem.EmissionModule smokeEmission;
 
     private float swampFactor = 1;
     private float swampToControlTime = 1;
@@ -72,7 +74,6 @@ public class player : MonoBehaviour
     void Start()
     {
         AudioPlayer1 = this.GetComponent<AudioPlayer>();
-        dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
             var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
@@ -100,6 +101,7 @@ public class player : MonoBehaviour
         acceleration = Vector2.zero;
         dustEmission = dustObject.GetComponent<ParticleSystem>().emission;
         foodEmission = foodObject.GetComponent<ParticleSystem>().emission;
+        smokeEmission = smokeObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
 
@@ -112,6 +114,7 @@ public class player : MonoBehaviour
     {
         dustEmission.rateOverTime = 0;
         foodEmission.rateOverTime = 0;
+        smokeEmission.rateOverTime = 0;
 
         if (terrain == 1 || terrain == 2)
         {
@@ -417,7 +420,10 @@ public class player : MonoBehaviour
         }
 
         if (running) {
-            dustEmission.rateOverTime = 12;
+            if (terrain != 3)
+                dustEmission.rateOverTime = 12;
+            else
+                smokeEmission.rateOverTime = 12;
         }
 
         var localPosition = transform.localPosition;
