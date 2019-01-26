@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class InGamePauseUI : MonoBehaviour
 {
 
-    public RectTransform pausePanel;
+    public GameObject pauseUI;
     public Button pauseBtn;
-    public Image audioImage;
+    //public Image audioImage;
 
     public Sprite musicOn;
     public Sprite musicOff;
@@ -17,14 +17,17 @@ public class InGamePauseUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
-        {
-            audioImage.sprite = musicOff;
-        }
-        else
-        {
-            audioImage.sprite = musicOn;
-        }
+        // if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+        // {
+        //     audioImage.sprite = musicOff;
+        // }
+        // else
+        // {
+        //     audioImage.sprite = musicOn;
+        // }
+
+        pauseUI.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
+
     }
 
     // Update is called once per frame
@@ -36,29 +39,29 @@ public class InGamePauseUI : MonoBehaviour
     public void Pause()
     {
         pauseBtn.enabled = false;
-        pausePanel.gameObject.SetActive(true);
         Time.timeScale = 0;
+        pauseUI.GetComponent<Animator>().SetTrigger("Pause");
     }
 
     public void Resume()
     {
-        pausePanel.gameObject.SetActive(false);
         pauseBtn.enabled = true;
         Time.timeScale = 1;
+        pauseUI.GetComponent<Animator>().SetTrigger("Continue");
     }
 
     public void Muse()
     {
-        if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
-        {
-            PlayerPrefs.SetInt("MusicOn", 0);
-            audioImage.sprite = musicOn;
-        }
-        else
-        {
-            PlayerPrefs.SetInt("MusicOn", 1);
-            audioImage.sprite = musicOff;
-        }
+        // if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+        // {
+        //     PlayerPrefs.SetInt("MusicOn", 0);
+        //     audioImage.sprite = musicOn;
+        // }
+        // else
+        // {
+        //     PlayerPrefs.SetInt("MusicOn", 1);
+        //     audioImage.sprite = musicOff;
+        // }
     }
 
     public void Exit()

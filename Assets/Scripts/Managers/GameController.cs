@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour {
         mice1.transform.position = startPos1[gameLevel];
         mice2.transform.position = startPos2[gameLevel];
         mice2.transform.eulerAngles = new Vector3(0, -180, 0);
+
         gameTime = 0f;
         
     }
