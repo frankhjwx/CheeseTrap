@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStatus: 0
-  gameLevel: 0
+  gameLevel: 3
   maxTime: 60
   startPos1:
   - {x: 1000, y: 1000}

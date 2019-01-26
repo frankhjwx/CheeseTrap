@@ -128,7 +128,7 @@ public class player : MonoBehaviour
             AudioPlayer1.PlayAudioClips("runcheese");
         }
 
-        if (gameController.currentStatus == GameController.gameStatus.Play) {
+        if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
             {

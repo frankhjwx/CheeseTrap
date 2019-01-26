@@ -26,10 +26,7 @@ public class AreaDisplayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        p1Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum1/20, 9999));
-        p2Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum2/20, 9999));
-        p1Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
-        p2Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
+        
     }
 
     public void Display(){
@@ -53,6 +50,8 @@ public class AreaDisplayerUI : MonoBehaviour
     }
 
     IEnumerator displayNumbers(){
+        p1Area.GetComponent<Image>().material.SetFloat("_Alpha", 0);
+        p2Area.GetComponent<Image>().material.SetFloat("_Alpha", 0);
         yield return new WaitForSeconds(3);
         alpha = 0;
         while (cnt < randomNums1.Count-2) {
@@ -60,6 +59,10 @@ public class AreaDisplayerUI : MonoBehaviour
             displayNum2 = randomNums2[cnt];
             cnt++;
             alpha = Mathf.Min(cnt/20.0f, 1f);
+            p1Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum1/20, 9999));
+            p2Area.GetComponent<Image>().material.SetInt("_Area", Mathf.Min(displayNum2/20, 9999));
+            p1Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
+            p2Area.GetComponent<Image>().material.SetFloat("_Alpha", alpha);
             yield return null;
         }
         alpha = 1;

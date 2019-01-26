@@ -7,8 +7,8 @@ public class CoverUIScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     public RectTransform backgroundNote;
     private Vector3 initialScale;
-    public Vector3 targetScale = new Vector3(1.2f, 1.2f, 1.2f);
-    public float scalerTime = 0.5f;
+    private Vector3 targetScale = new Vector3(1.1f, 1.1f, 1.1f);
+    private float scalerTime = 0.2f;
     private float timer = 0.0f;
     private bool pointerIn = false;
     private int initialSiblingIndex = 0;
