@@ -32,7 +32,7 @@ public class player : MonoBehaviour
     private float diggingTime;//挖坑计时器
     private float radius;
     public HoleManager holeManager;//挂载另一个脚本的物体
-    bool digging=false;//挖掘状态
+    private bool digging=false;//挖掘状态
     private bool canDig = true;
     bool running;//跑动状态
     bool canrun;//是否可跑动
@@ -599,5 +599,10 @@ public class player : MonoBehaviour
         }
 
         transform.localScale = originalScale;
+    }
+
+    public bool GetDiggingState()
+    {
+        return digging;
     }
 }
