@@ -6,13 +6,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
-    public enum gameStatus {Play, Pause, MouseDieOver, TimeUpOver};
-    public gameStatus currentStatus;
+    public enum gameStatus {Play, Pause, MouseDieOver, TimeUpOver, RulerHint};
+
+    private gameStatus currentStatus = gameStatus.Play;
+    public gameStatus CurrentStatus => currentStatus;
     public int gameLevel = 1;
     private GameObject holeManager;
     private GameObject levelManager;
     private GameObject mice1, mice2;
     private float gameTime;
+    private Stack<gameStatus> stateRecord = new Stack<gameStatus>();
     public int maxTime = 60;
 
     public Vector2[] startPos1, startPos2;
@@ -29,7 +32,6 @@ public class GameController : MonoBehaviour {
             gameLevel = localMapChoice.GetMapChosen();
         }
         Debug.Log(gameLevel);
-        currentStatus = gameStatus.Play;
         holeManager = GameObject.Find("HoleManager");
         holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
         levelManager = GameObject.Find("LevelManager");
@@ -63,6 +65,57 @@ public class GameController : MonoBehaviour {
         currentStatus = status;
     }
 
+    public void PauseGame()
+    {
+        if (currentStatus == gameStatus.Play)
+        {
+            Time.timeScale = 0;
+            stateRecord.Push(currentStatus);
+            SetGameStatus(gameStatus.Pause);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (currentStatus == gameStatus.Pause)
+        {
+            StartCoroutine(ResetTimeScale());
+            SetGameStatus(stateRecord.Pop());
+        }
+    }
+
+    public void ShowRulerPause()
+    {
+        if (currentStatus == gameStatus.Play)
+        {
+            Time.timeScale = 0;
+            stateRecord.Push(currentStatus);
+            SetGameStatus(gameStatus.RulerHint);
+        }
+    }
+
+    public void ShowRulerResume()
+    {
+        Debug.Log("ShowRulerResume-out");
+        if (currentStatus == gameStatus.RulerHint)
+        {
+            Debug.Log("ShowRulerResume-In");
+            StartCoroutine(ResetTimeScale());
+            SetGameStatus(stateRecord.Pop());
+            Debug.Log(CurrentStatus);
+        }
+    }
+    
+    IEnumerator ResetTimeScale(){
+        float timer = 0;
+        while (timer < 1){
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        Time.timeScale = 1;
+        yield return null;
+    }
+
     public int GetGameTime(){
         return (int)gameTime;
     }
@@ -78,6 +131,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void MouseDieGameOver(int playerID){
+        stateRecord.Push(currentStatus);
         SetGameStatus(GameController.gameStatus.MouseDieOver);
         if (playerID == 1) {
             GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
@@ -96,6 +150,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void TimeUpGameOver(){
+        stateRecord.Push(currentStatus);
         SetGameStatus(GameController.gameStatus.TimeUpOver);
         int area1 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[1]/20, 9999);
         int area2 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[2]/20, 9999);

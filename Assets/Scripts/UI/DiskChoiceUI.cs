@@ -13,7 +13,6 @@ public class DiskChoiceUI : MonoBehaviour
 
     public int CurrentChoice { get; private set; } = 0;
 
-    private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;
     private GameObject currentChosenMiceInstance;
     

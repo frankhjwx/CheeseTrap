@@ -136,7 +136,7 @@ public class player : MonoBehaviour
             }
         }
 
-        if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
+        if (gameController.CurrentStatus == GameController.gameStatus.Play && gameController.CurrentStatus != GameController.gameStatus.TimeUpOver) {
             terrain = holeManager.getTerrainStatus(transform.position);
             if(terrain<0)
             {
@@ -149,8 +149,8 @@ public class player : MonoBehaviour
                 Move();
             }
         }
-        if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || 
-            gameController.currentStatus == GameController.gameStatus.TimeUpOver ||
+        if (gameController.CurrentStatus == GameController.gameStatus.MouseDieOver || 
+            gameController.CurrentStatus == GameController.gameStatus.TimeUpOver ||
             Time.timeScale == 0) {
             digging = false;
             running = false;

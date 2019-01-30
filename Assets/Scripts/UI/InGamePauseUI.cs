@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InGamePauseUI : MonoBehaviour
 {
 
+    public GameController gameController;
     public GameObject pauseUI;
     public Button pauseBtn;
     public GameObject MainCamera;
@@ -39,33 +40,30 @@ public class InGamePauseUI : MonoBehaviour
 
     public void Pause()
     {
-        pauseBtn.enabled = false;
-        Time.timeScale = 0;
-        StartCoroutine(AddBlur());
-        pauseUI.GetComponent<Animator>().SetTrigger("Pause");
+        if (gameController.CurrentStatus == GameController.gameStatus.Play)
+        {
+            pauseBtn.enabled = false;
+            gameController.PauseGame();
+            StartCoroutine(AddBlur());
+            pauseUI.GetComponent<Animator>().SetTrigger("Pause");
+        }
     }
 
     public void Resume()
     {
-        pauseBtn.enabled = true;
-        StartCoroutine(ResetTimeScale());
-        StartCoroutine(RemoveBlur());
-        pauseUI.GetComponent<Animator>().SetTrigger("Continue");
+        if (gameController.CurrentStatus == GameController.gameStatus.Pause)
+        {
+            pauseBtn.enabled = true;
+            gameController.ResumeGame();
+            StartCoroutine(RemoveBlur());
+            pauseUI.GetComponent<Animator>().SetTrigger("Continue");
+        }
     }
 
-    IEnumerator ResetTimeScale(){
-        float timer = 0;
-        while (timer < 1){
-            timer += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        Time.timeScale = 1;
-        yield return null;
-    }
 
     IEnumerator AddBlur(){
         int DownSampleNum = 1;
-        float BlurSpreadSize;
+        float BlurSpreadSize = 0;
         int BlurIterations = 1;
         float timer = 0;
         MainCamera.GetComponent<GaussionBlur>().enabled = true;
@@ -79,7 +77,7 @@ public class InGamePauseUI : MonoBehaviour
 
     IEnumerator RemoveBlur(){
         int DownSampleNum = 1;
-        float BlurSpreadSize;
+        float BlurSpreadSize = 0;
         int BlurIterations = 1;
         float timer = 0;
         while (timer < 1){

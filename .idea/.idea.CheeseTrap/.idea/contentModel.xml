@@ -61,6 +61,7 @@
             <e p="LocalMapChoiceUI.cs" t="Include" />
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
+            <e p="RulerHintUI.cs" t="Include" />
             <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />
             <e p="UIAlphaFloatingChange.cs" t="Include" />
