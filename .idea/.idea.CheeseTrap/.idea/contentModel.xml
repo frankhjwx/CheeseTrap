@@ -63,6 +63,7 @@
             <e p="MiceChoiceUI.cs" t="Include" />
             <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />
+            <e p="UIAlphaFloatingChange.cs" t="Include" />
           </e>
         </e>
         <e p="Shaders" t="Include">

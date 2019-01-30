@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 57769322}
   - component: {fileID: 57769321}
   - component: {fileID: 57769320}
+  - component: {fileID: 57769323}
   m_Layer: 5
   m_Name: LeftArrow
   m_TagString: Untagged
@@ -331,6 +332,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57769318}
   m_CullTransparentMesh: 0
+--- !u!114 &57769323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57769318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c65262a69425cc4c91d97e62cbe3098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaFrom: 1
+  alphaTo: 0.6
+  onewayTime: 1.5
+  round: 1
 --- !u!1 &60012328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1070,7 @@ GameObject:
   - component: {fileID: 331014555}
   - component: {fileID: 331014558}
   m_Layer: 5
-  m_Name: MiceShowArea
+  m_Name: MapShowArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
