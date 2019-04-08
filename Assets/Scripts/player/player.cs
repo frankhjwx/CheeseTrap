@@ -17,6 +17,9 @@ public class player : MonoBehaviour
     public float timeStep = 0.2f;
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
+
+    // 用于判断老鼠是否死亡的判定区域
+    private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
     
     public float PlayerSpeed
     {
@@ -138,10 +141,17 @@ public class player : MonoBehaviour
 
         if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
             terrain = holeManager.getTerrainStatus(transform.position);
-            if(terrain<0)
+            if (terrain < 0)
             {
-                gameController.MouseDieGameOver(playerID);
-                GameOver();
+                // 计算矩形四个顶点的状态，都掉进坑里就判定死亡
+                int terrain1 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                int terrain2 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y - judgeArea.y));
+                int terrain3 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y + judgeArea.y));
+                int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
+                    gameController.MouseDieGameOver(playerID);
+                    GameOver();
+                }
             }
             Dig();
             if(canrun)
@@ -226,7 +236,7 @@ public class player : MonoBehaviour
     void Move()
     {
         var moveDirection = InputManager.instance.GetAxis(playerID);
-        if (terrain == 0){
+        if (terrain == 0 || terrain == -1){
             if (moveDirection != Vector2.zero && !digging)
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
