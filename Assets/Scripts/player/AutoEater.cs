@@ -36,6 +36,7 @@ public class AutoEater : MonoBehaviour
                     currentRadius += deltaRadius;
                     yield return new WaitForSeconds(timeStep);
                 }
+                timeStep -= 0.005f;
                 currentRadius = 0;
             }
         }
