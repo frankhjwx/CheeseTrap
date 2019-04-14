@@ -137,7 +137,6 @@ public class MiceChoiceUI : MonoBehaviour
         while (timer < totalUseTime)
         {
             slider.value = newValue * timer / totalUseTime;
-            Debug.Log(slider.name + slider.value);
             timer += Time.deltaTime;
             yield return 0;
         }
