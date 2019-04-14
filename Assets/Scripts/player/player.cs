@@ -77,6 +77,7 @@ public class player : MonoBehaviour
     public GameObject swampPunishment;
     void Start()
     {
+
         AudioPlayer1 = this.GetComponent<AudioPlayer>();
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {

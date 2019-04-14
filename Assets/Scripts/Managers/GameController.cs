@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
             var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
             gameLevel = localMapChoice.GetMapChosen();
         }
-        Debug.Log(gameLevel);
+       // Debug.Log(gameLevel);
         currentStatus = gameStatus.Play;
         holeManager = GameObject.Find("HoleManager");
         holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
