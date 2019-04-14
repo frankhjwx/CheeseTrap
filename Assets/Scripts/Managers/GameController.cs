@@ -57,6 +57,19 @@ public class GameController : MonoBehaviour {
             // send a signal of Game Over
             TimeUpGameOver();
         }
+
+        if (currentStatus == gameStatus.TimeUpOver || currentStatus == gameStatus.MouseDieOver)
+        {
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            {
+                RestartGame();
+            }
+
+            if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
+            {
+                SelectLevel();
+            }
+        }
     }
 
     public void SetGameStatus(gameStatus status){

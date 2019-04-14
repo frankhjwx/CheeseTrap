@@ -42,7 +42,7 @@ public class player : MonoBehaviour
     bool hori;
     bool up;
 
-    // terrian = -1 -> die
+    // terrain = -1 -> die
     // terrain = 0 -> idle
     // terrain = 1 -> ice
     // terrain = 2 -> cream
@@ -173,7 +173,7 @@ public class player : MonoBehaviour
     /// </summary>
     void Dig()
     {
-        if (InputManager.instance.GetDigKeyDown(playerID) && (!digging) && canDig)//初次按下鼠标，初始化坑
+        if (Input.GetButtonDown("P" + playerID + " Dig") && (!digging) && canDig)//初次按下鼠标，初始化坑
         {
             AudioPlayer1.PlayAudioClips("eat");
             digging = true;
@@ -188,7 +188,7 @@ public class player : MonoBehaviour
             currentSpeed = Vector2.zero;
         }
 
-        if (InputManager.instance.GetDigKey(playerID) && digging && canDig)//一直按下，持续增大
+        if (Input.GetButton(("P" + playerID + " Dig")) && digging && canDig)//一直按下，持续增大
         {
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
@@ -206,7 +206,7 @@ public class player : MonoBehaviour
             RefreshHungerState();
         }
 
-        if (InputManager.instance.GetDigKeyUp(playerID) || Mathf.Abs(radius - maxRadius) < 0.01f)//松开鼠标，停止挖掘
+        if (Input.GetButtonUp("P" + playerID + " Dig") || Mathf.Abs(radius - maxRadius) < 0.01f)//松开鼠标，停止挖掘
         {
             radius = 0.0f;
             digging = false;
@@ -235,7 +235,7 @@ public class player : MonoBehaviour
     /// </summary>
     void Move()
     {
-        var moveDirection = InputManager.instance.GetAxis(playerID);
+        var moveDirection = new Vector2(Input.GetAxis("P" + playerID + " Horizontal"), Input.GetAxis("P" + playerID + " Vertical"));
         if (terrain == 0 || terrain == -1){
             if (moveDirection != Vector2.zero && !digging)
             {
