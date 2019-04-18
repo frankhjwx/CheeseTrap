@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour {
     private GameObject levelManager;
     private GameObject mice1, mice2;
     private float gameTime;
-    public int maxTime = 60;
+    public int maxTime = 6000000;
 
     public Vector2[] startPos1, startPos2;
     public GameObject GameOverUI, AreaDisplayer;

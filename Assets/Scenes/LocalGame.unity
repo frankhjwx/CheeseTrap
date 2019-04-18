@@ -5645,8 +5645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e040bb3687bfe0a479000e4ba8196961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  w: 40
-  h: 40
+  w: 80
+  h: 80
   density: 0.1
   limit: 50
   holeManager: {fileID: 1529862451}
