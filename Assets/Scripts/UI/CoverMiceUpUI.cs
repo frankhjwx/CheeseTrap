@@ -5,12 +5,14 @@ using UnityEngine.EventSystems;
 
 public class CoverMiceUpUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
+    public CoverUIController.CoverButton coverButton;
+    public CoverUIController coverUiController;
     private Vector3 initialPosition;
     public Vector3 enterDelta;
     public float floatTime = 1.0f;
     private float timer = 0;
     private bool pointIn = false;
+    private bool handlerChoosed = false;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,7 @@ public class CoverMiceUpUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // Update is called once per frame
     void Update()
     {
-        if (pointIn)
+        if (pointIn || handlerChoosed)
         {
             if (timer >= floatTime)
             {
@@ -48,11 +50,27 @@ public class CoverMiceUpUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        coverUiController.currentButton = coverButton;
+        coverUiController.RefreshScaler();
         pointIn = true;
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
+        pointIn = false;
+        coverUiController.currentButton = CoverUIController.CoverButton.NULL;
+    }
+    
+    public void GamePadChoose()
+    {
+        handlerChoosed = true;
+        pointIn = false;
+        coverUiController.currentButton = coverButton;
+    }
+
+    public void GamePadOut()
+    {
+        handlerChoosed = false;
         pointIn = false;
     }
 }

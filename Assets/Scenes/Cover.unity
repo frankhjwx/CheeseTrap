@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f9248c6d0b9b741bd505bddde88c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coverButton: 2
+  coverUiController: {fileID: 1643361706}
   backgroundNote: {fileID: 1707142080}
 --- !u!114 &162521242 stripped
 MonoBehaviour:
@@ -492,6 +494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f9248c6d0b9b741bd505bddde88c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coverButton: 1
+  coverUiController: {fileID: 1643361706}
   backgroundNote: {fileID: 1619110736}
 --- !u!1 &274118766
 GameObject:
@@ -687,6 +691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f9248c6d0b9b741bd505bddde88c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coverButton: 0
+  coverUiController: {fileID: 1643361706}
   backgroundNote: {fileID: 1566916620}
 --- !u!114 &284216748
 MonoBehaviour:
@@ -903,10 +909,10 @@ MonoBehaviour:
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
+  m_HorizontalAxis: P1 Navigation Horizontal
+  m_VerticalAxis: P2 Navigation Vertical
+  m_SubmitButton: P1 Submit
+  m_CancelButton: P1 Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
@@ -1091,6 +1097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b372c5a656a7f34499091b0dba7ff5f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coverButton: 3
+  coverUiController: {fileID: 1643361706}
   enterDelta: {x: 0, y: 90, z: 0}
   floatTime: 1
 --- !u!1 &667351457
@@ -1348,7 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7242f218c0acb0445b5da034ce4ad302, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -1525,7 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 7242f218c0acb0445b5da034ce4ad302, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
@@ -1670,6 +1678,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comingSoonPanel: {fileID: 1479324278}
+  startUiScaler: {fileID: 284216747}
+  onlineUiScaler: {fileID: 207071128}
+  exitUiScaler: {fileID: 153486251}
+  aboutUsUi: {fileID: 636396888}
+  currentButton: 4
+  navigationTimeGap: 0.3
 --- !u!1 &1707142079
 GameObject:
   m_ObjectHideFlags: 0

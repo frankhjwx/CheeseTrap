@@ -5,12 +5,15 @@ using UnityEngine.EventSystems;
 
 public class CoverUIScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public CoverUIController.CoverButton coverButton;
+    public CoverUIController coverUiController;
     public RectTransform backgroundNote;
     private Vector3 initialScale;
     private Vector3 targetScale = new Vector3(1.1f, 1.1f, 1.1f);
     private float scalerTime = 0.2f;
     private float timer = 0.0f;
     private bool pointerIn = false;
+    private bool handlerChoosed = false;
     private int initialSiblingIndex = 0;
     
     // Start is called before the first frame update
@@ -24,7 +27,7 @@ public class CoverUIScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Update()
     {
         
-        if (pointerIn)
+        if (pointerIn || handlerChoosed)
         {
             if (timer >= scalerTime)
             {
@@ -51,13 +54,32 @@ public class CoverUIScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        pointerIn = true;
+        coverUiController.RefreshScaler();
         backgroundNote.SetSiblingIndex(2);
+        coverUiController.currentButton = coverButton;
+        pointerIn = true;
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        pointerIn = false;
+        coverUiController.RefreshScaler();
         backgroundNote.SetSiblingIndex(initialSiblingIndex);
+        coverUiController.currentButton = CoverUIController.CoverButton.NULL;
+        pointerIn = false;
+    }
+
+    public void GamePadChoose()
+    {
+        backgroundNote.SetSiblingIndex(2);
+        handlerChoosed = true;
+        pointerIn = false;
+        coverUiController.currentButton = coverButton;
+    }
+
+    public void GamePadOut()
+    {
+        backgroundNote.SetSiblingIndex(initialSiblingIndex);
+        handlerChoosed = false;
+        pointerIn = false;
     }
 }

@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class TeamInfoUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private void Update()
+    {
+        if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
+        {
+            Back();
+        }
+    }
+
     public void Back()
     {
         SceneManager.LoadScene("Cover");
