@@ -6,7 +6,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     public static InputManager instance;
-    private Vector2 player1Vector, player2Vector;
+    public Vector2 player1Vector, player2Vector;
     [HideInInspector]
     private bool player1DigKeyDown = false, player2DigKeyDown = false;
     [HideInInspector]

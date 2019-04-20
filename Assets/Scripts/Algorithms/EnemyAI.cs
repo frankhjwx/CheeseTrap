@@ -5,16 +5,17 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     private Collider2D playerCollider;
-
+    public InputManager instance;
     public int a=20;
     public float density = 0.01f;
     public float limit = 90;
     private float die = 0;
     private float normal = 0;
     private float ice = 0;
-    float time = 0;
+    int time = 0;
+    string random = "no";
     public HoleManager holeManager;
-    Dictionary<string, float> Scaninfo = new Dictionary<string, float>();//vector2为本地坐标，玩家位置为原点\
+    Dictionary<string, float> Scaninfo = new Dictionary<string, float>();//vector2为本地坐标，玩家位置为原点
     public void Awake()
     {
         playerCollider = gameObject.GetComponent<Collider2D>();
@@ -28,19 +29,17 @@ public class EnemyAI : MonoBehaviour
         Scaninfo.Add("downleft", 0);
         Scaninfo.Add("no", 200);
     }
+
+
     public void Update()
     {
         ScanAround();
-        time += Time.deltaTime;
-        if (time >1)
-        {
-            time = 0;
-        }
-        if(time>0.9)
-        {
-            RandomDirct();
-            Debug.Log(RandomDirct());
-        }
+        time += 1;
+
+
+        RandomDirct();
+
+        Move();
     }
 
     public void ScanAround()
@@ -109,8 +108,7 @@ public class EnemyAI : MonoBehaviour
     }
     public string RandomDirct()
     {
-        string random = "no";
-        while (Scaninfo[random] > GetMin(Scaninfo))
+        while ((Scaninfo[random] > GetMin(Scaninfo)))
         {
             int n = Random.Range(1, 9);
             switch (n)
@@ -142,5 +140,40 @@ public class EnemyAI : MonoBehaviour
             }
         }
         return random;
+    }
+
+    public void Move()
+    {
+        switch(random)
+        {
+            case "left":
+                instance.player1Vector.x = -1;
+                break;
+            case "right":
+                instance.player1Vector.x = 1;
+                break;
+            case "up":
+                instance.player1Vector.y = 1;
+                break;
+            case "down":
+                instance.player1Vector.y = -1;
+                break;
+            case "upright":
+                instance.player1Vector.x = 1;
+                instance.player1Vector.y = 1;
+                break;
+            case "upleft":
+                instance.player1Vector.x = -1;
+                instance.player1Vector.y = 1;
+                break;
+            case "downright":
+                instance.player1Vector.x = 1;
+                instance.player1Vector.y = -1;
+                break;
+            case "downleft":
+                instance.player1Vector.x = -1;
+                instance.player1Vector.y = -1;
+                break;
+        }
     }
 }
