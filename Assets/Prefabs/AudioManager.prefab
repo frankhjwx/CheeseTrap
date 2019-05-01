@@ -47,6 +47,10 @@ MonoBehaviour:
     type: 3}
   BGMList:
   - sceneName: Cover
-    audioClip: {fileID: 8300000, guid: ae3675a86c3b10a4dab1551cc5cd78ff, type: 3}
+    audioClip: {fileID: 8300000, guid: 7b2c5108dc8753f41a600b6e0287d9db, type: 3}
   - sceneName: TeamInfo
-    audioClip: {fileID: 8300000, guid: ae3675a86c3b10a4dab1551cc5cd78ff, type: 3}
+    audioClip: {fileID: 8300000, guid: 7b2c5108dc8753f41a600b6e0287d9db, type: 3}
+  - sceneName: LocalGame
+    audioClip: {fileID: 8300000, guid: 7dd1904ad7874f84c898914923e21578, type: 3}
+  - sceneName: LocalMapChoose
+    audioClip: {fileID: 8300000, guid: 0afa74e5a60db444ab43476e3c6750ed, type: 3}

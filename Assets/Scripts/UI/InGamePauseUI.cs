@@ -14,6 +14,7 @@ public class InGamePauseUI : MonoBehaviour
 
     public Sprite musicOn;
     public Sprite musicOff;
+    private AudioManager audioManager;
     
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class InGamePauseUI : MonoBehaviour
         // }
         MainCamera.GetComponent<GaussionBlur>().enabled = false;
         pauseUI.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
-
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -42,6 +43,7 @@ public class InGamePauseUI : MonoBehaviour
         pauseBtn.enabled = false;
         Time.timeScale = 0;
         StartCoroutine(AddBlur());
+        audioManager.StartLowPassEffect();
         pauseUI.GetComponent<Animator>().SetTrigger("Pause");
     }
 
@@ -50,6 +52,7 @@ public class InGamePauseUI : MonoBehaviour
         pauseBtn.enabled = true;
         StartCoroutine(ResetTimeScale());
         StartCoroutine(RemoveBlur());
+        audioManager.EndLowPassEffect();
         pauseUI.GetComponent<Animator>().SetTrigger("Continue");
     }
 

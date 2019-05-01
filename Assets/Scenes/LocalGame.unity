@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 222049757}
   - component: {fileID: 222049756}
   - component: {fileID: 222049758}
+  - component: {fileID: 222049759}
   m_Layer: 5
   m_Name: ContinueBackground
   m_TagString: Untagged
@@ -672,6 +673,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &222049759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222049754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e198b2f5d497a0f49b81031eccb813a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &222227518
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +888,7 @@ GameObject:
   - component: {fileID: 269688135}
   - component: {fileID: 269688134}
   - component: {fileID: 269688136}
+  - component: {fileID: 269688137}
   m_Layer: 5
   m_Name: ReturnBackground
   m_TagString: Untagged
@@ -992,6 +1006,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &269688137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269688132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e198b2f5d497a0f49b81031eccb813a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &283640676
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,6 +7557,7 @@ GameObject:
   - component: {fileID: 2049089953}
   - component: {fileID: 2049089952}
   - component: {fileID: 2049089954}
+  - component: {fileID: 2049089955}
   m_Layer: 5
   m_Name: RestartBackground
   m_TagString: Untagged
@@ -7648,6 +7675,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2049089955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049089950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e198b2f5d497a0f49b81031eccb813a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2064371321
 GameObject:
   m_ObjectHideFlags: 0
@@ -7953,6 +7992,7 @@ GameObject:
   - component: {fileID: 2111912651}
   - component: {fileID: 2111912650}
   - component: {fileID: 2111912649}
+  - component: {fileID: 2111912653}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -8069,6 +8109,18 @@ RectTransform:
   m_AnchoredPosition: {x: 135, y: -107}
   m_SizeDelta: {x: 80, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2111912653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111912648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e198b2f5d497a0f49b81031eccb813a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2111918190
 GameObject:
   m_ObjectHideFlags: 0

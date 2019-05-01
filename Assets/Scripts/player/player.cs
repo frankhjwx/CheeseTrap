@@ -167,18 +167,28 @@ public class player : MonoBehaviour
         }
         PlayerAnimation();
         UpdatePlayerStatus();
-        if (lastPlayerStatus != currentPlayerStatus) {
-            UpdateSoundEffect();
-        }
+        
     }
 
+    private bool isRunStatus(PlayerStatus status){
+        return (status == PlayerStatus.MovingNormal || status == PlayerStatus.MovingIce || status == PlayerStatus.MovingCaramel ||
+                status == PlayerStatus.MovingCream || status == PlayerStatus.MovingSwamp);
+    }
     private void UpdateSoundEffect(){
-        if (loopEffectIdx != -1) {
+        if (currentPlayerStatus == PlayerStatus.Idle && loopEffectIdx != -1){
             audioManager.StopLoopAudio(loopEffectIdx);
         }
         if (currentPlayerStatus == PlayerStatus.Digging) {
-            AudioClip clip = audioManager.LoadAudioClip("audio/eat");
-            loopEffectIdx = audioManager.PlayLoopAudio(clip);
+            if (loopEffectIdx != -1) {
+                audioManager.StopLoopAudio(loopEffectIdx);
+            }
+            loopEffectIdx = audioManager.PlayLoopAudioByPath("audio/eat");
+        }
+        if (!isRunStatus(lastPlayerStatus) && isRunStatus(currentPlayerStatus)){
+            if (loopEffectIdx != -1) {
+                audioManager.StopLoopAudio(loopEffectIdx);
+            }
+            loopEffectIdx = audioManager.PlayLoopAudioByPath("audio/run");
         }
     }
 
@@ -216,6 +226,10 @@ public class player : MonoBehaviour
         }
         if (isVertigo) {
             currentPlayerStatus = PlayerStatus.Vertigo;
+        }
+
+        if (lastPlayerStatus != currentPlayerStatus) {
+            UpdateSoundEffect();
         }
     }
 
@@ -617,6 +631,8 @@ public class player : MonoBehaviour
     }
 
     IEnumerator miceDie(){
+        currentPlayerStatus = PlayerStatus.Die;
+        UpdatePlayerStatus();
         float maxTime = 1.5f;
         float timer = 0;
         Vector3 initialScale = transform.localScale;
