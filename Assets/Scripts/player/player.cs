@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class player : MonoBehaviour
@@ -18,6 +19,8 @@ public class player : MonoBehaviour
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
 
+    public RuntimeAnimatorController glassesAnimator;
+    
     // 用于判断老鼠是否死亡的判定区域
     private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
     
@@ -112,6 +115,8 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level1 = thresholdMin;
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
+
+        playerAnimator.runtimeAnimatorController = glassesAnimator;
     }
 
     void Update()
@@ -237,6 +242,25 @@ public class player : MonoBehaviour
     {
         var moveDirection = new Vector2(Input.GetAxis("P" + playerID + " Horizontal"), Input.GetAxis("P" + playerID + " Vertical"));
         if (terrain == 0 || terrain == -1){
+
+            if (moveDirection != Vector2.zero)
+            {
+                if (Mathf.Abs(moveDirection.y) <= 0f)
+                {
+                    hori = true;
+                }
+                else if (moveDirection.y > 0)
+                {
+                    hori = false;
+                    up = true;
+                }
+                else if (moveDirection.y < 0)
+                {
+                    hori = false;
+                    up = false;
+                }
+            }
+
             if (moveDirection != Vector2.zero && !digging)
             {
                 transform.Translate(moveDirection * PlayerSpeed * Time.deltaTime, Space.World);//结算并挪动
@@ -248,23 +272,6 @@ public class player : MonoBehaviour
             {
                 running = false;//没有移动量，则不跑动
             }
-
-            if(transform.right.y==0)
-            {
-                hori = true;
-            }
-            if(transform.right.y > 0)
-            {
-                hori = false;
-                up = true;
-            }
-
-            if (transform.right.y < 0)
-            {
-                hori = false;
-                up = false;
-            }
-
 
         }
         // ice
@@ -298,7 +305,7 @@ public class player : MonoBehaviour
             }
 
 
-            if(transform.right.y==0)
+            if(Mathf.Abs(transform.right.y)<=0.0f)
             {
                 hori = true;
             }
@@ -327,7 +334,7 @@ public class player : MonoBehaviour
                 running = false;//没有移动量，则不跑动
             }
 
-            if(transform.right.y==0)
+            if(Mathf.Abs(transform.right.y)<=0.0f)
             {
                 hori = true;
             }
@@ -357,7 +364,7 @@ public class player : MonoBehaviour
                 running = false;//没有移动量，则不跑动
             }
 
-            if(transform.right.y==0)
+            if(Mathf.Abs(transform.right.y)<=0.0f)
             {
                 hori = true;
             }
@@ -395,7 +402,7 @@ public class player : MonoBehaviour
                     running = false;//没有移动量，则不跑动
                 }
 
-                if(transform.right.y==0)
+                if(Mathf.Abs(transform.right.y)<=0.0f)
                 {
                     hori = true;
                 }
