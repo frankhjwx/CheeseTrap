@@ -8,8 +8,13 @@ public class AudioManager : MonoBehaviour
     private Dictionary<int, GameObject> loopAudioObjects = new Dictionary<int, GameObject>();
     int currentIndex = 0;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (GameObject.FindWithTag("AudioManager") != null){
+            Destroy(this.gameObject);
+            return;
+        }
+        this.gameObject.tag = "AudioManager";
         DontDestroyOnLoad(this.gameObject);
     }
 

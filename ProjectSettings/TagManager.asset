@@ -7,6 +7,7 @@ TagManager:
   - HoleCollider
   - LocalMapChoiceManager
   - add
+  - AudioManager
   layers:
   - Default
   - TransparentFX
