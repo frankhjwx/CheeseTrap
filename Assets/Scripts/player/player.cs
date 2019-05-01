@@ -20,10 +20,11 @@ public class player : MonoBehaviour
     }
     public GameController gameController;
     public PlayerStatus currentPlayerStatus;
+    private PlayerStatus lastPlayerStatus;
     private Collider2D playerCollider;
     public Animator playerAnimator;
     private bool isVertigo = false;
-    AudioPlayer AudioPlayer1;
+    private int loopEffectIdx = -1;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -166,9 +167,23 @@ public class player : MonoBehaviour
         }
         PlayerAnimation();
         UpdatePlayerStatus();
+        if (lastPlayerStatus != currentPlayerStatus) {
+            UpdateSoundEffect();
+        }
+    }
+
+    private void UpdateSoundEffect(){
+        if (loopEffectIdx != -1) {
+            audioManager.StopLoopAudio(loopEffectIdx);
+        }
+        if (currentPlayerStatus == PlayerStatus.Digging) {
+            AudioClip clip = audioManager.LoadAudioClip("audio/eat");
+            loopEffectIdx = audioManager.PlayLoopAudio(clip);
+        }
     }
 
     private void UpdatePlayerStatus(){
+        lastPlayerStatus = currentPlayerStatus;
         if (digging) {
             currentPlayerStatus = PlayerStatus.Digging;
             return;
