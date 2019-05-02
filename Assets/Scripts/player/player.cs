@@ -26,6 +26,7 @@ public class player : MonoBehaviour
     public Animator playerAnimator;
     private bool isVertigo = false;
     private int loopEffectIdx = -1;
+    private Tween Dashtween = null;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -558,14 +559,14 @@ public class player : MonoBehaviour
     }
 
     private IEnumerator DashCoroutine(Vector2 dashVector){
+        var initPos = transform.localPosition;
         var targetPos = transform.localPosition + new Vector3(dashVector.x, dashVector.y, 0);
-        transform.DOMove(targetPos, 0.25f).OnComplete(
-            () => {
-                dashing = false; 
-                SetSelfColor(normalColor);
-                dashRestTime = dashCD;
-            });
+        Dashtween = transform.DOMove(targetPos, 0.25f);
         yield return new WaitForSeconds(0.25f);
+        dashing = false; 
+        SetSelfColor(normalColor);
+        dashRestTime = dashCD;
+        Dashtween = null;
         Material dashM = CDDisplay.GetComponent<SpriteRenderer>().material;
         dashM.SetFloat("_Progress", 0);
         while (dashRestTime > 0){
@@ -711,7 +712,14 @@ public class player : MonoBehaviour
         transform.right = speedDirection;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision){
+        if (Dashtween != null) {
+            Dashtween.Kill();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider) {
+        
         if (collider.gameObject.name == "cat_hand_down") {
             StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
         }
