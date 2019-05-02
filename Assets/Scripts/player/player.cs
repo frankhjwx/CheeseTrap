@@ -555,12 +555,28 @@ public class player : MonoBehaviour
         if (!digging && canrun && !dashing && dashRestTime == 0 && Input.GetButtonDown("P" + playerID + " Dash")) {
             dashing = true;
             SetSelfColor(dashColor);
-            if (hori) {
-                if (transform.localEulerAngles.y == 0) StartCoroutine(DashCoroutine(new Vector2(dashDistance, 0))); 
-                else StartCoroutine(DashCoroutine(new Vector2(-dashDistance, 0))); 
-            } else {
-                if (up) StartCoroutine(DashCoroutine(new Vector2(0, dashDistance)));
-                else StartCoroutine(DashCoroutine(new Vector2(0, -dashDistance))); 
+            var currentDirection = new Vector2(Input.GetAxis("P" + playerID + " Horizontal"), Input.GetAxis("P" + playerID + " Vertical"));
+            if (currentDirection.magnitude <= 0.05f)
+            {
+                StartCoroutine(DashCoroutine(dashDistance * transform.right));
+                /*if (hori)
+                {
+                    if (transform.localEulerAngles.y == 0) StartCoroutine(DashCoroutine(new Vector2(dashDistance, 0)));
+                    else StartCoroutine(DashCoroutine(new Vector2(-dashDistance, 0)));
+                }
+                else
+                {
+                    if (up) StartCoroutine(DashCoroutine(new Vector2(0, dashDistance)));
+                    else StartCoroutine(DashCoroutine(new Vector2(0, -dashDistance)));
+                }*/
+            }
+            else if (currentDirection.magnitude >= 1)
+            {
+                StartCoroutine(DashCoroutine(dashDistance * currentDirection.normalized));
+            }
+            else
+            {
+                StartCoroutine(DashCoroutine(dashDistance * currentDirection));
             }
         }
     }
