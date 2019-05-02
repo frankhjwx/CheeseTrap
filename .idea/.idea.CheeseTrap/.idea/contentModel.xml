@@ -82,7 +82,9 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
+          <e p="AlphaBlend.shader" t="Include" />
           <e p="AreaDisplayEffect.shader" t="Include" />
+          <e p="DashCD.shader" t="Include" />
           <e p="FlowAndSpinEffect.shader" t="Include" />
           <e p="GaussianBlurEffect.shader" t="Include" />
           <e p="HoleEffect.shader" t="Include" />
