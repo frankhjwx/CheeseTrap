@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     private Collider2D playerCollider;
-    public InputManager instance;
+    public GameObject instanceG;
+    private InputManager instance1;
     public int a=20;
     public float density = 0.01f;
-    public float limit = 90;
     private float die = 0;
     private float normal = 0;
     private float ice = 0;
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     public void Awake()
     {
         playerCollider = gameObject.GetComponent<Collider2D>();
+        instance1 = instanceG.GetComponent<InputManager>();
         Scaninfo.Add("up", 0);
         Scaninfo.Add("down", 0);
         Scaninfo.Add("right", 0);
@@ -39,7 +40,7 @@ public class EnemyAI : MonoBehaviour
 
         RandomDirct();
 
-        Move();
+        //instance1.Move(random);
     }
 
     public void ScanAround()
@@ -47,7 +48,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 playerposition = transform.position;
         for(int i=3; i<a; i++)
         {
-            float add = Mathf.Sqrt(a - Mathf.Abs(i));
+            float add = a - Mathf.Abs(i);//距离远的权重小
             int terrainfo = holeManager.getTerrainStatus(new Vector2(playerposition.x - i * density, playerposition.y));
             if (terrainfo ==-1)
             {
@@ -106,7 +107,7 @@ public class EnemyAI : MonoBehaviour
         }
         return mkvp.Value;
     }
-    public string RandomDirct()
+    public void RandomDirct()
     {
         while ((Scaninfo[random] > GetMin(Scaninfo)))
         {
@@ -139,12 +140,12 @@ public class EnemyAI : MonoBehaviour
                     break;
             }
         }
-        return random;
     }
 
-    public void Move()
+
+    /*    public void Move(string direction)//给AI调用的加速接口（原来在Inputmanager内）
     {
-        switch(random)
+        switch (direction)
         {
             case "left":
                 instance.player1Vector.x = -1;
@@ -175,5 +176,6 @@ public class EnemyAI : MonoBehaviour
                 instance.player1Vector.y = -1;
                 break;
         }
-    }
+    }*/
+
 }

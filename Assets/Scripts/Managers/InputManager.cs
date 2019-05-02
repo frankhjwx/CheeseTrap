@@ -6,7 +6,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     public static InputManager instance;
-    public Vector2 player1Vector, player2Vector;
+    private Vector2 player1Vector, player2Vector;
     [HideInInspector]
     private bool player1DigKeyDown = false, player2DigKeyDown = false;
     [HideInInspector]
@@ -202,5 +202,4 @@ public class InputManager : MonoBehaviour {
         if (playerID == 2) return leftRightClickFinished2;
         return false;
     }
-
 }
