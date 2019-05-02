@@ -194,10 +194,6 @@ public class player : MonoBehaviour
 
     private void UpdatePlayerStatus(){
         lastPlayerStatus = currentPlayerStatus;
-        if (digging) {
-            currentPlayerStatus = PlayerStatus.Digging;
-            return;
-        }
         if (running) {
             switch (terrain) {
                 case 0:
@@ -224,10 +220,12 @@ public class player : MonoBehaviour
         if (canrun && moveDirection == Vector2.zero) {
             currentPlayerStatus = PlayerStatus.Idle;
         }
+        if (digging) {
+            currentPlayerStatus = PlayerStatus.Digging;
+        }
         if (isVertigo) {
             currentPlayerStatus = PlayerStatus.Vertigo;
         }
-
         if (lastPlayerStatus != currentPlayerStatus) {
             UpdateSoundEffect();
         }
