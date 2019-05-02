@@ -24,6 +24,7 @@ public class player : MonoBehaviour
     private Collider2D playerCollider;
     public Animator playerAnimator;
     private bool isVertigo = false;
+    public bool isGameOver = false;
     private int loopEffectIdx = -1;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
@@ -125,6 +126,7 @@ public class player : MonoBehaviour
         smokeEmission = smokeObject.GetComponent<ParticleSystem>().emission;
 
         hori = true;
+        isGameOver = false;
 
         uiPresentation.GetSlider(playerID).level1 = thresholdMin;
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
@@ -225,6 +227,9 @@ public class player : MonoBehaviour
         }
         if (isVertigo) {
             currentPlayerStatus = PlayerStatus.Vertigo;
+        }
+        if (isGameOver) {
+            currentPlayerStatus = PlayerStatus.Idle;
         }
         if (lastPlayerStatus != currentPlayerStatus) {
             UpdateSoundEffect();
@@ -609,6 +614,11 @@ public class player : MonoBehaviour
     /// 仓鼠死亡
     /// </summary>
     public void GameOver(){
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var go in gos)
+        {  
+            go.GetComponent<player>().isGameOver = true;
+        }
         StartCoroutine(miceDie());
     }
 
@@ -629,7 +639,6 @@ public class player : MonoBehaviour
     }
 
     IEnumerator miceDie(){
-        currentPlayerStatus = PlayerStatus.Die;
         UpdatePlayerStatus();
         float maxTime = 1.5f;
         float timer = 0;
