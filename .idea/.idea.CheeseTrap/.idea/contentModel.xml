@@ -7,6 +7,20 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Demigiant" t="Include">
+          <e p="DOTween" t="Include">
+            <e p="Modules" t="Include">
+              <e p="DOTweenModuleAudio.cs" t="Include" />
+              <e p="DOTweenModulePhysics.cs" t="Include" />
+              <e p="DOTweenModulePhysics2D.cs" t="Include" />
+              <e p="DOTweenModuleSprite.cs" t="Include" />
+              <e p="DOTweenModuleUI.cs" t="Include" />
+              <e p="DOTweenModuleUnityVersion.cs" t="Include" />
+              <e p="DOTweenModuleUtils.cs" t="Include" />
+            </e>
+            <e p="readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="donkillme.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="SimpleJSON.cs" t="Include" />
@@ -22,7 +36,6 @@
           <e p="Managers" t="Include">
             <e p="AudioClipsManager.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
-            <e p="AudioPlayer.cs" t="Include" />
             <e p="GameController.cs" t="Include" />
             <e p="HoleManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
@@ -49,6 +62,7 @@
           </e>
           <e p="UI" t="Include">
             <e p="AreaDisplayerUI.cs" t="Include" />
+            <e p="ButtonSound.cs" t="Include" />
             <e p="counterSlider.cs" t="Include" />
             <e p="CoverMiceUpUI.cs" t="Include" />
             <e p="CoverUIController.cs" t="Include" />
@@ -61,6 +75,7 @@
             <e p="InGamePauseUI.cs" t="Include" />
             <e p="LocalMapChoiceUI.cs" t="Include" />
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
+            <e p="MapStarDisplay.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
             <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />

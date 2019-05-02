@@ -34,7 +34,7 @@ public class player : MonoBehaviour
     public float timeStep = 0.2f;
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
-
+    private MouseSkinManager skinManager;
     
     // 用于判断老鼠是否死亡的判定区域
     private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
@@ -97,6 +97,7 @@ public class player : MonoBehaviour
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        skinManager = GetComponent<MouseSkinManager>();
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
             var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
@@ -114,6 +115,8 @@ public class player : MonoBehaviour
             deltaRadius = basicInfo.deltaRadius;
             timeStep = basicInfo.timeStep;
             maxRadius = basicInfo.maxRadius;
+            
+            skinManager.SetSkin(basicInfo.choiceID);
         }
         
         canrun = true;
@@ -347,7 +350,6 @@ public class player : MonoBehaviour
                 transform.Translate(currentSpeed * Time.deltaTime, Space.World);
                 //transform.right = moveDirection;
                 CorrectDirection(moveDirection);
-                Debug.Log("transform.right" + transform.right);
                 running = true;
             }
             else

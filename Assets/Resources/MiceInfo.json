@@ -49,5 +49,22 @@
         "speedLevel" : 0.9,
         "eatSpeedLevel" : 0.40,
         "beingFatSpeedLevel" : 0.6
+    },
+    {
+        "choiceID" : 3,
+        "speedState1" : 4,
+        "speedState2" : 3.5,
+        "speedState3" : 3,
+        "speedState4" : 2.5,
+        "eatThresholdMin" : 30000,
+        "eatThresholdMid" : 50000,
+        "eatThresholdMax" : 60000,
+        "initialRadius" : 0.05,
+        "deltaRadius" : 0.15,
+        "timeStep" : 0.2,
+        "maxRadius" : 1.2,
+        "speedLevel" : 0.7,
+        "eatSpeedLevel" : 0.40,
+        "beingFatSpeedLevel" : 0.6
     }
 ]

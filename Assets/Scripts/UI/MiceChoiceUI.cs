@@ -97,6 +97,7 @@ public class MiceChoiceUI : MonoBehaviour
             //timeLeftToRecover = scrollTime;
         }
         choiceRolling = true;
+        Debug.Log(currentChoice);
     }
     
     public void rightChoice()

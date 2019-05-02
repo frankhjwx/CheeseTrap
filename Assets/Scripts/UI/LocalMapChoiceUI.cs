@@ -1,16 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LocalMapChoiceUI : MonoBehaviour
 {
+    enum MapChoiceState
+    {
+        PlayerChoosing,
+        Idle,
+        MapChoosing
+    }
+    
     public MiceChoiceUI p1Choice;
     public MiceChoiceUI p2Choice;
     public DiskChoiceUI mapChoice;
-    public float axisChoosingTimeGap = 0.3f;
+    public RectTransform backgroundTransform;
+    public Vector2 playerChoosePos;
+    public Vector2 mapChoosePos;
+    public float moveDuration = 1.0f;
     private MapChoiceManager mapChoiceManager;
+    public float axisChoosingTimeGap = 0.3f;
     private float p1NavigationHorizontalCount = 0.0f;
     private float p2NavigationHorizontalCount = 0.0f;
     private float mapNavigationCount = 0.0f;
+    private MapChoiceState state = MapChoiceState.Idle;
 
     void Start()
     {
@@ -20,79 +33,113 @@ public class LocalMapChoiceUI : MonoBehaviour
         
         mapChoiceManager = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
         Refresh();
+
+        state = MapChoiceState.PlayerChoosing;
     }
 
     private void Update()
     {
-        if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f && p1NavigationHorizontalCount >= axisChoosingTimeGap)
+        if (state == MapChoiceState.PlayerChoosing)
         {
-            p1Choice.rightChoice();
-            p1NavigationHorizontalCount -= axisChoosingTimeGap;
-        }
-        else if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f && p1NavigationHorizontalCount >= axisChoosingTimeGap)
-        {
-            p1Choice.leftChoice();
-            p1NavigationHorizontalCount -= axisChoosingTimeGap;
-        }
-        else if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f || Input.GetAxis("P1 Navigation Horizontal") > 0.01f)
-        {
-            p1NavigationHorizontalCount += Time.deltaTime;
-        }
-        else
-        {
-            p1NavigationHorizontalCount = axisChoosingTimeGap;
-        }
-        
-        if (Input.GetAxis("P2 Navigation Horizontal") < -0.01f && p2NavigationHorizontalCount >= axisChoosingTimeGap)
-        {
-            p2Choice.rightChoice();
-            p2NavigationHorizontalCount -= axisChoosingTimeGap;
-        }
-        else if (Input.GetAxis("P2 Navigation Horizontal") > 0.01f && p2NavigationHorizontalCount >= axisChoosingTimeGap)
-        {
-            p2Choice.leftChoice();
-            p2NavigationHorizontalCount -= axisChoosingTimeGap;
-        }
-        else if (Input.GetAxis("P2 Navigation Horizontal") < -0.01f || Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
-        {
-            p2NavigationHorizontalCount += Time.deltaTime;
-        }
-        else
-        {
-            p2NavigationHorizontalCount = axisChoosingTimeGap;
-        }
-
-        if (Input.GetAxis("P1 Navigation Vertical") < -0.01f || Input.GetAxis("P2 Navigation Vertical") < -0.01f)
-        {
-            if (mapNavigationCount >= axisChoosingTimeGap)
+            if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f &&
+                p1NavigationHorizontalCount >= axisChoosingTimeGap)
             {
-                mapChoice.rightChoiceLoop();
-                mapNavigationCount -= axisChoosingTimeGap;
+                p1Choice.leftChoice();
+                p1NavigationHorizontalCount -= axisChoosingTimeGap;
+            }
+            else if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f &&
+                     p1NavigationHorizontalCount >= axisChoosingTimeGap)
+            {
+                p1Choice.rightChoice();
+                p1NavigationHorizontalCount -= axisChoosingTimeGap;
+            }
+            else if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f ||
+                     Input.GetAxis("P1 Navigation Horizontal") > 0.01f)
+            {
+                p1NavigationHorizontalCount += Time.deltaTime;
             }
             else
             {
-                mapNavigationCount += Time.deltaTime;
+                p1NavigationHorizontalCount = axisChoosingTimeGap;
+            }
+
+            if (Input.GetAxis("P2 Navigation Horizontal") < -0.01f &&
+                p2NavigationHorizontalCount >= axisChoosingTimeGap)
+            {
+                p2Choice.leftChoice();
+                p2NavigationHorizontalCount -= axisChoosingTimeGap;
+            }
+            else if (Input.GetAxis("P2 Navigation Horizontal") > 0.01f &&
+                     p2NavigationHorizontalCount >= axisChoosingTimeGap)
+            {
+                p2Choice.rightChoice();
+                p2NavigationHorizontalCount -= axisChoosingTimeGap;
+            }
+            else if (Input.GetAxis("P2 Navigation Horizontal") < -0.01f ||
+                     Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
+            {
+                p2NavigationHorizontalCount += Time.deltaTime;
+            }
+            else
+            {
+                p2NavigationHorizontalCount = axisChoosingTimeGap;
+            }
+
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            {
+                ToChooseMap();
+            }
+            
+            if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
+            {
+                BackCover();
             }
         }
-        else
-        {
-            mapNavigationCount = axisChoosingTimeGap;
-        }
 
-        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+        if (state == MapChoiceState.MapChoosing)
         {
-            StartGame();
-        }
+            if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f || Input.GetAxis("P2 Navigation Horizontal") < -0.01f)
+            {
+                if (mapNavigationCount >= axisChoosingTimeGap)
+                {
+                    mapChoice.leftChoiceLoop();
+                    mapNavigationCount -= axisChoosingTimeGap;
+                }
+                else
+                {
+                    mapNavigationCount += Time.deltaTime;
+                }
+            }
+            if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f || Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
+            {
+                if (mapNavigationCount >= axisChoosingTimeGap)
+                {
+                    mapChoice.rightChoiceLoop();
+                    mapNavigationCount -= axisChoosingTimeGap;
+                }
+                else
+                {
+                    mapNavigationCount += Time.deltaTime;
+                }
+            }
+            else
+            {
+                mapNavigationCount = axisChoosingTimeGap;
+            }
 
-        if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
-        {
-            BackCover();
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            {
+                StartGame();
+            }
+            if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
+            {
+                ToChoosePlayer();
+            }
         }
     }
 
     public void Refresh()
     {
-        Debug.Log(p1Choice == null);
         mapChoiceManager.p1ChoiceIndex = p1Choice.CurrentChoice;
         mapChoiceManager.p2ChoiceIndex = p2Choice.CurrentChoice;
         mapChoiceManager.mapChoiceIndex = mapChoice.CurrentChoice;
@@ -111,5 +158,42 @@ public class LocalMapChoiceUI : MonoBehaviour
     public void BackCover()
     {
         SceneManager.LoadScene("Cover");
+    }
+
+    IEnumerator MoveTo(Vector2 targetPos, MapChoiceState finalState)
+    {
+        state = MapChoiceState.Idle;
+        Vector2 originalPos = backgroundTransform.localPosition;
+        var timer = 0f;
+        while (timer < moveDuration)
+        {
+            timer += Time.deltaTime;
+            backgroundTransform.localPosition = originalPos + (targetPos - originalPos) * timer / moveDuration;
+            yield return 0;
+        }
+        backgroundTransform.localPosition = targetPos;
+        state = finalState;
+    }
+
+    public void ToChooseMap()
+    {
+        StartCoroutine(MoveTo(mapChoosePos, MapChoiceState.MapChoosing));
+    }
+
+    public void ToChoosePlayer()
+    {
+        StartCoroutine(MoveTo(playerChoosePos, MapChoiceState.PlayerChoosing));
+    }
+
+    public void BackButton()
+    {
+        if (state == MapChoiceState.MapChoosing)
+        {
+            ToChoosePlayer();
+        }
+        else
+        {
+            BackCover();
+        }
     }
 }
