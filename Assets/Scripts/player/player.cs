@@ -4,12 +4,28 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
+
 public class player : MonoBehaviour
 {
+    public enum PlayerStatus{
+        MovingNormal, // 在平地移动中
+        MovingIce,
+        MovingCream,
+        MovingCaramel,
+        MovingSwamp,
+        Digging, // 挖坑
+        Idle, // 静止
+        Die, // 死亡
+        Vertigo, //眩晕
+        Undefined
+    }
     public GameController gameController;
+    public PlayerStatus currentPlayerStatus;
+    private PlayerStatus lastPlayerStatus;
     private Collider2D playerCollider;
     public Animator playerAnimator;
-    AudioPlayer AudioPlayer1;
+    private bool isVertigo = false;
+    private int loopEffectIdx = -1;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -77,9 +93,10 @@ public class player : MonoBehaviour
     private float swampTimer = 0;
     private bool swampPunishmentOn = false;
     public GameObject swampPunishment;
+    private AudioManager audioManager;
     void Start()
     {
-        AudioPlayer1 = this.GetComponent<AudioPlayer>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
             var localMapChoice = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
@@ -115,6 +132,7 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
 
+        currentPlayerStatus = PlayerStatus.Undefined;
     }
 
     void Update()
@@ -122,25 +140,6 @@ public class player : MonoBehaviour
         dustEmission.rateOverTime = 0;
         foodEmission.rateOverTime = 0;
         smokeEmission.rateOverTime = 0;
-
-        if (terrain == 1 || terrain == 2)
-        { 
-            AudioPlayer1.PlayAudioClips("runice");
-        }
-
-        if ((Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))&&(terrain==0))
-        {
-
-            if (terrain == 1&terrain==2)
-            {
-                AudioPlayer1.PlayAudioClips("runIce");
-            }
-
-            if (terrain == 4)
-            {
-                AudioPlayer1.PlayAudioClips("chocolate");
-            }
-        }
 
         if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
             terrain = holeManager.getTerrainStatus(transform.position);
@@ -169,6 +168,69 @@ public class player : MonoBehaviour
             running = false;
         }
         PlayerAnimation();
+        UpdatePlayerStatus();
+        
+    }
+
+    private bool isRunStatus(PlayerStatus status){
+        return (status == PlayerStatus.MovingNormal || status == PlayerStatus.MovingIce || status == PlayerStatus.MovingCaramel ||
+                status == PlayerStatus.MovingCream || status == PlayerStatus.MovingSwamp);
+    }
+    private void UpdateSoundEffect(){
+        if (currentPlayerStatus == PlayerStatus.Idle && loopEffectIdx != -1){
+            audioManager.StopLoopAudio(loopEffectIdx);
+        }
+        if (currentPlayerStatus == PlayerStatus.Digging) {
+            if (loopEffectIdx != -1) {
+                audioManager.StopLoopAudio(loopEffectIdx);
+            }
+            loopEffectIdx = audioManager.PlayLoopAudioByPath("audio/eat");
+        }
+        if (!isRunStatus(lastPlayerStatus) && isRunStatus(currentPlayerStatus)){
+            if (loopEffectIdx != -1) {
+                audioManager.StopLoopAudio(loopEffectIdx);
+            }
+            loopEffectIdx = audioManager.PlayLoopAudioByPath("audio/run");
+        }
+    }
+
+    private void UpdatePlayerStatus(){
+        lastPlayerStatus = currentPlayerStatus;
+        if (running) {
+            switch (terrain) {
+                case 0:
+                    currentPlayerStatus = PlayerStatus.MovingNormal;
+                    break;
+                case 1:
+                    currentPlayerStatus = PlayerStatus.MovingIce;
+                    break;
+                case 2:
+                    currentPlayerStatus = PlayerStatus.MovingCream;
+                    break;
+                case 3:
+                    currentPlayerStatus = PlayerStatus.MovingCaramel;
+                    break;
+                case 4:
+                    currentPlayerStatus = PlayerStatus.MovingSwamp;
+                    break;
+                default:
+                    currentPlayerStatus = PlayerStatus.Undefined;
+                    break;
+            }
+        }
+        var moveDirection = new Vector2(Input.GetAxis("P" + playerID + " Horizontal"), Input.GetAxis("P" + playerID + " Vertical"));
+        if (canrun && moveDirection == Vector2.zero) {
+            currentPlayerStatus = PlayerStatus.Idle;
+        }
+        if (digging) {
+            currentPlayerStatus = PlayerStatus.Digging;
+        }
+        if (isVertigo) {
+            currentPlayerStatus = PlayerStatus.Vertigo;
+        }
+        if (lastPlayerStatus != currentPlayerStatus) {
+            UpdateSoundEffect();
+        }
     }
 
     /// <summary>
@@ -178,7 +240,7 @@ public class player : MonoBehaviour
     {
         if (Input.GetButtonDown("P" + playerID + " Dig") && (!digging) && canDig)//初次按下鼠标，初始化坑
         {
-            AudioPlayer1.PlayAudioClips("eat");
+            //AudioPlayer1.PlayAudioClips("eat");
             digging = true;
             canrun = false;
             diggingTime = 0f;
@@ -196,7 +258,7 @@ public class player : MonoBehaviour
             diggingTime += Time.deltaTime;
             if (diggingTime >= timeStep)
             {
-                AudioPlayer1.PlayAudioClips("eat");
+                //AudioPlayer1.PlayAudioClips("eat");
                 radius += deltaRadius;
                 if (radius >= maxRadius) radius = maxRadius;
                 holePosition = initiatePosition + dimentionChange(transform.right) * radius ;//坑坐标向前挪动
@@ -563,12 +625,16 @@ public class player : MonoBehaviour
     {
         canrun = false;
         canDig = false;
+        isVertigo = true;
         yield return new WaitForSeconds(time);
         canrun = true;
         canDig = true;
+        isVertigo = false;
     }
 
     IEnumerator miceDie(){
+        currentPlayerStatus = PlayerStatus.Die;
+        UpdatePlayerStatus();
         float maxTime = 1.5f;
         float timer = 0;
         Vector3 initialScale = transform.localScale;
