@@ -34,6 +34,8 @@ public class player : MonoBehaviour
     public float timeStep = 0.2f;
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
+    public float dashCD = 5f;
+    private float dashRestTime = 0;
     public float dashDistance = 4f;
     private Color normalColor = new Color(0.5f, 0.5f, 0.5f, 1);
     private Color dashColor = new Color(162f/255, 60f/255, 60f/255, 1);
@@ -97,6 +99,7 @@ public class player : MonoBehaviour
     private bool swampPunishmentOn = false;
     public GameObject swampPunishment;
     private AudioManager audioManager;
+    public GameObject CDDisplay;
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -136,6 +139,7 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
         dashing = false;
         SetSelfColor(normalColor);
+        CDDisplay.GetComponent<SpriteRenderer>().material.SetFloat("_Progress", 1);
 
         currentPlayerStatus = PlayerStatus.Undefined;
     }
@@ -152,8 +156,11 @@ public class player : MonoBehaviour
         foodEmission.rateOverTime = 0;
         smokeEmission.rateOverTime = 0;
 
+        CDDisplay.transform.localPosition = gameObject.transform.localPosition + new Vector3(0, -0.75f, 0);
+
         if (!dashing && (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver)) {
             if (transform.position.x < 0 || transform.position.x > 19.2 || transform.position.y < 0 || transform.position.y > 10.8) {
+                gameController.MouseDieGameOver(playerID);
                 GameOver();
             } else {
                 terrain = holeManager.getTerrainStatus(transform.position);
@@ -537,7 +544,7 @@ public class player : MonoBehaviour
     }
 
     void Dash(){
-        if (!digging && canrun && !dashing && Input.GetButtonDown("P" + playerID + " Dash")) {
+        if (!digging && canrun && !dashing && dashRestTime == 0 && Input.GetButtonDown("P" + playerID + " Dash")) {
             dashing = true;
             SetSelfColor(dashColor);
             if (hori) {
@@ -552,8 +559,23 @@ public class player : MonoBehaviour
 
     private IEnumerator DashCoroutine(Vector2 dashVector){
         var targetPos = transform.localPosition + new Vector3(dashVector.x, dashVector.y, 0);
-        transform.DOMove(targetPos, 0.25f).OnComplete(() => {dashing = false; SetSelfColor(normalColor);});
-        yield return null;
+        transform.DOMove(targetPos, 0.25f).OnComplete(
+            () => {
+                dashing = false; 
+                SetSelfColor(normalColor);
+                dashRestTime = dashCD;
+            });
+        yield return new WaitForSeconds(0.25f);
+        Material dashM = CDDisplay.GetComponent<SpriteRenderer>().material;
+        dashM.SetFloat("_Progress", 0);
+        while (dashRestTime > 0){
+            dashRestTime -= Time.fixedDeltaTime;
+            if (dashRestTime < 0)
+                dashRestTime = 0;
+            dashM.SetFloat("_Progress", (dashCD - dashRestTime) / dashCD);
+            yield return new WaitForFixedUpdate();
+        }
+        dashM.SetFloat("_Progress", 1);
     }
 
     /// <summary>
