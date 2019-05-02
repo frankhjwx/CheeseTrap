@@ -41,6 +41,7 @@
           <e p="player" t="Include">
             <e p="AutoEater.cs" t="Include" />
             <e p="MiceBasicInfo.cs" t="Include" />
+            <e p="MouseSkinManager.cs" t="Include" />
             <e p="player.cs" t="Include" />
           </e>
           <e p="Tools" t="Include">

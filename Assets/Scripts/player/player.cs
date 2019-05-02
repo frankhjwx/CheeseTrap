@@ -19,7 +19,6 @@ public class player : MonoBehaviour
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
 
-    public RuntimeAnimatorController glassesAnimator;
     
     // 用于判断老鼠是否死亡的判定区域
     private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
@@ -116,7 +115,6 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
 
-        playerAnimator.runtimeAnimatorController = glassesAnimator;
     }
 
     void Update()

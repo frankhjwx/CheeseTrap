@@ -4891,6 +4891,7 @@ GameObject:
   - component: {fileID: 2563781985815301802}
   - component: {fileID: 2563781985815301801}
   - component: {fileID: 5874256988800993552}
+  - component: {fileID: 61032600782370312}
   m_Layer: 0
   m_Name: micePrefab
   m_TagString: Player
@@ -4991,7 +4992,6 @@ MonoBehaviour:
   timeStep: 0.2
   maxRadius: 1.25
   vertigoTime: 2
-  glassesAnimator: {fileID: 22100000, guid: 4f9ba1ee6d3cab745bb9995d562458e0, type: 2}
   holeManager: {fileID: 0}
   playerID: 1
   uiPresentation: {fileID: 0}
@@ -5067,6 +5067,23 @@ MonoBehaviour:
   wind: {fileID: 8300000, guid: 59be2025dc63368439e9ed7f8d2db495, type: 3}
   mole: {fileID: 8300000, guid: 6c9423e70615680458309eb15b2465ee, type: 3}
   countDown: {fileID: 8300000, guid: 95838916d491d28498ef1f56bc803131, type: 3}
+--- !u!114 &61032600782370312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563781985815301799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50359f4fb8710e48937e676af8682ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 2563781985914253647}
+  normalAnimator: {fileID: 22100000, guid: e52f1695665b42e41b9bd32e1e3e51a2, type: 2}
+  capitalistAnimator: {fileID: 9100000, guid: a9ba5a4ea26db9345b0a8007520794aa, type: 2}
+  glassesAnimator: {fileID: 22100000, guid: b8e6a8745554ec6449f5a81a5b65d83d, type: 2}
+  sushiAnimator: {fileID: 22100000, guid: 4f9ba1ee6d3cab745bb9995d562458e0, type: 2}
 --- !u!1 &2563781985914253645
 GameObject:
   m_ObjectHideFlags: 0
