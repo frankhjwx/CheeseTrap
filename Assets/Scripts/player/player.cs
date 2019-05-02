@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 
 public class player : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class player : MonoBehaviour
         MovingCream,
         MovingCaramel,
         MovingSwamp,
+        Dashing, // 冲刺
         Digging, // 挖坑
         Idle, // 静止
         Die, // 死亡
@@ -33,6 +34,9 @@ public class player : MonoBehaviour
     public float timeStep = 0.2f;
     public float maxRadius = 1.25f;
     public float vertigoTime = 1.0f;
+    public float dashDistance = 4f;
+    private Color normalColor = new Color(0.5f, 0.5f, 0.5f, 1);
+    private Color dashColor = new Color(162f/255, 60f/255, 60f/255, 1);
 
     // 用于判断老鼠是否死亡的判定区域
     private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
@@ -54,6 +58,7 @@ public class player : MonoBehaviour
     private bool digging=false;//挖掘状态
     private bool canDig = true;
     bool running;//跑动状态
+    bool dashing;
     bool canrun;//是否可跑动
     bool hori;
     bool up;
@@ -129,8 +134,16 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level1 = thresholdMin;
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
+        dashing = false;
+        SetSelfColor(normalColor);
 
         currentPlayerStatus = PlayerStatus.Undefined;
+    }
+
+    private void SetSelfColor(Color c){
+        transform.Find("miceanimation").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
+        transform.Find("miceanimation/head").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
+        transform.Find("miceanimation/shadow").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
     }
 
     void Update()
@@ -139,24 +152,29 @@ public class player : MonoBehaviour
         foodEmission.rateOverTime = 0;
         smokeEmission.rateOverTime = 0;
 
-        if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
-            terrain = holeManager.getTerrainStatus(transform.position);
-            if (terrain < 0)
-            {
-                // 计算矩形四个顶点的状态，都掉进坑里就判定死亡
-                int terrain1 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
-                int terrain2 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y - judgeArea.y));
-                int terrain3 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y + judgeArea.y));
-                int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
-                if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
-                    gameController.MouseDieGameOver(playerID);
-                    GameOver();
+        if (!dashing && (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver)) {
+            if (transform.position.x < 0 || transform.position.x > 19.2 || transform.position.y < 0 || transform.position.y > 10.8) {
+                GameOver();
+            } else {
+                terrain = holeManager.getTerrainStatus(transform.position);
+                if (terrain < 0)
+                {
+                    // 计算矩形四个顶点的状态，都掉进坑里就判定死亡
+                    int terrain1 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                    int terrain2 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y - judgeArea.y));
+                    int terrain3 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y + judgeArea.y));
+                    int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                    if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
+                        gameController.MouseDieGameOver(playerID);
+                        GameOver();
+                    }
                 }
-            }
-            Dig();
-            if(canrun)
-            {
-                Move();
+                Dig();
+                if(canrun)
+                {
+                    Move();
+                }
+                Dash();
             }
         }
         if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || 
@@ -516,6 +534,26 @@ public class player : MonoBehaviour
         var localPosition = transform.localPosition;
         localPosition = new Vector3(localPosition.x, localPosition.y, localPosition.y);
         transform.localPosition = localPosition;
+    }
+
+    void Dash(){
+        if (!digging && canrun && !dashing && Input.GetButtonDown("P" + playerID + " Dash")) {
+            dashing = true;
+            SetSelfColor(dashColor);
+            if (hori) {
+                if (transform.localEulerAngles.y == 0) StartCoroutine(DashCoroutine(new Vector2(dashDistance, 0))); 
+                else StartCoroutine(DashCoroutine(new Vector2(-dashDistance, 0))); 
+            } else {
+                if (up) StartCoroutine(DashCoroutine(new Vector2(0, dashDistance)));
+                else StartCoroutine(DashCoroutine(new Vector2(0, -dashDistance))); 
+            }
+        }
+    }
+
+    private IEnumerator DashCoroutine(Vector2 dashVector){
+        var targetPos = transform.localPosition + new Vector3(dashVector.x, dashVector.y, 0);
+        transform.DOMove(targetPos, 0.25f).OnComplete(() => {dashing = false; SetSelfColor(normalColor);});
+        yield return null;
     }
 
     /// <summary>
