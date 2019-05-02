@@ -4,41 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CheeseTrap/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map1Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map1Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map2Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map2Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map2Preview.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map2Preview.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map3Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map3Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map3Preview.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map3Preview.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map4Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map4Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map4Preview.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map4Preview.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map5Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map5Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map5Preview.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map5Preview.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Mouse0Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Mouse0Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Mouse1Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Mouse1Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Mouse2Preview.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Mouse2Preview.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/MiceInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/MiceInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LocalMapChoose.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LocalMapChoose.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/DiskChoiceUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DiskChoiceUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MiceChoiceUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MiceChoiceUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/player/MouseSkinManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/player/MouseSkinManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/player/player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Area1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Area1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Area2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Area2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow3.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow3.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Flow5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Flow5.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplay.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/TimeDisplayShadow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
-    </list>
+    <list default="true" id="8037bcd3-bb90-4b1b-9d6c-43ad9b27845f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUI.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="18" />
+              <caret line="15" column="21" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="18" />
               <folding>
                 <marker date="1556797864046" expanded="true" signature="6:79" ph="..." />
                 <marker date="1556797864046" expanded="true" signature="126:6411" ph="{...}" />
@@ -161,7 +127,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUIStartGame.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
               <folding>
                 <marker date="1548907191286" expanded="false" signature="6:113" ph="..." />
                 <marker date="1548907191286" expanded="true" signature="169:485" ph="{...}" />
@@ -176,7 +142,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4545">
-              <caret line="336" column="13" lean-forward="true" selection-start-line="336" selection-start-column="13" selection-end-line="336" selection-end-column="13" />
+              <caret line="336" column="13" selection-start-line="336" selection-start-column="13" selection-end-line="336" selection-end-column="13" />
               <folding>
                 <marker date="1556797843138" expanded="false" signature="6:122" ph="..." />
                 <marker date="1556797843138" expanded="true" signature="160:22589" ph="{...}" />
@@ -559,7 +525,7 @@
       <workItem from="1555177933311" duration="12219000" />
       <workItem from="1555761227903" duration="8894000" />
       <workItem from="1556691364994" duration="10133000" />
-      <workItem from="1556773437696" duration="19617000" />
+      <workItem from="1556773437696" duration="20216000" />
     </task>
     <task id="LOCAL-00001" summary="重命名一个变量">
       <created>1548218918378</created>
@@ -572,7 +538,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162369000" />
+    <option name="totallyTimeSpent" value="162968000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1143,7 +1109,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUIStartGame.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
           <folding>
             <marker date="1548907191286" expanded="false" signature="6:113" ph="..." />
             <marker date="1548907191286" expanded="true" signature="169:485" ph="{...}" />
@@ -1172,7 +1138,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/player/player.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4545">
-          <caret line="336" column="13" lean-forward="true" selection-start-line="336" selection-start-column="13" selection-end-line="336" selection-end-column="13" />
+          <caret line="336" column="13" selection-start-line="336" selection-start-column="13" selection-end-line="336" selection-end-column="13" />
           <folding>
             <marker date="1556797843138" expanded="false" signature="6:122" ph="..." />
             <marker date="1556797843138" expanded="true" signature="160:22589" ph="{...}" />
@@ -1343,7 +1309,7 @@
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UI/LocalMapChoiceUI.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="18" />
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="18" />
           <folding>
             <marker date="1556797864046" expanded="true" signature="6:79" ph="..." />
             <marker date="1556797864046" expanded="true" signature="126:6411" ph="{...}" />

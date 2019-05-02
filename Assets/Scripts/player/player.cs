@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
-
+using DG.Tweening;
 
 public class player : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class player : MonoBehaviour
         MovingCream,
         MovingCaramel,
         MovingSwamp,
+        Dashing, // 冲刺
         Digging, // 挖坑
         Idle, // 静止
         Die, // 死亡
@@ -26,6 +27,7 @@ public class player : MonoBehaviour
     public Animator playerAnimator;
     private bool isVertigo = false;
     private int loopEffectIdx = -1;
+    private Tween Dashtween = null;
 
     public float playerSpeed1 = 5.0f, playerSpeed2 = 4.5f, playerSpeed3 = 4.0f, playerSpeed4 = 3.0f;
     public float thresholdMin = 25000, thresholdMid = 45000, thresholdMax = 70000;
@@ -36,6 +38,12 @@ public class player : MonoBehaviour
     public float vertigoTime = 1.0f;
     private MouseSkinManager skinManager;
     
+    public float dashCD = 5f;
+    private float dashRestTime = 0;
+    public float dashDistance = 4f;
+    private Color normalColor = new Color(0.5f, 0.5f, 0.5f, 1);
+    private Color dashColor = new Color(162f/255, 60f/255, 60f/255, 1);
+
     // 用于判断老鼠是否死亡的判定区域
     private Vector2 judgeArea = new Vector2(0.3f, 0.2f);
     
@@ -56,6 +64,7 @@ public class player : MonoBehaviour
     private bool digging=false;//挖掘状态
     private bool canDig = true;
     bool running;//跑动状态
+    bool dashing;
     bool canrun;//是否可跑动
     bool hori;
     bool up;
@@ -94,6 +103,7 @@ public class player : MonoBehaviour
     private bool swampPunishmentOn = false;
     public GameObject swampPunishment;
     private AudioManager audioManager;
+    public GameObject CDDisplay;
     void Start()
     {
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -134,8 +144,17 @@ public class player : MonoBehaviour
         uiPresentation.GetSlider(playerID).level1 = thresholdMin;
         uiPresentation.GetSlider(playerID).level2 = thresholdMid;
         uiPresentation.GetSlider(playerID).level3 = thresholdMax;
+        dashing = false;
+        SetSelfColor(normalColor);
+        CDDisplay.GetComponent<SpriteRenderer>().material.SetFloat("_Progress", 1);
 
         currentPlayerStatus = PlayerStatus.Undefined;
+    }
+
+    private void SetSelfColor(Color c){
+        transform.Find("miceanimation").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
+        transform.Find("miceanimation/head").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
+        transform.Find("miceanimation/shadow").GetComponent<SpriteRenderer>().material.SetColor("_TintColor", c);
     }
 
     void Update()
@@ -144,24 +163,32 @@ public class player : MonoBehaviour
         foodEmission.rateOverTime = 0;
         smokeEmission.rateOverTime = 0;
 
-        if (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver) {
-            terrain = holeManager.getTerrainStatus(transform.position);
-            if (terrain < 0)
-            {
-                // 计算矩形四个顶点的状态，都掉进坑里就判定死亡
-                int terrain1 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
-                int terrain2 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y - judgeArea.y));
-                int terrain3 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y + judgeArea.y));
-                int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
-                if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
-                    gameController.MouseDieGameOver(playerID);
-                    GameOver();
+        CDDisplay.transform.localPosition = gameObject.transform.localPosition + new Vector3(0, -0.75f, 0);
+
+        if (!dashing && (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver)) {
+            if (transform.position.x < 0 || transform.position.x > 19.2 || transform.position.y < 0 || transform.position.y > 10.8) {
+                gameController.MouseDieGameOver(playerID);
+                GameOver();
+            } else {
+                terrain = holeManager.getTerrainStatus(transform.position);
+                if (terrain < 0)
+                {
+                    // 计算矩形四个顶点的状态，都掉进坑里就判定死亡
+                    int terrain1 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                    int terrain2 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y - judgeArea.y));
+                    int terrain3 = holeManager.getTerrainStatus(new Vector2(transform.position.x + judgeArea.x, transform.position.y + judgeArea.y));
+                    int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
+                    if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
+                        gameController.MouseDieGameOver(playerID);
+                        GameOver();
+                    }
                 }
-            }
-            Dig();
-            if(canrun)
-            {
-                Move();
+                Dig();
+                if(canrun)
+                {
+                    Move();
+                }
+                Dash();
             }
         }
         if (gameController.currentStatus == GameController.gameStatus.MouseDieOver || 
@@ -524,6 +551,41 @@ public class player : MonoBehaviour
         transform.localPosition = localPosition;
     }
 
+    void Dash(){
+        if (!digging && canrun && !dashing && dashRestTime == 0 && Input.GetButtonDown("P" + playerID + " Dash")) {
+            dashing = true;
+            SetSelfColor(dashColor);
+            if (hori) {
+                if (transform.localEulerAngles.y == 0) StartCoroutine(DashCoroutine(new Vector2(dashDistance, 0))); 
+                else StartCoroutine(DashCoroutine(new Vector2(-dashDistance, 0))); 
+            } else {
+                if (up) StartCoroutine(DashCoroutine(new Vector2(0, dashDistance)));
+                else StartCoroutine(DashCoroutine(new Vector2(0, -dashDistance))); 
+            }
+        }
+    }
+
+    private IEnumerator DashCoroutine(Vector2 dashVector){
+        var initPos = transform.localPosition;
+        var targetPos = transform.localPosition + new Vector3(dashVector.x, dashVector.y, 0);
+        Dashtween = transform.DOMove(targetPos, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+        dashing = false; 
+        SetSelfColor(normalColor);
+        dashRestTime = dashCD;
+        Dashtween = null;
+        Material dashM = CDDisplay.GetComponent<SpriteRenderer>().material;
+        dashM.SetFloat("_Progress", 0);
+        while (dashRestTime > 0){
+            dashRestTime -= Time.fixedDeltaTime;
+            if (dashRestTime < 0)
+                dashRestTime = 0;
+            dashM.SetFloat("_Progress", (dashCD - dashRestTime) / dashCD);
+            yield return new WaitForFixedUpdate();
+        }
+        dashM.SetFloat("_Progress", 1);
+    }
+
     /// <summary>
     /// 控制状态机参数
     /// </summary>
@@ -657,7 +719,14 @@ public class player : MonoBehaviour
         transform.right = speedDirection;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision){
+        if (Dashtween != null) {
+            Dashtween.Kill();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider) {
+        
         if (collider.gameObject.name == "cat_hand_down") {
             StartCoroutine(miceVertigo(GameObject.Find("Cat").GetComponent<Cat>().patTime));
         }

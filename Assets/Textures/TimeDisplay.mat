@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: TimeDisplay
   m_Shader: {fileID: 4800000, guid: 44db6a792fdeb4c4c87e8fcef5c7d342, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -73,7 +73,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FadeAlpha: 1
-    - _GameTime: 54
+    - _GameTime: 57
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
