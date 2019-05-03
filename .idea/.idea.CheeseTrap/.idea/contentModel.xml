@@ -48,6 +48,7 @@
             <e p="Cat.cs" t="Include" />
             <e p="ChocolateMoving.cs" t="Include" />
             <e p="Hole.cs" t="Include" />
+            <e p="PockyRotating.cs" t="Include" />
             <e p="TrackingMole.cs" t="Include" />
             <e p="Wind.cs" t="Include" />
           </e>

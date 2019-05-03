@@ -168,6 +168,7 @@ public class player : MonoBehaviour
         if (!dashing && (gameController.currentStatus == GameController.gameStatus.Play && gameController.currentStatus != GameController.gameStatus.TimeUpOver)) {
             if (transform.position.x < 0 || transform.position.x > 19.2 || transform.position.y < 0 || transform.position.y > 10.8) {
                 gameController.MouseDieGameOver(playerID);
+                Debug.Log("PositionDie");
                 GameOver();
             } else {
                 terrain = holeManager.getTerrainStatus(transform.position);
@@ -180,6 +181,7 @@ public class player : MonoBehaviour
                     int terrain4 = holeManager.getTerrainStatus(new Vector2(transform.position.x - judgeArea.x, transform.position.y - judgeArea.y));
                     if (terrain1 + terrain2 + terrain3 + terrain4 == -4) {
                         gameController.MouseDieGameOver(playerID);
+                        Debug.Log("HoleDie");
                         GameOver();
                     }
                 }
@@ -692,7 +694,11 @@ public class player : MonoBehaviour
     /// <summary>
     /// 仓鼠死亡
     /// </summary>
-    public void GameOver(){
+    public void GameOver()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        playerAnimator.SetBool("special", true);
+        playerAnimator.SetTrigger("die");
         StartCoroutine(miceDie());
     }
 
