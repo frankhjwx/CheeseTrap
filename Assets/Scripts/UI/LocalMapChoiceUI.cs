@@ -24,6 +24,9 @@ public class LocalMapChoiceUI : MonoBehaviour
     private float p2NavigationHorizontalCount = 0.0f;
     private float mapNavigationCount = 0.0f;
     private MapChoiceState state = MapChoiceState.Idle;
+    private int mouseChooseConfirmCount = 0;
+    public GameObject p1MouseSelected;
+    public GameObject p2MouseSelected;
 
     void Start()
     {
@@ -85,11 +88,15 @@ public class LocalMapChoiceUI : MonoBehaviour
                 p2NavigationHorizontalCount = axisChoosingTimeGap;
             }
 
-            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            if (Input.GetButtonDown("P1 Submit"))
             {
-                ToChooseMap();
+                ConfirmP1Mouse();
             }
-            
+
+            if (Input.GetButtonDown("P2 Submit"))
+            {
+                ConfirmP2Mouse();
+            }
             if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
             {
                 BackCover();
@@ -180,11 +187,31 @@ public class LocalMapChoiceUI : MonoBehaviour
         StartCoroutine(MoveTo(mapChoosePos, MapChoiceState.MapChoosing));
     }
 
-    public void ToChoosePlayer()
+    private void ToChoosePlayer()
     {
         StartCoroutine(MoveTo(playerChoosePos, MapChoiceState.PlayerChoosing));
     }
 
+    public void ConfirmP1Mouse()
+    {
+        mouseChooseConfirmCount++;
+        p1MouseSelected.SetActive(false);
+        if (mouseChooseConfirmCount >= 2)
+        {
+            ToChooseMap();
+        }
+    }
+    
+    public void ConfirmP2Mouse()
+    {
+        mouseChooseConfirmCount++;
+        p2MouseSelected.SetActive(false);
+        if (mouseChooseConfirmCount >= 2)
+        {
+            ToChooseMap();
+        }
+    }
+    
     public void BackButton()
     {
         if (state == MapChoiceState.MapChoosing)
