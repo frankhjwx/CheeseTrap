@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 
     public Vector2[] startPos1, startPos2;
     public GameObject GameOverUI, AreaDisplayer;
+    public InGamePauseUI pauseUi;
 
 
     //InputManager inputManager;
@@ -58,6 +59,14 @@ public class GameController : MonoBehaviour {
             TimeUpGameOver();
         }
 
+        if (currentStatus == gameStatus.Play)
+        {
+            if (Input.GetButtonDown("P1 Pause") || Input.GetButtonDown("P2 Pause"))
+            {
+                pauseUi.Pause();
+                SetGameStatus(gameStatus.Pause);
+            }
+        }
         if (currentStatus == gameStatus.TimeUpOver || currentStatus == gameStatus.MouseDieOver)
         {
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))

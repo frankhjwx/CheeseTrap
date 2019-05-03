@@ -11,6 +11,7 @@ public class InGamePauseUI : MonoBehaviour
     public Button pauseBtn;
     public GameObject MainCamera;
     //public Image audioImage;
+    public GameController gameController;
 
     public Sprite musicOn;
     public Sprite musicOff;
@@ -54,6 +55,7 @@ public class InGamePauseUI : MonoBehaviour
         StartCoroutine(RemoveBlur());
         audioManager.EndLowPassEffect();
         pauseUI.GetComponent<Animator>().SetTrigger("Continue");
+        gameController.SetGameStatus(GameController.gameStatus.Play);
     }
 
     IEnumerator ResetTimeScale(){

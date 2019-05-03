@@ -726,6 +726,7 @@ MonoBehaviour:
   - {x: 13, y: 6.2}
   GameOverUI: {fileID: 3309915685293047529}
   AreaDisplayer: {fileID: 601132390}
+  pauseUi: {fileID: 807250168}
 --- !u!4 &266949090
 Transform:
   m_ObjectHideFlags: 0
