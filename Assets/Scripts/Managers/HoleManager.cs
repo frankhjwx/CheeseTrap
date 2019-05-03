@@ -20,6 +20,7 @@ public class HoleManager : MonoBehaviour
     public int gameLevel;
 
     private int[,] caramelCoolDown = new int[960,540];
+    private Texture2D originalHoleTexture;
 
     // only for debug
     // private GameObject testTextureDisplay;
@@ -30,6 +31,7 @@ public class HoleManager : MonoBehaviour
     public void InitializeLevel(int level)
     {
         holes = new List<Hole>();
+        caramelCoolDown = new int[960, 540];
         areas = new int[playerNum + 1];
         LoadLevelTerrainTexture(level);
         InitializeHoleTexture();
@@ -68,6 +70,11 @@ public class HoleManager : MonoBehaviour
         holeTexture.filterMode = FilterMode.Point;
         holeTexture.Apply();
         DisplayHoleTexture();
+
+        originalHoleTexture = new Texture2D(texWidth, texHeight);
+        originalHoleTexture.SetPixels(0, 0, texWidth, texHeight, colors);
+        originalHoleTexture.filterMode = FilterMode.Point;
+        originalHoleTexture.Apply();
 
         // testTextureDisplay = new GameObject();
         // testTextureDisplay.name = "TestTexture";
@@ -165,12 +172,11 @@ public class HoleManager : MonoBehaviour
     IEnumerator SetCaramel(int x, int y){
         caramelCoolDown[x,y] += 1;
         Color c = holeTexture.GetPixel(x, y);
+        Color originalColor = c;
         holeTexture.SetPixel(x, y, new Color(c.r, 3.0f/255, c.b, c.a));
         yield return new WaitForSeconds(1.5f);
-        if (caramelCoolDown[x,y] == 1){
-            c = holeTexture.GetPixel(x, y);
-            holeTexture.SetPixel(x, y, new Color(c.r, 0, c.b, c.a));
-        }
+        if (caramelCoolDown[x,y] == 1)
+            holeTexture.SetPixel(x, y, originalHoleTexture.GetPixel(x, y));
         caramelCoolDown[x,y] -= 1;
         yield return null;
     }
