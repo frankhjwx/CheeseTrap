@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA.WebCam;
 
 public class CoverUIController : MonoBehaviour
 {
     public enum CoverButton
     {
         START,
-        ONLINE,
+        HOWTOPLAY,
         EXIT,
         ABOUTUS,
         NULL
+    }
+
+    enum UiFocus
+    {
+        Main,
+        HowToPlayPanel
     }
     
     public RectTransform comingSoonPanel;
@@ -24,6 +31,7 @@ public class CoverUIController : MonoBehaviour
 
     public float navigationTimeGap = 0.3f;
     private float navigationCount = 0.0f;
+    private UiFocus focus = UiFocus.Main;
 
     private void Start()
     {
@@ -32,46 +40,62 @@ public class CoverUIController : MonoBehaviour
 
     private void Update()
     {
-        if ((Input.GetAxis("P1 Navigation Vertical") < -0.01f || Input.GetAxis("P2 Navigation Vertical") < -0.01f) 
-            && navigationCount >= navigationTimeGap)
+        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit")) Debug.Log(focus);
+        if (focus == UiFocus.Main)
         {
-            naviNext();
-            navigationCount -= navigationTimeGap;
-        }
-        else if ((Input.GetAxis("P1 Navigation Vertical") > 0.01f || Input.GetAxis("P2 Navigation Vertical") > 0.01f)
-            && navigationCount >= navigationTimeGap)
-        {
-            naviPrevious();
-            navigationCount -= navigationTimeGap;
-        }
-        else if (Input.GetAxis("P1 Navigation Vertical") < -0.01f || Input.GetAxis("P2 Navigation Vertical") < -0.01f 
-                 || Input.GetAxis("P1 Navigation Vertical") > 0.01f || Input.GetAxis("P2 Navigation Vertical") > 0.01f)
-        {
-            navigationCount += Time.deltaTime;
-        }
-        else
-        {
-            navigationCount = navigationTimeGap;
-        }
-
-        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
-        {
-            switch (currentButton)
+            if ((Input.GetAxis("P1 Navigation Vertical") < -0.01f || Input.GetAxis("P2 Navigation Vertical") < -0.01f)
+                && navigationCount >= navigationTimeGap)
             {
-                case CoverButton.START:
-                    LocalGame();
-                    break;
-                case CoverButton.ONLINE:
-                    NetworkGame();
-                    break;
-                case CoverButton.EXIT:
-                    Quit();
-                    break;
-                case CoverButton.ABOUTUS:
-                    About();
-                    break;
+                naviNext();
+                navigationCount -= navigationTimeGap;
+            }
+            else if ((Input.GetAxis("P1 Navigation Vertical") > 0.01f ||
+                      Input.GetAxis("P2 Navigation Vertical") > 0.01f)
+                     && navigationCount >= navigationTimeGap)
+            {
+                naviPrevious();
+                navigationCount -= navigationTimeGap;
+            }
+            else if (Input.GetAxis("P1 Navigation Vertical") < -0.01f 
+                     || Input.GetAxis("P2 Navigation Vertical") < -0.01f 
+                     || Input.GetAxis("P1 Navigation Vertical") > 0.01f 
+                     || Input.GetAxis("P2 Navigation Vertical") > 0.01f)
+            {
+                navigationCount += Time.deltaTime;
+            }
+            else
+            {
+                navigationCount = navigationTimeGap;
+            }
+
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            {
+                Debug.Log("MainSubmit");
+                switch (currentButton)
+                {
+                    case CoverButton.START:
+                        LocalGame();
+                        break;
+                    case CoverButton.HOWTOPLAY:
+                        NetworkGame();
+                        break;
+                    case CoverButton.EXIT:
+                        Quit();
+                        break;
+                    case CoverButton.ABOUTUS:
+                        About();
+                        break;
+                }
             }
         }
+        else if (focus == UiFocus.HowToPlayPanel)
+        {
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+            {
+                HowToPlayPanelConfirm();
+            }
+        }
+        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit")) Debug.Log(focus);
     }
 
     public void LocalGame()
@@ -82,7 +106,7 @@ public class CoverUIController : MonoBehaviour
     public void NetworkGame()
     {
         comingSoonPanel.gameObject.SetActive(true);
-        StartCoroutine(DelayDisappear(0.6f));
+        focus = UiFocus.HowToPlayPanel;
     }
 
     public void About()
@@ -99,6 +123,12 @@ public class CoverUIController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         comingSoonPanel.gameObject.SetActive(false);
+    }
+
+    public void HowToPlayPanelConfirm()
+    {
+        comingSoonPanel.gameObject.SetActive(false);
+        focus = UiFocus.Main;
     }
 
     public void RefreshScaler()
@@ -119,10 +149,10 @@ public class CoverUIController : MonoBehaviour
                 break;
             case CoverButton.START:
                 startUiScaler.GamePadOut();
-                currentButton = CoverButton.ONLINE;
+                currentButton = CoverButton.HOWTOPLAY;
                 onlineUiScaler.GamePadChoose();
                 break;
-            case CoverButton.ONLINE:
+            case CoverButton.HOWTOPLAY:
                 onlineUiScaler.GamePadOut();
                 currentButton = CoverButton.EXIT;
                 exitUiScaler.GamePadChoose();
@@ -151,14 +181,14 @@ public class CoverUIController : MonoBehaviour
                 startUiScaler.GamePadOut();
                 currentButton = CoverButton.NULL;
                 break;
-            case CoverButton.ONLINE:
+            case CoverButton.HOWTOPLAY:
                 onlineUiScaler.GamePadOut();
                 currentButton = CoverButton.START;
                 startUiScaler.GamePadChoose();
                 break;
             case CoverButton.EXIT:
                 exitUiScaler.GamePadOut();
-                currentButton = CoverButton.ONLINE;
+                currentButton = CoverButton.HOWTOPLAY;
                 onlineUiScaler.GamePadChoose();
                 break;
             case CoverButton.ABOUTUS:
