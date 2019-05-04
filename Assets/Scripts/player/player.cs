@@ -120,6 +120,7 @@ public class player : MonoBehaviour
             thresholdMin = basicInfo.eatThresholdMin;
             thresholdMid = basicInfo.eatThresholdMid;
             thresholdMax = basicInfo.eatThresholdMax;
+            dashCD = basicInfo.cd;
 
             initialRadius = basicInfo.initialRadius;
             deltaRadius = basicInfo.deltaRadius;

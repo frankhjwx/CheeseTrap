@@ -52,9 +52,9 @@ Shader "Custom/AreaDisplayEffect"
             // uv = (0,0) - (1,1)
             // return uv pos on the texture
             float2 getNumberuv(int i, float2 uv){
-                int x = i;
-                int y = 0;
-                return float2(uv.x*0.1 + x*0.1, uv.y + y);
+                int x = (9 - i) % 8;
+                int y = 1 - (9 - i)/8;
+                return float2(uv.x*0.125 + x*0.125, uv.y*0.5 + y*0.5);
             }
 
             fixed4 frag (v2f i) : SV_Target

@@ -12,13 +12,14 @@ public class MiceBasicInfo
     public float eatThresholdMin;
     public float eatThresholdMid;
     public float eatThresholdMax;
+    public float cd;
     public float initialRadius;
     public float deltaRadius;
     public float timeStep;
     public float maxRadius;
 
     public MiceBasicInfo(int choiceID, float speedState1, float speedState2, float speedState3, float speedState4,
-        float eatThresholdMin, float eatThresholdMid, float eatThresholdMax, float initialRadius, float deltaRadius, float timeStep, float maxRadius)
+        float eatThresholdMin, float eatThresholdMid, float eatThresholdMax, float cd, float initialRadius, float deltaRadius, float timeStep, float maxRadius)
     {
         this.choiceID = choiceID;
         this.speedState1 = speedState1;
@@ -28,6 +29,7 @@ public class MiceBasicInfo
         this.eatThresholdMin = eatThresholdMin;
         this.eatThresholdMid = eatThresholdMid;
         this.eatThresholdMax = eatThresholdMax;
+        this.cd = cd;
         this.initialRadius = initialRadius;
         this.deltaRadius = deltaRadius;
         this.timeStep = timeStep;

@@ -8,13 +8,14 @@
         "eatThresholdMin" : 25000,
         "eatThresholdMid" : 45000,
         "eatThresholdMax" : 70000,
+        "cd" : 5,
         "initialRadius" : 0.05,
         "deltaRadius" : 0.15,
         "timeStep" : 0.2,
         "maxRadius" : 1.25,
         "speedLevel" : 0.75, 
         "eatSpeedLevel" : 0.65, 
-        "beingFatSpeedLevel" : 0.45
+        "cdLevel": 0.45
     },
     {
         "choiceID" : 1,
@@ -25,13 +26,14 @@
         "eatThresholdMin" : 45000,
         "eatThresholdMid" : 65000,
         "eatThresholdMax" : 90000,
+        "cd" : 10,
         "initialRadius" : 0.15,
         "deltaRadius" : 0.15,
         "timeStep" : 0.2,
         "maxRadius" : 1.5,
         "speedLevel" : 0.5, 
-        "eatSpeedLevel" : 0.70, 
-        "beingFatSpeedLevel" : 0.35
+        "eatSpeedLevel" : 0.80, 
+        "cdLevel": 0.2
     },
     {
         "choiceID" : 2,
@@ -42,13 +44,14 @@
         "eatThresholdMin" : 25000,
         "eatThresholdMid" : 40000,
         "eatThresholdMax" : 60000,
+        "cd" : 3,
         "initialRadius" : 0.05,
         "deltaRadius" : 0.05,
         "timeStep" : 0.1,
         "maxRadius" : 1.0,
         "speedLevel" : 0.9,
         "eatSpeedLevel" : 0.40,
-        "beingFatSpeedLevel" : 0.6
+        "cdLevel": 0.8
     },
     {
         "choiceID" : 3,
@@ -59,12 +62,13 @@
         "eatThresholdMin" : 30000,
         "eatThresholdMid" : 50000,
         "eatThresholdMax" : 60000,
+        "cd" : 4.5,
         "initialRadius" : 0.05,
         "deltaRadius" : 0.15,
         "timeStep" : 0.2,
         "maxRadius" : 1.2,
         "speedLevel" : 0.7,
-        "eatSpeedLevel" : 0.40,
-        "beingFatSpeedLevel" : 0.6
+        "eatSpeedLevel" : 0.55,
+        "cdLevel": 0.6
     }
 ]
