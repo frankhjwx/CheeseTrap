@@ -712,10 +712,12 @@ public class player : MonoBehaviour
         canrun = false;
         canDig = false;
         isVertigo = true;
+        playerAnimator.SetBool("dizzy", true);
         yield return new WaitForSeconds(time);
         canrun = true;
         canDig = true;
         isVertigo = false;
+        playerAnimator.SetBool("dizzy", false);
     }
 
     IEnumerator miceDie(){

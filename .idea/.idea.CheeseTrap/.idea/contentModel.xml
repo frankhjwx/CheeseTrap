@@ -78,6 +78,7 @@
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
             <e p="MapStarDisplay.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
+            <e p="PausePanelHighlightController.cs" t="Include" />
             <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />
           </e>
