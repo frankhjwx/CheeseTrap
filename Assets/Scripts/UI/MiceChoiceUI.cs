@@ -45,9 +45,9 @@ public class MiceChoiceUI : MonoBehaviour
         TextAsset textAsset = Resources.Load<TextAsset>("MiceInfo");
         miceInfoRoot = JSON.Parse(textAsset.text);
         
-        speedSlider.value = miceInfoRoot[currentChoice]["speedLevel"].AsFloat;
-        eatSpeedSlider.value = miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat;
-        beingFatSpeedSlider.value = miceInfoRoot[currentChoice]["beingFatSpeedLevel"].AsFloat;
+        speedSlider.value = miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat;
+        eatSpeedSlider.value = miceInfoRoot[currentChoice]["speedLevel"].AsFloat;
+        beingFatSpeedSlider.value = miceInfoRoot[currentChoice]["cdLevel"].AsFloat;
     }
 
     // Update is called once per frame
@@ -78,9 +78,9 @@ public class MiceChoiceUI : MonoBehaviour
             choiceRolling = false;
             localMapChoiceUi.Refresh();
 
-            StartCoroutine(SliderSetNewValue(speedSlider, miceInfoRoot[currentChoice]["speedLevel"].AsFloat));
-            StartCoroutine(SliderSetNewValue(eatSpeedSlider, miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat));
-            StartCoroutine(SliderSetNewValue(beingFatSpeedSlider, miceInfoRoot[currentChoice]["beingFatSpeedLevel"].AsFloat));
+            StartCoroutine(SliderSetNewValue(speedSlider, miceInfoRoot[currentChoice]["eatSpeedLevel"].AsFloat));
+            StartCoroutine(SliderSetNewValue(eatSpeedSlider, miceInfoRoot[currentChoice]["speedLevel"].AsFloat));
+            StartCoroutine(SliderSetNewValue(beingFatSpeedSlider, miceInfoRoot[currentChoice]["cdLevel"].AsFloat));
         }
     }
 

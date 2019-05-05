@@ -14,6 +14,10 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> level3Miscs;
     public List<GameObject> level4Miscs;
     public List<GameObject> level5Miscs;
+    public List<GameObject> level6Miscs;
+    public List<GameObject> level7Miscs;
+    public List<GameObject> level8Miscs;
+    public List<GameObject> level9Miscs;
     
     // Start is called before the first frame update
     void Start()
@@ -79,6 +83,37 @@ public class LevelManager : MonoBehaviour
         if (gameLevel == 5)
         {
             foreach (GameObject misc in level5Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
+
+        if (gameLevel == 6)
+        {
+            foreach (GameObject misc in level6Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
+        
+        if (gameLevel == 7)
+        {
+            foreach (GameObject misc in level7Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
+        
+        if (gameLevel == 8)
+        {
+            foreach (GameObject misc in level8Miscs)
+            {
+                misc.SetActive(true);
+            }
+        }
+        if (gameLevel == 9)
+        {
+            foreach (GameObject misc in level9Miscs)
             {
                 misc.SetActive(true);
             }

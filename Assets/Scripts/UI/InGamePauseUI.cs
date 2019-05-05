@@ -1,20 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGamePauseUI : MonoBehaviour
 {
+    enum PauseButton
+    {
+        Null,
+        Restart,
+        Continue,
+        Return
+    };
 
     public GameObject pauseUI;
     public Button pauseBtn;
     public GameObject MainCamera;
     //public Image audioImage;
+    public GameController gameController;
 
     public Sprite musicOn;
     public Sprite musicOff;
     private AudioManager audioManager;
+    private PauseButton currentSelected = PauseButton.Null;
+    public Animator restartHighlight;
+    public Animator continueHighlight;
+    public Animator returnHighlight;
+    public float navigationTimeGap = 0.3f;
+    private float navigationCount = 0.0f;
+    private bool usingHandle = false;
     
     // Start is called before the first frame update
     void Start()
@@ -35,7 +52,60 @@ public class InGamePauseUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((Mathf.Abs(Input.GetAxis("Mouse X")) >= 0.01f || Mathf.Abs(Input.GetAxis("Mouse Y")) >= 0.01f) && usingHandle)
+        {
+            AllUnhighlight();
+            usingHandle = false;
+            Cursor.visible = true;
+        }
+        if (gameController.currentStatus == GameController.gameStatus.Pause)
+        {
+            if ((Input.GetAxis("P1 Navigation Horizontal") < -0.01f || Input.GetAxis("P2 Navigation Horizontal") < -0.01f)
+                && navigationCount >= navigationTimeGap)
+            {
+                Cursor.visible = false;
+                usingHandle = true;
+                NaviPrevious();
+                navigationCount -= navigationTimeGap;
+            }
+            else if ((Input.GetAxis("P1 Navigation Horizontal") > 0.01f ||
+                      Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
+                     && navigationCount >= navigationTimeGap)
+            {
+                Cursor.visible = false;
+                usingHandle = true;
+                NaviNext();
+                navigationCount -= navigationTimeGap;
+            }
+            else if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f 
+                     || Input.GetAxis("P2 Navigation Horizontal") < -0.01f 
+                     || Input.GetAxis("P1 Navigation Horizontal") > 0.01f 
+                     || Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
+            {
+                navigationCount += Time.deltaTime;
+            }
+            else
+            {
+                navigationCount = navigationTimeGap;
+            }
+        }
         
+        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
+        {
+            Debug.Log("MainSubmit");
+            switch (currentSelected)
+            {
+                case PauseButton.Restart:
+                    gameController.RestartGame();
+                    break;
+                case PauseButton.Continue:
+                    Resume();
+                    break;
+                case PauseButton.Return:
+                    Exit();
+                    break;
+            }
+        }
     }
 
     public void Pause()
@@ -54,6 +124,7 @@ public class InGamePauseUI : MonoBehaviour
         StartCoroutine(RemoveBlur());
         audioManager.EndLowPassEffect();
         pauseUI.GetComponent<Animator>().SetTrigger("Continue");
+        gameController.SetGameStatus(GameController.gameStatus.Play);
     }
 
     IEnumerator ResetTimeScale(){
@@ -112,6 +183,62 @@ public class InGamePauseUI : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Cover");
+    }
+
+    void NaviNext()
+    {
+        AllUnhighlight();
+        switch (currentSelected)
+        {
+            case PauseButton.Null:
+                currentSelected = PauseButton.Restart;
+                restartHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Restart:
+                currentSelected = PauseButton.Continue;
+                continueHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Continue:
+                currentSelected = PauseButton.Return;
+                returnHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Return:
+                currentSelected = PauseButton.Restart;
+                restartHighlight.SetTrigger("Highlighted");
+                break;
+        }
+        Debug.Log("NaviNext:" + currentSelected);
+    }
+
+    void NaviPrevious()
+    {
+        AllUnhighlight();
+        switch (currentSelected)
+        {
+            case PauseButton.Null:
+                currentSelected = PauseButton.Return;
+                returnHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Restart:
+                currentSelected = PauseButton.Return;
+                returnHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Continue:
+                currentSelected = PauseButton.Restart;
+                restartHighlight.SetTrigger("Highlighted");
+                break;
+            case PauseButton.Return:
+                currentSelected = PauseButton.Continue;
+                continueHighlight.SetTrigger("Highlighted");
+                break;
+        }
+    }
+
+    void AllUnhighlight()
+    {
+        restartHighlight.SetTrigger("Normal");
+        continueHighlight.SetTrigger("Normal");
+        returnHighlight.SetTrigger("Normal");
     }
     
 }

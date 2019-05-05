@@ -89,7 +89,7 @@ public class TrackingMole : MonoBehaviour
                 if (state == MoleState.Tracking)
                 {
                     state = MoleState.WaitingForExposing;
-                    moleAnimator.SetTrigger("Knock");
+                    moleAnimator.SetTrigger("KnockHit");
                 }
             }
             else

@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 
     public Vector2[] startPos1, startPos2;
     public GameObject GameOverUI, AreaDisplayer;
+    public InGamePauseUI pauseUi;
 
 
     //InputManager inputManager;
@@ -58,6 +59,14 @@ public class GameController : MonoBehaviour {
             TimeUpGameOver();
         }
 
+        if (currentStatus == gameStatus.Play)
+        {
+            if (Input.GetButtonDown("P1 Pause") || Input.GetButtonDown("P2 Pause"))
+            {
+                pauseUi.Pause();
+                SetGameStatus(gameStatus.Pause);
+            }
+        }
         if (currentStatus == gameStatus.TimeUpOver || currentStatus == gameStatus.MouseDieOver)
         {
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
@@ -92,18 +101,24 @@ public class GameController : MonoBehaviour {
 
     public void MouseDieGameOver(int playerID){
         SetGameStatus(GameController.gameStatus.MouseDieOver);
-        if (playerID == 1) {
-            GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
-            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
+        if (playerID == 2) {
+            GameOverUI.transform.Find("p1Win").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p2Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("Tie").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p1WinBG").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p2WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p1Die").gameObject.SetActive(false);
         } else {
-            GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
-            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2Win").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p1Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("Tie").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2WinBG").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p1WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2Die").gameObject.SetActive(false);
         }
         GameOverUI.transform.localPosition = new Vector2(0, 0);
-        GameOverUI.transform.GetChild(10).gameObject.SetActive(false);
-        GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
+        GameOverUI.transform.Find("TieMice").gameObject.SetActive(false);
+        GameOverUI.transform.Find("TimeUp").gameObject.SetActive(false);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
         AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();
     }
@@ -113,21 +128,30 @@ public class GameController : MonoBehaviour {
         int area1 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[1]/20, 9999);
         int area2 = Mathf.Min((int)holeManager.GetComponent<HoleManager>().areas[2]/20, 9999);
         if (area1 == area2) {
-            GameOverUI.transform.GetChild(3).gameObject.SetActive(true);
-            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(8).gameObject.SetActive(false);
+            GameOverUI.transform.Find("Tie").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p1Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("WinMice").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p1WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("Area").gameObject.SetActive(false);
         } else if (area1 > area2) {
-            GameOverUI.transform.GetChild(1).gameObject.SetActive(true);
-            GameOverUI.transform.GetChild(2).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
+            GameOverUI.transform.Find("p1Win").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p2Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("Tie").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p1WinBG").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p2WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("TieMice").gameObject.SetActive(false);
         } else {
-            GameOverUI.transform.GetChild(2).gameObject.SetActive(true);
-            GameOverUI.transform.GetChild(1).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(3).gameObject.SetActive(false);
-            GameOverUI.transform.GetChild(9).gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2Win").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p1Win").gameObject.SetActive(false);
+            GameOverUI.transform.Find("Tie").gameObject.SetActive(false);
+            GameOverUI.transform.Find("p2WinBG").gameObject.SetActive(true);
+            GameOverUI.transform.Find("p1WinBG").gameObject.SetActive(false);
+            GameOverUI.transform.Find("TieMice").gameObject.SetActive(false);
         }
+        GameOverUI.transform.Find("p1Die").gameObject.SetActive(false);
+        GameOverUI.transform.Find("p2Die").gameObject.SetActive(false);
         GameOverUI.transform.localPosition = new Vector2(0, 0);
         GameOverUI.GetComponent<Animator>().SetTrigger("GameOver");
         AreaDisplayer.GetComponent<AreaDisplayerUI>().Display();

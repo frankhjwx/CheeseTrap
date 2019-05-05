@@ -48,6 +48,7 @@
             <e p="Cat.cs" t="Include" />
             <e p="ChocolateMoving.cs" t="Include" />
             <e p="Hole.cs" t="Include" />
+            <e p="PockyRotating.cs" t="Include" />
             <e p="TrackingMole.cs" t="Include" />
             <e p="Wind.cs" t="Include" />
           </e>
@@ -77,12 +78,14 @@
             <e p="LocalMapChoiceUIStartGame.cs" t="Include" />
             <e p="MapStarDisplay.cs" t="Include" />
             <e p="MiceChoiceUI.cs" t="Include" />
+            <e p="PausePanelHighlightController.cs" t="Include" />
             <e p="TeamInfoUIManager.cs" t="Include" />
             <e p="TimeDisplayerUI.cs" t="Include" />
           </e>
         </e>
         <e p="Shaders" t="Include">
           <e p="AlphaBlend.shader" t="Include" />
+          <e p="AreaDisplayEffect-old.shader" t="Include" />
           <e p="AreaDisplayEffect.shader" t="Include" />
           <e p="DashCD.shader" t="Include" />
           <e p="FlowAndSpinEffect.shader" t="Include" />
