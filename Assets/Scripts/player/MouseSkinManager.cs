@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
-using UnityEngine.XR.WSA.WebCam;
 
 public class MouseSkinManager : MonoBehaviour
 {
