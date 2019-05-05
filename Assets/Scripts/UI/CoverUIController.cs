@@ -27,6 +27,7 @@ public class CoverUIController : MonoBehaviour
     public CoverMiceUpUI aboutUsUi;
     [HideInInspector]
     public CoverButton currentButton = CoverButton.NULL;
+    public GameObject UICamera;
 
     public float navigationTimeGap = 0.3f;
     private float navigationCount = 0.0f;
@@ -110,6 +111,7 @@ public class CoverUIController : MonoBehaviour
 
     public void About()
     {
+        UICamera.GetComponent<GetScreenShot>().GenerateObj();
         SceneManager.LoadScene("TeamInfo");
     }
 

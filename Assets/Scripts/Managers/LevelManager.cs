@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -22,6 +23,16 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (gameLevel == 0) {
+            if (GameObject.Find("SCREENSHOT") != null) {
+                var go = GameObject.Find("SCREENSHOT").gameObject;
+                transform.Find("ForeGround").GetComponent<SpriteRenderer>().sprite = GameObject.Find("SCREENSHOT").GetComponent<SpriteRenderer>().sprite;
+            
+                var s = 1920.0f / transform.Find("ForeGround").GetComponent<SpriteRenderer>().sprite.texture.width;
+                transform.Find("ForeGround").localScale = new Vector3(s, s, s);
+                Destroy(go);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -34,6 +45,7 @@ public class LevelManager : MonoBehaviour
         gameLevel = level;
         UpdateSprites();
         UpdateMisc();
+        
     }
 
     void UpdateSprites(){
@@ -50,6 +62,7 @@ public class LevelManager : MonoBehaviour
             {
                 misc.SetActive(true);
             }
+            
         }
         if (gameLevel == 1)
         {
