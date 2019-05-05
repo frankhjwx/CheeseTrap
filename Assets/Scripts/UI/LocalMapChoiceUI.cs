@@ -24,7 +24,7 @@ public class LocalMapChoiceUI : MonoBehaviour
     private float p2NavigationHorizontalCount = 0.0f;
     private float mapNavigationCount = 0.0f;
     private MapChoiceState state = MapChoiceState.Idle;
-    private int mouseChooseConfirmCount = 0;
+    private bool p1Confirmed, p2Confirmed;
     public GameObject p1MouseSelected;
     public GameObject p2MouseSelected;
 
@@ -36,6 +36,11 @@ public class LocalMapChoiceUI : MonoBehaviour
         
         mapChoiceManager = GameObject.FindWithTag("LocalMapChoiceManager").GetComponent<MapChoiceManager>();
         Refresh();
+
+        p1Confirmed = false;
+        p2Confirmed = false;
+        p1MouseSelected.SetActive(false);
+        p2MouseSelected.SetActive(false);
 
         state = MapChoiceState.PlayerChoosing;
     }
@@ -194,9 +199,9 @@ public class LocalMapChoiceUI : MonoBehaviour
 
     public void ConfirmP1Mouse()
     {
-        mouseChooseConfirmCount++;
-        p1MouseSelected.SetActive(false);
-        if (mouseChooseConfirmCount >= 2)
+        p1Confirmed = true;
+        p1MouseSelected.SetActive(true);
+        if (p1Confirmed && p2Confirmed)
         {
             ToChooseMap();
         }
@@ -204,9 +209,9 @@ public class LocalMapChoiceUI : MonoBehaviour
     
     public void ConfirmP2Mouse()
     {
-        mouseChooseConfirmCount++;
-        p2MouseSelected.SetActive(false);
-        if (mouseChooseConfirmCount >= 2)
+        p2Confirmed = true;
+        p2MouseSelected.SetActive(true);
+        if (p1Confirmed && p2Confirmed)
         {
             ToChooseMap();
         }

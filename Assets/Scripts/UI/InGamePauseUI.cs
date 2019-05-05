@@ -16,6 +16,7 @@ public class InGamePauseUI : MonoBehaviour
     public GameObject pauseUI;
     public Button pauseBtn;
     public GameObject MainCamera;
+    public GameObject TimeCamera;
     //public Image audioImage;
     public GameController gameController;
 
@@ -42,6 +43,7 @@ public class InGamePauseUI : MonoBehaviour
         //     audioImage.sprite = musicOn;
         // }
         MainCamera.GetComponent<GaussionBlur>().enabled = false;
+        TimeCamera.GetComponent<GaussionBlur>().enabled = false;
         pauseUI.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -139,10 +141,12 @@ public class InGamePauseUI : MonoBehaviour
         int BlurIterations = 1;
         float timer = 0;
         MainCamera.GetComponent<GaussionBlur>().enabled = true;
+        TimeCamera.GetComponent<GaussionBlur>().enabled = true;
         while (timer < 1){
             timer += Time.unscaledDeltaTime;
-            BlurSpreadSize = timer * 6;
+            BlurSpreadSize = timer * 4;
             MainCamera.GetComponent<GaussionBlur>().UpdateVariables(DownSampleNum, BlurSpreadSize, BlurIterations);
+            TimeCamera.GetComponent<GaussionBlur>().UpdateVariables(DownSampleNum, BlurSpreadSize, BlurIterations);
             yield return null;
         }
     }
@@ -154,11 +158,13 @@ public class InGamePauseUI : MonoBehaviour
         float timer = 0;
         while (timer < 1){
             timer += Time.unscaledDeltaTime;
-            BlurSpreadSize = (1-timer) * 6;
+            BlurSpreadSize = (1-timer) * 4;
             MainCamera.GetComponent<GaussionBlur>().UpdateVariables(DownSampleNum, BlurSpreadSize, BlurIterations);
+            TimeCamera.GetComponent<GaussionBlur>().UpdateVariables(DownSampleNum, BlurSpreadSize, BlurIterations);
             yield return null;
         }
         MainCamera.GetComponent<GaussionBlur>().enabled = false;
+        TimeCamera.GetComponent<GaussionBlur>().enabled = false;
     }
 
     public void Muse()
