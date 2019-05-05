@@ -25,7 +25,6 @@ public class MapStarDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StarCount = 3;
     }
 
     private void SetStar(int count)

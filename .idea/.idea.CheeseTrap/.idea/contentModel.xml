@@ -71,6 +71,7 @@
             <e p="DiskChoiceUI.cs" t="Include" />
             <e p="DiskRolling.cs" t="Include" />
             <e p="FourLevelSlider.cs" t="Include" />
+            <e p="GameOverBehavior.cs" t="Include" />
             <e p="GaussionBlur.cs" t="Include" />
             <e p="InGameCountUI.cs" t="Include" />
             <e p="InGamePauseUI.cs" t="Include" />

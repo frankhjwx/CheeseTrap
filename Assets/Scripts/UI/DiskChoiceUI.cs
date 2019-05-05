@@ -21,7 +21,7 @@ public class DiskChoiceUI : MonoBehaviour
             currentChoice = value;
         }
     }
-    private int currentChoice;
+    private int currentChoice = 0;
 
     private float timeLeftToRecover = 0.0f;
     private bool choiceRolling = false;

@@ -89,7 +89,6 @@ public class InGamePauseUI : MonoBehaviour
         
         if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
         {
-            Debug.Log("MainSubmit");
             switch (currentSelected)
             {
                 case PauseButton.Restart:

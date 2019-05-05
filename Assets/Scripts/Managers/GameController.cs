@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
                 SetGameStatus(gameStatus.Pause);
             }
         }
-        if (currentStatus == gameStatus.TimeUpOver || currentStatus == gameStatus.MouseDieOver)
+        /*if (currentStatus == gameStatus.TimeUpOver || currentStatus == gameStatus.MouseDieOver)
         {
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
             {
@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour {
             {
                 SelectLevel();
             }
-        }
+        }*/
     }
 
     public void SetGameStatus(gameStatus status){
