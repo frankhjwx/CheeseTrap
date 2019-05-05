@@ -117,7 +117,7 @@ public class LocalMapChoiceUI : MonoBehaviour
                     mapNavigationCount += Time.deltaTime;
                 }
             }
-            if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f || Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
+            else if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f || Input.GetAxis("P2 Navigation Horizontal") > 0.01f)
             {
                 if (mapNavigationCount >= axisChoosingTimeGap)
                 {
