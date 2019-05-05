@@ -81,6 +81,10 @@ public class GameController : MonoBehaviour {
     void Update() {
         if (currentStatus == gameStatus.DisplayHint || currentStatus == gameStatus.CountDown) {
             isPlaying = false;
+            if (currentStatus == gameStatus.DisplayHint && (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))){
+                hintConfirmed();
+            }
+
             return;
         }
 
