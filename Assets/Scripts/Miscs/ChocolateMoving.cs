@@ -19,6 +19,8 @@ public class ChocolateMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         timer += Time.deltaTime;
         float ratio = (timer % circleTime) / circleTime * 2;
         if (ratio > 1) ratio = 2 - ratio;

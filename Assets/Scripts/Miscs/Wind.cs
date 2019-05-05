@@ -23,6 +23,8 @@ public class Wind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         if (player1 == null || player2 == null) return;
         Vector3 delta1 = player1.transform.position - transform.position;
         Vector3 delta2 = player2.transform.position - transform.position;

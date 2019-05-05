@@ -1,9 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour {
-    public enum gameStatus {Play, Pause, MouseDieOver, TimeUpOver};
+    public enum gameStatus {DisplayHint, CountDown, Play, Pause, MouseDieOver, TimeUpOver};
     public gameStatus currentStatus;
+    public bool isPlaying = false;
     public int gameLevel = 1;
     private GameObject holeManager;
     private GameObject levelManager;
@@ -14,6 +19,8 @@ public class GameController : MonoBehaviour {
     public Vector2[] startPos1, startPos2;
     public GameObject GameOverUI, AreaDisplayer;
     public InGamePauseUI pauseUi;
+    public GameObject hint;
+    public GameObject readyObject, goObject;
 
 
     //InputManager inputManager;
@@ -26,7 +33,7 @@ public class GameController : MonoBehaviour {
             gameLevel = localMapChoice.GetMapChosen();
         }
         Debug.Log(gameLevel);
-        currentStatus = gameStatus.Play;
+        currentStatus = gameStatus.DisplayHint;
         holeManager = GameObject.Find("HoleManager");
         holeManager.GetComponent<HoleManager>().InitializeLevel(gameLevel);
         levelManager = GameObject.Find("LevelManager");
@@ -37,13 +44,48 @@ public class GameController : MonoBehaviour {
         mice1.transform.position = startPos1[gameLevel];
         mice2.transform.position = startPos2[gameLevel];
         mice2.transform.eulerAngles = new Vector3(0, -180, 0);
+        isPlaying = false;
+
+        if (gameLevel != 0) {
+            hint.SetActive(true);
+        } else hint.SetActive(false);
+        hint.transform.Find("HintConfirmButton").GetComponent<Button>().onClick.AddListener(hintConfirmed);
+
+        readyObject.SetActive(false);
+        goObject.SetActive(false);
 
         gameTime = 0f;
         
     }
 
+    private void hintConfirmed(){
+        hint.SetActive(false);
+        currentStatus = gameStatus.CountDown;
+        CountDown();
+    }
+
+    private void CountDown(){
+        readyObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-2000, 0);
+        goObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-2000, 0);
+        readyObject.SetActive(true);
+        goObject.SetActive(true);
+        Sequence readyGoSq = DOTween.Sequence();
+        readyGoSq.Insert(0, readyObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f).SetEase(Ease.InBack));
+        readyGoSq.Insert(1, readyObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(2000, 0), 0.5f).SetEase(Ease.OutBack));
+        readyGoSq.Insert(1, goObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0, 0), 0.5f).SetEase(Ease.InBack));
+        readyGoSq.Insert(2, goObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(2000, 0), 0.5f).SetEase(Ease.OutBack));
+        readyGoSq.SetLoops(1);
+        readyGoSq.OnComplete(()=>currentStatus = gameStatus.Play);
+    }
+
     void Update() {
+        if (currentStatus == gameStatus.DisplayHint || currentStatus == gameStatus.CountDown) {
+            isPlaying = false;
+            return;
+        }
+
         if (currentStatus == gameStatus.Play){
+            isPlaying = true;
             gameTime += Time.deltaTime;
         }
         // if ((currentStatus == gameStatus.MouseDieOver || currentStatus == gameStatus.TimeUpOver) && InputManager.instance.GetRestart()){
@@ -52,6 +94,7 @@ public class GameController : MonoBehaviour {
         // }
         if (gameTime >= maxTime && currentStatus != gameStatus.TimeUpOver) {
             // send a signal of Game Over
+            isPlaying = false;
             TimeUpGameOver();
         }
 

@@ -27,6 +27,8 @@ public class CaramelGenerator : MonoBehaviour
     }
 
     void Update(){
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         timer += Time.deltaTime;
         if (currentStatus == MovingStatus.Pause){
             if (timer >= pauseTime) {

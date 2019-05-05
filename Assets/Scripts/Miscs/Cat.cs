@@ -23,6 +23,8 @@ public class Cat : MonoBehaviour
     }
 
     void Update(){
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         timer += Time.deltaTime;
         if (currentStatus == CatStatus.Rest && timer > restTime) {
             SetWait();

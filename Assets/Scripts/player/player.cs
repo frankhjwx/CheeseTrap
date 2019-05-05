@@ -157,6 +157,10 @@ public class player : MonoBehaviour
 
     void Update()
     {
+        if (gameController.currentStatus == GameController.gameStatus.DisplayHint || gameController.currentStatus == GameController.gameStatus.CountDown) {
+            return;
+        }
+
         dustEmission.rateOverTime = 0;
         foodEmission.rateOverTime = 0;
         smokeEmission.rateOverTime = 0;

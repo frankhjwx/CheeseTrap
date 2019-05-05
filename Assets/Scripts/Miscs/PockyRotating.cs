@@ -18,6 +18,8 @@ public class PockyRotating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         pockyRelative.Rotate(new Vector3(0, 0, 1), rotateSpeed * Time.deltaTime);
         pockyShadow.rotation = pockyRelative.rotation;
     }

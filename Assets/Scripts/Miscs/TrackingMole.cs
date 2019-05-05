@@ -58,6 +58,8 @@ public class TrackingMole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameObject.Find("GameController").GetComponent<GameController>().isPlaying)
+            return;
         if (targetPlayer == null) return;
         if (currentTime > appearTime1 && !appeared1)
         {
