@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LocalMapChoiceUI : MonoBehaviour
@@ -25,8 +26,13 @@ public class LocalMapChoiceUI : MonoBehaviour
     private float mapNavigationCount = 0.0f;
     private MapChoiceState state = MapChoiceState.Idle;
     private bool p1Confirmed, p2Confirmed;
+    public GameObject p1Mouse;
+    public GameObject p2Mouse;
     public GameObject p1MouseSelected;
     public GameObject p2MouseSelected;
+    public GameObject p1ConfirmedCover;
+    public GameObject p2ConfirmedCover;
+    public GameObject p1ConfirmButton, p2ConfirmButton, p1CancelButton, p2CancelButton;
 
     void Start()
     {
@@ -41,6 +47,8 @@ public class LocalMapChoiceUI : MonoBehaviour
         p2Confirmed = false;
         p1MouseSelected.SetActive(false);
         p2MouseSelected.SetActive(false);
+        p1ConfirmedCover.SetActive(false);
+        p2ConfirmedCover.SetActive(false);
 
         state = MapChoiceState.PlayerChoosing;
     }
@@ -102,9 +110,17 @@ public class LocalMapChoiceUI : MonoBehaviour
             {
                 ConfirmP2Mouse();
             }
-            if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
-            {
-                BackCover();
+            if (Input.GetButtonDown("P1 Cancel")) {
+                if (!p1Confirmed && !p2Confirmed)
+                    BackCover();
+                else
+                    CancelP1Mouse();
+            }
+            if (Input.GetButtonDown("P2 Cancel")) {
+                if (!p1Confirmed && !p2Confirmed)
+                    BackCover();
+                else
+                    CancelP2Mouse();
             }
         }
 
@@ -201,9 +217,12 @@ public class LocalMapChoiceUI : MonoBehaviour
     {
         p1Confirmed = true;
         p1MouseSelected.SetActive(true);
+        p1ConfirmedCover.SetActive(true);
+        p1ConfirmButton.SetActive(false);
+        p1CancelButton.SetActive(true);
         if (p1Confirmed && p2Confirmed)
         {
-            ToChooseMap();
+            Invoke("ToChooseMap", 0.5f);
         }
     }
     
@@ -211,10 +230,29 @@ public class LocalMapChoiceUI : MonoBehaviour
     {
         p2Confirmed = true;
         p2MouseSelected.SetActive(true);
+        p2ConfirmedCover.SetActive(true);
+        p2ConfirmButton.SetActive(false);
+        p2CancelButton.SetActive(true);
         if (p1Confirmed && p2Confirmed)
         {
-            ToChooseMap();
+            Invoke("ToChooseMap", 0.5f);
         }
+    }
+
+    public void CancelP1Mouse(){
+        p1Confirmed = false;
+        p1MouseSelected.SetActive(false);
+        p1ConfirmedCover.SetActive(false);
+        p1ConfirmButton.SetActive(true);
+        p1CancelButton.SetActive(false);
+    }
+
+    public void CancelP2Mouse(){
+        p2Confirmed = false;
+        p2MouseSelected.SetActive(false);
+        p2ConfirmedCover.SetActive(false);
+        p2ConfirmButton.SetActive(true);
+        p2CancelButton.SetActive(false);
     }
     
     public void BackButton()
