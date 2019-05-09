@@ -26,6 +26,11 @@ public class GameController : MonoBehaviour {
     //InputManager inputManager;
 
 
+    private AudioManager audioManager;
+
+    private void Awake(){
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
     void Start(){
         if (GameObject.FindWithTag("LocalMapChoiceManager"))
         {
@@ -82,6 +87,7 @@ public class GameController : MonoBehaviour {
         if (currentStatus == gameStatus.DisplayHint || currentStatus == gameStatus.CountDown) {
             isPlaying = false;
             if (currentStatus == gameStatus.DisplayHint && (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))){
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 hintConfirmed();
             }
 
@@ -107,6 +113,7 @@ public class GameController : MonoBehaviour {
             if (Input.GetButtonDown("P1 Pause") || Input.GetButtonDown("P2 Pause"))
             {
                 pauseUi.Pause();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 SetGameStatus(gameStatus.Pause);
             }
         }

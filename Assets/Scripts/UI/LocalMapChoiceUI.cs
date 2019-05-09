@@ -33,7 +33,13 @@ public class LocalMapChoiceUI : MonoBehaviour
     public GameObject p1ConfirmedCover;
     public GameObject p2ConfirmedCover;
     public GameObject p1ConfirmButton, p2ConfirmButton, p1CancelButton, p2CancelButton;
+    public Animator mapTitleAnimator;
+    private AudioManager audioManager;
 
+    private void Awake(){
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+    
     void Start()
     {
         p1NavigationHorizontalCount = axisChoosingTimeGap;
@@ -61,12 +67,14 @@ public class LocalMapChoiceUI : MonoBehaviour
                 p1NavigationHorizontalCount >= axisChoosingTimeGap)
             {
                 p1Choice.leftChoice();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 p1NavigationHorizontalCount -= axisChoosingTimeGap;
             }
             else if (Input.GetAxis("P1 Navigation Horizontal") > 0.01f &&
                      p1NavigationHorizontalCount >= axisChoosingTimeGap)
             {
                 p1Choice.rightChoice();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 p1NavigationHorizontalCount -= axisChoosingTimeGap;
             }
             else if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f ||
@@ -83,12 +91,14 @@ public class LocalMapChoiceUI : MonoBehaviour
                 p2NavigationHorizontalCount >= axisChoosingTimeGap)
             {
                 p2Choice.leftChoice();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 p2NavigationHorizontalCount -= axisChoosingTimeGap;
             }
             else if (Input.GetAxis("P2 Navigation Horizontal") > 0.01f &&
                      p2NavigationHorizontalCount >= axisChoosingTimeGap)
             {
                 p2Choice.rightChoice();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 p2NavigationHorizontalCount -= axisChoosingTimeGap;
             }
             else if (Input.GetAxis("P2 Navigation Horizontal") < -0.01f ||
@@ -104,23 +114,37 @@ public class LocalMapChoiceUI : MonoBehaviour
             if (Input.GetButtonDown("P1 Submit"))
             {
                 ConfirmP1Mouse();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
             }
 
             if (Input.GetButtonDown("P2 Submit"))
             {
                 ConfirmP2Mouse();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
             }
             if (Input.GetButtonDown("P1 Cancel")) {
                 if (!p1Confirmed && !p2Confirmed)
+                {
                     BackCover();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
+                }
                 else
+                {
                     CancelP1Mouse();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
+                }
             }
             if (Input.GetButtonDown("P2 Cancel")) {
                 if (!p1Confirmed && !p2Confirmed)
+                {
                     BackCover();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
+                }
                 else
+                {
                     CancelP2Mouse();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
+                }
             }
         }
 
@@ -131,6 +155,7 @@ public class LocalMapChoiceUI : MonoBehaviour
                 if (mapNavigationCount >= axisChoosingTimeGap)
                 {
                     mapChoice.leftChoiceLoop();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                     mapNavigationCount -= axisChoosingTimeGap;
                 }
                 else
@@ -143,6 +168,7 @@ public class LocalMapChoiceUI : MonoBehaviour
                 if (mapNavigationCount >= axisChoosingTimeGap)
                 {
                     mapChoice.rightChoiceLoop();
+                    audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                     mapNavigationCount -= axisChoosingTimeGap;
                 }
                 else
@@ -158,10 +184,12 @@ public class LocalMapChoiceUI : MonoBehaviour
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
             {
                 StartGame();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
             }
             if (Input.GetButtonDown("P1 Cancel") || Input.GetButtonDown("P2 Cancel"))
             {
                 ToChoosePlayer();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
             }
         }
     }
@@ -201,6 +229,10 @@ public class LocalMapChoiceUI : MonoBehaviour
         }
         backgroundTransform.localPosition = targetPos;
         state = finalState;
+        if (finalState == MapChoiceState.MapChoosing)
+        {
+            mapTitleAnimator.SetTrigger("glow");
+        }
     }
 
     public void ToChooseMap()

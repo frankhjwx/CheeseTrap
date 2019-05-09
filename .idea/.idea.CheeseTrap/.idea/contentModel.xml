@@ -22,6 +22,8 @@
           </e>
         </e>
         <e p="donkillme.cs" t="Include" />
+        <e p="GetScreenShot.cs" t="Include" />
+        <e p="HintDisplayer.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="SimpleJSON.cs" t="Include" />
         </e>

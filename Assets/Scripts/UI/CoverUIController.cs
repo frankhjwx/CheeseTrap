@@ -31,7 +31,11 @@ public class CoverUIController : MonoBehaviour
 
     public float navigationTimeGap = 0.3f;
     private float navigationCount = 0.0f;
-    private UiFocus focus = UiFocus.Main;
+    private UiFocus focus = UiFocus.Main;private AudioManager audioManager;
+
+    private void Awake(){
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -70,7 +74,7 @@ public class CoverUIController : MonoBehaviour
 
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
             {
-                Debug.Log("MainSubmit");
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
                 switch (currentButton)
                 {
                     case CoverButton.START:
@@ -92,6 +96,7 @@ public class CoverUIController : MonoBehaviour
         {
             if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
             {
+                audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
                 HowToPlayPanelConfirm();
             }
         }
@@ -142,6 +147,7 @@ public class CoverUIController : MonoBehaviour
 
     public void naviNext()
     {
+        audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
         switch (currentButton)
         {
             case CoverButton.NULL:
@@ -172,6 +178,7 @@ public class CoverUIController : MonoBehaviour
 
     public void naviPrevious()
     {
+        audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
         switch (currentButton)
         {
             case CoverButton.NULL:

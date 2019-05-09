@@ -30,7 +30,6 @@ public class InGamePauseUI : MonoBehaviour
     public float navigationTimeGap = 0.3f;
     private float navigationCount = 0.0f;
     private bool usingHandle = false;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +64,7 @@ public class InGamePauseUI : MonoBehaviour
                 Cursor.visible = false;
                 usingHandle = true;
                 NaviPrevious();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
                 navigationCount -= navigationTimeGap;
             }
             else if ((Input.GetAxis("P1 Navigation Horizontal") > 0.01f ||
@@ -74,6 +74,7 @@ public class InGamePauseUI : MonoBehaviour
                 Cursor.visible = false;
                 usingHandle = true;
                 NaviNext();
+                audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
                 navigationCount -= navigationTimeGap;
             }
             else if (Input.GetAxis("P1 Navigation Horizontal") < -0.01f 
@@ -87,21 +88,22 @@ public class InGamePauseUI : MonoBehaviour
             {
                 navigationCount = navigationTimeGap;
             }
-        }
         
-        if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
-        {
-            switch (currentSelected)
+            if (Input.GetButtonDown("P1 Submit") || Input.GetButtonDown("P2 Submit"))
             {
-                case PauseButton.Restart:
-                    gameController.RestartGame();
-                    break;
-                case PauseButton.Continue:
-                    Resume();
-                    break;
-                case PauseButton.Return:
-                    Exit();
-                    break;
+                audioManager.PlayOnceAudioByPath("audio/buttonOnClick");
+                switch (currentSelected)
+                {
+                    case PauseButton.Restart:
+                        gameController.RestartGame();
+                        break;
+                    case PauseButton.Continue:
+                        Resume();
+                        break;
+                    case PauseButton.Return:
+                        Exit();
+                        break;
+                }
             }
         }
     }
