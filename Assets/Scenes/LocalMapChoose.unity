@@ -3505,6 +3505,7 @@ MonoBehaviour:
   imagePosition: {fileID: 1533391678}
   localMapChoiceUi: {fileID: 270713206}
   mapStarDisplay: {fileID: 0}
+  mapTitleAnimator: {fileID: 0}
 --- !u!222 &537605029
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4804,6 +4805,7 @@ MonoBehaviour:
   imagePosition: {fileID: 1977729284}
   localMapChoiceUi: {fileID: 270713206}
   mapStarDisplay: {fileID: 963511707}
+  mapTitleAnimator: {fileID: 873124204}
 --- !u!1 &824741959
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class DiskChoiceUI : MonoBehaviour
 
     public LocalMapChoiceUI localMapChoiceUi;
     public MapStarDisplay mapStarDisplay;
+    public Animator mapTitleAnimator;
     private int miceKinds;
 
     public int CurrentChoice
@@ -70,6 +71,8 @@ public class DiskChoiceUI : MonoBehaviour
     
     public void leftChoiceLoop()
     {
+        
+        mapTitleAnimator.SetTrigger("glow");
         if (CurrentChoice <= 0)
         {
             CurrentChoice = miceKinds - 1;
@@ -98,6 +101,8 @@ public class DiskChoiceUI : MonoBehaviour
     
     public void rightChoiceLoop()
     {
+        
+        mapTitleAnimator.SetTrigger("glow");
         if (CurrentChoice >= miceKinds - 1)
         {
             CurrentChoice = 0;
