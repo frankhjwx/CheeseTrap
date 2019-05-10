@@ -42,7 +42,7 @@ public class GameOverBehavior : MonoBehaviour
             {
                 Cursor.visible = false;
                 usingHandle = true;
-                NaviPrevious();
+                NaviNext();
                 audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
                 navigationCount -= navigationTimeGap;
             }
@@ -52,7 +52,7 @@ public class GameOverBehavior : MonoBehaviour
             {
                 Cursor.visible = false;
                 usingHandle = true;
-                NaviNext();
+                NaviPrevious();
                 audioManager.PlayOnceAudioByPath("audio/buttonOnEnter");
                 navigationCount -= navigationTimeGap;
             }
